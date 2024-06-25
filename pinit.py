@@ -3,7 +3,7 @@ import pathlib
 
 def create_project_structure(project_name):
     create_project_dirs(project_name)
-    write_to_project_files()
+    write_to_project_files(project_name)
 
 def create_project_dirs(project_name):
     os.mkdir(project_name)

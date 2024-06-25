@@ -5,6 +5,7 @@ import sys
 import argparse
 
 from pinit import create_project_structure
+from build import build_project
 
 def main():
     cl_args = parse_command_line_args()
