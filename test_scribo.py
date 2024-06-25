@@ -35,17 +35,17 @@ def test_write_to_project_files():
     project_name = "myproject"
     write_to_project_files(project_name)
 
-    def read_from_source_and_dest(source, dest):
-        with open(f"{project_name}/index.html") as dest:
-            with open("templates/index.html") as source:
+    def compare_source_to_dest(source, dest):
+        with open(dest) as dest:
+            with open(source) as source:
                 return dest.read() == source.read()
 
-    assert read_from_source_and_dest(
+    assert compare_source_to_dest(
         "templates/index.html", f"{project_name}/index.html"
     )
-    assert read_from_source_and_dest(
+    assert compare_source_to_dest(
         "templates/style.css", f"{project_name}/style/style.css"
     )
-    assert read_from_source_and_dest(
-        "templates/script.js", f"{project_name}/style/style.js"
+    assert compare_source_to_dest(
+        "templates/script.js", f"{project_name}/script/script.js"
     )
