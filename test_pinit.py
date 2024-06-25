@@ -2,8 +2,8 @@ import pytest
 import os
 import shutil
 
-from scribo import create_project_dirs
-from scribo import write_to_project_files
+from pinit import create_project_dirs
+from pinit import write_to_project_files
 
 
 def list_files(dir):
