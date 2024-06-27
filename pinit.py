@@ -13,6 +13,7 @@ def create_project_dirs(project_name):
     os.makedirs("script")
     os.chdir('..')
 
+
 def write_to_project_files(project_name):
     def write_from_source_to_dest(source, dest):
         with open(dest, "w") as dest:

@@ -17,8 +17,8 @@ def main():
         else:
             create_project_structure(project_name)
     elif cl_args.build:
-        project_name = cl_args.build
-        build_project(project_name)
+        project_root = cl_args.build
+        build_project(project_root)
 
 
 def parse_command_line_args():
