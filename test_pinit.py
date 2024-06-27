@@ -48,3 +48,6 @@ def test_write_to_project_files():
     assert compare_source_to_dest(
         "templates/meta.json", f"{project_name}/meta.json"
     )
+    assert compare_source_to_dest(
+        "templates/index.md", f"{project_name}/md/getting-stated/index.md"
+    )

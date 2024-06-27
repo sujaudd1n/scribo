@@ -24,3 +24,4 @@ def write_to_project_files(project_name):
     write_from_source_to_dest("templates/style.css", f"{project_name}/style/style.css")
     write_from_source_to_dest("templates/script.js", f"{project_name}/script/script.js")
     write_from_source_to_dest("templates/meta.json", f"{project_name}/meta.json")
+    write_from_source_to_dest("templates/index.md", f"{project_name}/md/getting-started/index.md")
