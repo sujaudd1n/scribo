@@ -21,14 +21,10 @@ def test_create_project_dirs():
 
     create_project_dirs(PROJECT_NAME)
 
-    assert len(list_files(PROJECT_NAME)) == 4
     assert os.path.exists(PROJECT_NAME)
     assert os.path.exists(os.path.join(PROJECT_NAME, "md/getting-started"))
     assert os.path.exists(os.path.join(PROJECT_NAME, "script"))
     assert os.path.exists(os.path.join(PROJECT_NAME, "style"))
-    assert os.path.exists(os.path.join(PROJECT_NAME, "style/style.css"))
-    assert os.path.exists(os.path.join(PROJECT_NAME, "script/script.js"))
-    assert os.path.exists(os.path.join(PROJECT_NAME, "index.html"))
 
 
 def test_write_to_project_files():
@@ -48,4 +44,7 @@ def test_write_to_project_files():
     )
     assert compare_source_to_dest(
         "templates/script.js", f"{project_name}/script/script.js"
+    )
+    assert compare_source_to_dest(
+        "templates/meta.json", f"{project_name}/meta.json"
     )
