@@ -6,14 +6,6 @@ from pinit import create_project_dirs
 from pinit import write_to_project_files
 
 
-def list_files(dir):
-    result = []
-    for path, dirs, files in os.walk(dir):
-        for file in files:
-            result.append(os.path.join(path, file))
-    return result
-
-
 def test_create_project_dirs():
     PROJECT_NAME = "myproject"
     if os.path.exists(PROJECT_NAME):

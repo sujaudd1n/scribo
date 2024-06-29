@@ -4,7 +4,7 @@ import pathlib
 import sys
 import argparse
 
-from pinit import create_project_structure
+from pinit import create_project_dir
 from build import build_project
 
 def main():
@@ -15,7 +15,7 @@ def main():
         if os.path.exists(project_name):
             sys.exit(f"Project: {project_name} already exists!")
         else:
-            create_project_structure(project_name)
+            create_project_dir(project_name)
     elif cl_args.build:
         project_root = cl_args.build
         build_project(project_root)
