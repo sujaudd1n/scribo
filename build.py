@@ -40,24 +40,40 @@ def render():
     render_blogs()
 
 
+env = Environment(loader=FileSystemLoader([".", "templates"]), autoescape=select_autoescape)
 def render_index_html():
-    env = Environment(loader=FileSystemLoader([".", "templates"]), autoescape=select_autoescape)
     index_html = env.get_template("index.html")
 
     with open("meta.json") as metafile:
         meta = json.load(metafile)
 
     rendered_index_html = index_html.render(
-        **meta
+        **meta,
+        items=get_toc()
     )
 
     OUTPUT_FILE = os.path.join(DIST_DIR, "index.html")
     with open(OUTPUT_FILE, "w") as out:
         out.write(rendered_index_html)
 
+def get_toc():
+    BLOGS_DIR = "blogs"
+    result = []
+    for root, dirs, files in os.walk(BLOGS_DIR):
+        for file in files:
+            file_dir = os.path.join(root, file).split(os.sep)[1]
+            result.append({
+                'href': f"blogs/{file_dir}/",
+                "textContent": file_dir
+            })
+    return result
+
 
 def render_blogs():
     BLOGS_DIR = "blogs"
+
+    with open("meta.json") as metafile:
+        meta = json.load(metafile)
     for root, dirs, files in os.walk(BLOGS_DIR):
         for file in files:
             filepath = os.path.join(root, file)
@@ -68,4 +84,6 @@ def render_blogs():
                     os.path.join(out_file_dir, file.split('.')[0] + '.html'),
                     "w",
                 ) as output:
-                    output.write(md.markdown(input_md.read()))
+                    base_template = env.get_template('blog.html')
+                    output.write(base_template.render(**meta, markdown=md.markdown(input_md.read())))
+
