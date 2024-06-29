@@ -4,20 +4,20 @@ import pathlib
 import sys
 import argparse
 
-from pinit import create_project_dir
+from pinit import initialize
 from build import build_project
 
 def main():
-    cl_args = parse_command_line_args()
+    args = parse_command_line_args()
 
-    if cl_args.init:
-        project_name = cl_args.init
+    if args.init:
+        project_name = args.init
         if os.path.exists(project_name):
             sys.exit(f"Project: {project_name} already exists!")
         else:
-            create_project_dir(project_name)
-    elif cl_args.build:
-        project_root = cl_args.build
+            initialize(project_name)
+    elif args.build:
+        project_root = args.build
         build_project(project_root)
 
 

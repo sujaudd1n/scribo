@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% block head %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{{ description }}">
     <meta name="author" content="{{ author }}">
     <title>{{ title }}</title>
+    {% endblock %}
 </head>
 <body>
     <header class="header">
         <h1 class="header__title">{{ project_name }}</h1>
     </header>
+    {% block content %}
+    {% endblock %}
    <footer class="footer">
+    {% block footer %}
     <p class="copyright">&copy; <span class="copyright__year">2024</span> {{ author }}</p>
+    {% endblock %}
    </footer>
 </body>
 </html>
