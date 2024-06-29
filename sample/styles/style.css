@@ -1,0 +1,26 @@
+* {
+    box-sizing: border-box;
+}
+
+[data-theme="dark"]
+{
+    --primary: #000000;
+    --text: #cdcdcd;
+    --link: #55c6f3;
+    --link-hover: #88ddff;
+}
+
+body
+{
+    background-color: var(--primary);
+    color: var(--text);
+}
+
+a {
+    color: var(--link)
+}
+a:hover
+{
+    color: var(--link-hover)
+}
+

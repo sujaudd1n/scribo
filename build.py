@@ -48,10 +48,7 @@ def render_index_html():
         meta = json.load(metafile)
 
     rendered_index_html = index_html.render(
-        title=meta["title"],
-        description=meta["description"],
-        author=meta["author"],
-        project_name=meta["project_name"],
+        **meta
     )
 
     OUTPUT_FILE = os.path.join(DIST_DIR, "index.html")
