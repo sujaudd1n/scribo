@@ -55,7 +55,7 @@ def render_index_html():
     with open("meta.json") as metafile:
         meta = json.load(metafile)
 
-    rendered_index_html = index_html.render(**meta, items=get_toc())
+    rendered_index_html = index_html.render(**meta, contents=get_toc())
 
     OUTPUT_FILE = os.path.join(DIST_DIR, "index.html")
     with open(OUTPUT_FILE, "w") as out:
@@ -65,11 +65,27 @@ def render_index_html():
 def get_toc():
     BLOGS_DIR = "blogs"
     result = []
-    for root, dirs, files in os.walk(BLOGS_DIR):
-        for file in files:
-            file_dir = os.path.join(root, file).split(os.sep)[1]
-            result.append({"href": f"blogs/{file_dir}/", "textContent": file_dir})
-    return result
+
+    root = {"name": BLOGS_DIR, "path": BLOGS_DIR, "children": []}
+    q = [root]
+    while q:
+        parent = q.pop()
+        for child in [
+            subdir
+            for subdir in os.listdir(parent["path"])
+            if os.path.isdir(os.path.join(parent["path"], subdir))
+        ]:
+            child_node = {
+                "name": child,
+                "path": os.path.join(parent["path"], child),
+                "children": [],
+            }
+            parent["children"].append(child_node)
+            q.append(child_node)
+
+    print(json.dumps(root, indent=4))
+
+    return root
 
 
 def render_blogs():
@@ -82,8 +98,9 @@ def render_blogs():
         for file in files:
             filepath = os.path.join(root, file)
 
-            out_file_dir = os.path.join(DIST_DIR, BLOGS_DIR, *filepath.split(os.sep)[1:-1])
-            print(out_file_dir)
+            out_file_dir = os.path.join(
+                DIST_DIR, BLOGS_DIR, *filepath.split(os.sep)[1:-1]
+            )
             os.makedirs(out_file_dir, exist_ok=True)
 
             output_file = os.path.join(out_file_dir, file.split(".")[0] + ".html")
@@ -91,5 +108,5 @@ def render_blogs():
                 markdown = md.markdown(f.read(), extensions=["fenced_code"])
             base_template = env.get_template("blog.html")
             rbt = base_template.render(**meta, markdown=markdown)
-            with open(output_file, 'w') as f:
+            with open(output_file, "w") as f:
                 f.write(rbt)
