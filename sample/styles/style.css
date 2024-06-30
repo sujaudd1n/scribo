@@ -8,12 +8,17 @@
     --text: #cdcdcd;
     --link: #55c6f3;
     --link-hover: #88ddff;
+    --code-highlight: rgb(60, 104, 60);
 }
 
 body
 {
     background-color: var(--primary);
     color: var(--text);
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 0 10px;
+    min-height: 100dvh;
 }
 
 a {
@@ -24,3 +29,9 @@ a:hover
     color: var(--link-hover)
 }
 
+code
+{
+    background-color: var(--code-highlight);
+    border-radius: 2px;
+    padding: 0 2px;
+}
