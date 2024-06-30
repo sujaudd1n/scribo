@@ -77,22 +77,19 @@ def render_blogs():
 
     with open("meta.json") as metafile:
         meta = json.load(metafile)
+
     for root, dirs, files in os.walk(BLOGS_DIR):
         for file in files:
             filepath = os.path.join(root, file)
-            out_file_dir = os.path.join(DIST_DIR, BLOGS_DIR, filepath.split(os.sep)[1])
-            os.makedirs(out_file_dir)
-            with open(filepath) as input_md:
-                with open(
-                    os.path.join(out_file_dir, file.split(".")[0] + ".html"),
-                    "w",
-                ) as output:
-                    base_template = env.get_template("blog.html")
-                    output.write(
-                        base_template.render(
-                            **meta,
-                            markdown=md.markdown(input_md.read(), extensions=[
-                                'fenced_code'
-                            ]),
-                        )
-                    )
+
+            out_file_dir = os.path.join(DIST_DIR, BLOGS_DIR, *filepath.split(os.sep)[1:-1])
+            print(out_file_dir)
+            os.makedirs(out_file_dir, exist_ok=True)
+
+            output_file = os.path.join(out_file_dir, file.split(".")[0] + ".html")
+            with open(filepath) as f:
+                markdown = md.markdown(f.read(), extensions=["fenced_code"])
+            base_template = env.get_template("blog.html")
+            rbt = base_template.render(**meta, markdown=markdown)
+            with open(output_file, 'w') as f:
+                f.write(rbt)
