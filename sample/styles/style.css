@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "poppins";
+    src: url('../fonts/Poppins-Regular.ttf');
+}
+
 * {
     box-sizing: border-box;
 }
@@ -13,6 +18,7 @@
 
 body
 {
+    font-family: 'poppins', monospace;
     background-color: var(--primary);
     color: var(--text);
     max-width: 768px;
@@ -29,9 +35,14 @@ a:hover
     color: var(--link-hover)
 }
 
-code
+code:not(pre code)
 {
     background-color: var(--code-highlight);
     border-radius: 2px;
     padding: 0 2px;
+}
+
+.codehilite
+{
+    overflow: auto;
 }

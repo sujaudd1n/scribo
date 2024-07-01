@@ -1,7 +1,15 @@
-{% for item in items %}
+{% for content in contents.children %}
 <ul>
     <li>
-        <a href="{{ item.href }}">{{ item.textContent }}</a>
+        <a href="{{ content.path }}">
+
+    {{ content.name }}
+        </a>
     </li>
+    {% if content.children|length > 0 %}
+        {% with contents=content %}
+            {% include "toc.html" %}
+        {% endwith %}
+    {% endif %}
 </ul>
 {% endfor %}

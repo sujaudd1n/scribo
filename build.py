@@ -9,7 +9,7 @@ from markdown.extensions.codehilite import CodeHiliteExtension
 
 md_extensions = [
     FencedCodeExtension(
-
+        lang_prefix="lang"
     ),
     CodeHiliteExtension(
         linenums=True,
@@ -95,7 +95,7 @@ def get_toc():
             parent["children"].append(child_node)
             q.append(child_node)
 
-    print(json.dumps(root, indent=4))
+    # print(json.dumps(root, indent=4))
 
     return root
 
