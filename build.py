@@ -4,6 +4,18 @@ import json
 import markdown as md
 from jinja2 import Environment, select_autoescape, FileSystemLoader
 
+from markdown.extensions.fenced_code import FencedCodeExtension
+from markdown.extensions.codehilite import CodeHiliteExtension
+
+md_extensions = [
+    FencedCodeExtension(
+
+    ),
+    CodeHiliteExtension(
+        linenums=True,
+    )
+]
+
 DIST_DIR = "dist"
 
 
@@ -105,7 +117,7 @@ def render_blogs():
 
             output_file = os.path.join(out_file_dir, file.split(".")[0] + ".html")
             with open(filepath) as f:
-                markdown = md.markdown(f.read(), extensions=["fenced_code"])
+                markdown = md.markdown(f.read(), extensions=md_extensions)
             base_template = env.get_template("blog.html")
             rbt = base_template.render(**meta, markdown=markdown)
             with open(output_file, "w") as f:
