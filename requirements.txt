@@ -4,4 +4,5 @@ Markdown==3.6
 MarkupSafe==2.1.5
 packaging==24.1
 pluggy==1.5.0
+Pygments==2.18.0
 pytest==8.2.2

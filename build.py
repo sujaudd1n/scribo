@@ -45,6 +45,7 @@ def copy_and_minimize_static_files():
 def copy_static_files():
     shutil.copytree("styles", "dist/styles")
     shutil.copytree("scripts", "dist/scripts")
+    shutil.copytree("fonts", "dist/fonts")
 
 
 def minimize_static_files():

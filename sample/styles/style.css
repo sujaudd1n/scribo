@@ -1,6 +1,6 @@
 @font-face {
-    font-family: "poppins";
-    src: url('../fonts/Poppins-Regular.ttf');
+    font-family: "main-text";
+    src: url('../fonts/Montserrat-Regular.ttf') format('truetype');
 }
 
 * {
@@ -16,15 +16,22 @@
     --code-highlight: rgb(60, 104, 60);
 }
 
+:root {
+
+    font-size: 16px;
+}
+
 body
 {
-    font-family: 'poppins', monospace;
+    font-family: 'main-text', sans-serif;
     background-color: var(--primary);
     color: var(--text);
     max-width: 768px;
     margin: 0 auto;
     padding: 0 10px;
     min-height: 100dvh;
+    display: flex;
+    flex-flow: column;
 }
 
 a {
@@ -33,6 +40,11 @@ a {
 a:hover
 {
     color: var(--link-hover)
+}
+
+li
+{
+    list-style-position: inside;
 }
 
 code:not(pre code)
@@ -45,4 +57,11 @@ code:not(pre code)
 .codehilite
 {
     overflow: auto;
+    border-radius: 2px;
+}
+
+.footer
+{
+    margin-top: auto;
+    
 }
