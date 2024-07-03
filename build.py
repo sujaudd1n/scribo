@@ -96,7 +96,8 @@ def get_toc():
             parent["children"].append(child_node)
             q.append(child_node)
 
-    # print(json.dumps(root, indent=4))
+    print(json.dumps(root, indent=4))
+    root['children']
 
     return root
 

@@ -8,12 +8,21 @@
     <meta name="author" content="{{ author }}">
     <title>{{ title }}</title>
     <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/remixicon.css">
     <link rel="stylesheet" href="/styles/theme.css">
+    <script src="/scripts/script.js" defer></script>
     {% endblock %}
 </head>
 <body data-theme="dark">
     <header class="header">
         <h1 class="header__title">{{ project_name }}</h1>
+        <button class='header__nav_toggle ri-menu-line hidden' aria-label="toggle nav"></button>
+        <nav class="header__nav">
+            <a href="">link</a>
+            <a href="">link</a>
+            <a href="">link</a>
+            <a href="">link</a>
+        </nav>
     </header>
     {% block content %}
     {% endblock %}
