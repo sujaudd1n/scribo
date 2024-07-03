@@ -13,4 +13,3 @@ function toggle_nav() {
     btn.classList.toggle("hidden")
     nav.classList.toggle("show")
 }
-

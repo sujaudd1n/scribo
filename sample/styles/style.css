@@ -33,8 +33,6 @@ body
     min-height: 100dvh;
     display: flex;
     flex-flow: column;
-
-    overflow: hidden;
 }
 
 a {
@@ -87,11 +85,20 @@ code:not(pre code)
     justify-content: space-between;
     align-items: center;
     height: 60px;
+    margin: 0 -10px;
+    padding: 0 10px;
+    border-bottom: 1px solid #eeeeee55;
 }
 
 .header__title
 {
     margin: 0;
+    font-size: 32px;
+}
+
+.header__title a
+{
+    color: inherit;
 }
 
 .header__nav_toggle
@@ -134,7 +141,7 @@ code:not(pre code)
 
 .show
 {
-    display: none;
+    display: flex;
 }
 
 

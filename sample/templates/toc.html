@@ -1,5 +1,5 @@
-{% for content in contents.children %}
 <ul>
+{% for content in contents.children %}
     <li>
         <a href="{{ content.path }}">
             {{ content.name }}
@@ -10,5 +10,5 @@
             {% include "toc.html" %}
         {% endwith %}
     {% endif %}
-</ul>
 {% endfor %}
+</ul>

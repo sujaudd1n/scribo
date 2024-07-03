@@ -7,6 +7,7 @@ import argparse
 from pinit import initialize
 from build import build_project
 
+
 def main():
     args = parse_command_line_args()
 
@@ -27,5 +28,6 @@ def parse_command_line_args():
     parser.add_argument("-b", "--build", help="Build static site for production")
     return parser.parse_args()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
