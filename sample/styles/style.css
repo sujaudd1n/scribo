@@ -35,6 +35,11 @@ body
     flex-flow: column;
 }
 
+p
+{
+    line-height: 1.5;
+}
+
 a {
     color: var(--link);
     text-decoration: none

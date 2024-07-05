@@ -22,10 +22,9 @@
         </p>
         <button class='header__nav_toggle ri-menu-line hidden' aria-label="toggle nav"></button>
         <nav class="header__nav">
-            <a href="">link</a>
-            <a href="">link</a>
-            <a href="">link</a>
-            <a href="">link</a>
+            {% for quick_link in quick_links %}
+                <a href="{{ quick_link.url }}">{{ quick_link.name }}</a>
+            {% endfor %}
         </nav>
     </header>
     {% block content %}

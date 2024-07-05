@@ -117,8 +117,6 @@ def get_toc():
             parent["children"].append(child_node)
             q.append(child_node)
 
-    root["children"]
-
     return root
 
 
