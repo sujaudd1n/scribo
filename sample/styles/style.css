@@ -11,6 +11,8 @@
 {
     --primary: #000000;
     --primary-800: #161616;
+    --primary-700: #232323;
+    --primary-700-tp: #2323239c;
     --text: #cdcdcd;
     --link: #55c6f3;
     --link-hover: #88ddff;
@@ -125,13 +127,14 @@ code:not(pre code)
 
 .header__nav_toggle:active
 {
-    background-color: var(--primary-800);
+    background-color: var(--primary-700);
     -webkit-tap-highlight-color: transparent;
 }
 
 .header__nav
 {
-    background-color: red;
+    background-color: var(--primary-700-tp);
+    backdrop-filter: blur(5px);
     height: calc(100dvh - 60px);
     width: 70dvw;
 
@@ -140,13 +143,21 @@ code:not(pre code)
     bottom: 0;
     right: 0;
 
+    padding: 10px;
+
     display: none;
+    /* display: flex; */
     flex-flow: column;
+    gap: 20px;
 }
 
 .show
 {
     display: flex;
+}
+
+.header__nav a
+{
 }
 
 
