@@ -5,13 +5,13 @@ build-backend = "hatchling.build"
 [project]
 name = "scribo"
 dynamic = ["version"]
-description = ''
+description = 'An easy and efficient *static site generator* with *markdown* powered by Python and Jinja.'
 readme = "README.md"
 requires-python = ">=3.8"
 license = "MIT"
-keywords = []
+keywords = ["markdown", "static-site-generator"]
 authors = [
-  { name = "Sujauddin", email = "61101752+sujaudd1n@users.noreply.github.com" },
+  { name = "Md Sujauddin Sekh", email = "ssujj@protonmail.com" },
 ]
 classifiers = [
   "Development Status :: 4 - Beta",
