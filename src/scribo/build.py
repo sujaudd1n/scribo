@@ -75,8 +75,9 @@ def render():
     render_blogs()
 
 
+TEMPLATES_DIR = "templates"
 env = Environment(
-    loader=FileSystemLoader([".", "templates"]), autoescape=select_autoescape
+    loader=FileSystemLoader([".", TEMPLATES_DIR]), autoescape=select_autoescape
 )
 
 
