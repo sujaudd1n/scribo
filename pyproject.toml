@@ -24,12 +24,25 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = []
+dependencies = [
+  "iniconfig==2.0.0",
+  "Jinja2==3.1.4",
+  "Markdown==3.6",
+  "MarkupSafe==2.1.5",
+  "packaging==24.1",
+  "pluggy==1.5.0",
+  "Pygments==2.18.0",
+  "pytest==8.2.2",
+  "minify_html==0.15.0"
+]
 
 [project.urls]
 Documentation = "https://github.com/unknown/scribo#readme"
 Issues = "https://github.com/unknown/scribo/issues"
 Source = "https://github.com/unknown/scribo"
+
+[project.scripts]
+scribo = "scribo.__main__:main"
 
 [tool.hatch.version]
 path = "src/scribo/__about__.py"
