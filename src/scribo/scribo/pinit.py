@@ -2,7 +2,7 @@ import os
 import shutil
 
 
-SAMPLE_CODE_DIR = "./sample"
+SAMPLE_CODE_DIR = os.path.join(os.path.dirname(__file__), "sample")
 
 
 def initialize(project_name):
