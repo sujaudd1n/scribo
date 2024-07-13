@@ -1,0 +1,14 @@
+<ul>
+{% for content in contents.children %}
+    <li>
+        <a href="{{ content.path }}">
+            {{ content.name }}
+        </a>
+    </li>
+    {% if content.children|length > 0 %}
+        {% with contents=content %}
+            {% include "toc.html" %}
+        {% endwith %}
+    {% endif %}
+{% endfor %}
+</ul>
