@@ -53,6 +53,7 @@ dependencies = [
   "pytest",
 ]
 [tool.hatch.envs.default.scripts]
+build = "python -m scribo --build docs"
 test = "pytest {args:tests}"
 test-cov = "coverage run -m pytest {args:tests}"
 cov-report = [

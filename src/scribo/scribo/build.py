@@ -7,9 +7,11 @@ from jinja2 import Environment, select_autoescape, FileSystemLoader
 
 from markdown.extensions.fenced_code import FencedCodeExtension
 from markdown.extensions.codehilite import CodeHiliteExtension
+from markdown.extensions.extra import ExtraExtension
 
 md_extensions = [
-    FencedCodeExtension(lang_prefix="lang"),
+    # FencedCodeExtension(lang_prefix="lang"),
+    ExtraExtension(),
     CodeHiliteExtension(
         linenums=True,
     ),
