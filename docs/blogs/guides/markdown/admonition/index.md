@@ -30,3 +30,18 @@ The following admonitions are supported:
 
     You can provide more information.
 ```
+
+## Tip Admonition
+
+!!! tip "Tip Admonition"
+    this is a note
+
+### Syntax
+
+``` {.md linenums=false}
+!!! tip "Tip Admonition example "
+    This is a tip.
+
+    You can provide more information.
+```
+

@@ -17,8 +17,13 @@
     --link: #55c6f3;
     --link-hover: #88ddff;
     --code-highlight: rgb(60, 104, 60);
-    --admonition-note-border: #29b965;
-    --admonition-note-background: #33f08262;
+
+    --admonition-note-border: #b8b8b8;
+    --admonition-note-background: #eeeeee62;
+
+    --admonition-tip-border: #29b965;
+    --admonition-tip-background: #33f08262;
+
 }
 
 :root {
@@ -174,7 +179,7 @@ dd
 
 /* admonition style */
 .admonition {
-    border: 1px solid var(--admonition-note-border);
+    border: 1px solid;
     border-radius: 2px;
     padding: 10px;
 }
@@ -182,12 +187,22 @@ dd
 {
     margin: 0;
     padding-bottom: 10px;
-    border-bottom: 1px solid var(--admonition-note-border)
+    border-bottom: 1px solid;
+    border-color: inherit;
 }
+
 .admonition.note
 {
     background: var(--admonition-note-background);
+    border-color: var(--admonition-note-border);
 }
+
+.admonition.tip
+{
+    background: var(--admonition-tip-background);
+    border-color: var(--admonition-tip-border);
+}
+
 
 /* ends admonition style*/
 
