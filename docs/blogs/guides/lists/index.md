@@ -2,7 +2,6 @@
 
 You can define the following kind of lists.
 
-*[HTML]: HTML 
 
 ## Unordered List
 
