@@ -21,8 +21,18 @@
     --admonition-note-border: #b8b8b8;
     --admonition-note-background: #eeeeee62;
 
-    --admonition-tip-border: #29b965;
-    --admonition-tip-background: #33f08262;
+    --admonition-tip-border: #3cffb460;
+    --admonition-tip-background: #3cffb430;
+
+    --admonition-info-border: #74b0ff60;
+    --admonition-info-background: #74b0ff30;
+
+    --admonition-warning-border: #e1ff5b60;
+    --admonition-warning-background: #e1ff5b30;
+
+    --admonition-danger-border: #ff515160;
+    --admonition-danger-background: #ff515130;
+
 
 }
 
@@ -201,6 +211,24 @@ dd
 {
     background: var(--admonition-tip-background);
     border-color: var(--admonition-tip-border);
+}
+
+.admonition.info
+{
+    background: var(--admonition-info-background);
+    border-color: var(--admonition-info-border);
+}
+
+.admonition.warning
+{
+    background: var(--admonition-warning-background);
+    border-color: var(--admonition-warning-border);
+}
+
+.admonition.danger
+{
+    background: var(--admonition-danger-background);
+    border-color: var(--admonition-danger-border);
 }
 
 

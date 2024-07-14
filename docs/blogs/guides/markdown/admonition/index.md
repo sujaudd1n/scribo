@@ -33,8 +33,10 @@ The following admonitions are supported:
 
 ## Tip Admonition
 
-!!! tip "Tip Admonition"
-    this is a note
+!!! tip "Tip Admonition example "
+    This is a tip.
+
+    You can provide more information.
 
 ### Syntax
 
@@ -45,3 +47,55 @@ The following admonitions are supported:
     You can provide more information.
 ```
 
+
+## Info Admonition
+
+!!! info "Info Admonition example "
+    This is an info.
+
+    You can provide more information.
+
+
+### Syntax
+
+``` {.md linenums=false}
+!!! info "Info Admonition example "
+    This is an info.
+
+    You can provide more information.
+```
+
+
+
+## Warning Admonition
+
+!!! warning "Warning Admonition example "
+    This is a warning.
+
+    You can provide more information.
+
+### Syntax
+
+``` {.md linenums=false}
+!!! warning "Warning Admonition example "
+    This is a warning.
+
+    You can provide more information.
+```
+
+
+## Danger Admonition
+
+!!! danger "Danger Admonition example "
+    This is a danger.
+
+    You can provide more information.
+
+### Syntax
+
+``` {.md linenums=false}
+!!! danger "Danger Admonition example "
+    This is a danger.
+
+    You can provide more information.
+```
