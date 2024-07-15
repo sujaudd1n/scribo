@@ -48,7 +48,8 @@ def copy_static_dirs():
     STATIC_DIRS = [
         "styles",
         "scripts",
-        "fonts"
+        "fonts",
+        "static"
     ]
     for static_dir in STATIC_DIRS:
         shutil.copytree(static_dir, os.path.join(DIST_DIR, static_dir))
@@ -130,6 +131,8 @@ def render_blogs():
     for root, dirs, files in os.walk(BLOGS_DIR):
         for file in files:
             filepath = os.path.join(root, file)
+            if not filepath.endswith(".md"):
+                continue
             with open(filepath) as f:
                 markdown = md.markdown(f.read(), extensions=md_extensions)
 
