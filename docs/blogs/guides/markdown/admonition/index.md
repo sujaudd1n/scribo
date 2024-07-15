@@ -2,11 +2,11 @@
 
 The following admonitions are supported:
 
-- note
-- tip
-- info
-- warning
-- danger
+- note / attention
+- tip / hint
+- info / important
+- warning / caution
+- danger / error
 
 ## General Syntax
 

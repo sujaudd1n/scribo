@@ -18,20 +18,30 @@
     --link-hover: #88ddff;
     --code-highlight: rgb(60, 104, 60);
 
+    --admonition-attention-border: #b8b8b8;
+    --admonition-attention-background: #eeeeee62;
     --admonition-note-border: #b8b8b8;
     --admonition-note-background: #eeeeee62;
 
     --admonition-tip-border: #3cffb460;
     --admonition-tip-background: #3cffb430;
+    --admonition-hint-border: #3cffb460;
+    --admonition-hint-background: #3cffb430;
 
     --admonition-info-border: #74b0ff60;
     --admonition-info-background: #74b0ff30;
+    --admonition-important-border: #74b0ff60;
+    --admonition-important-background: #74b0ff30;
 
     --admonition-warning-border: #e1ff5b60;
     --admonition-warning-background: #e1ff5b30;
+    --admonition-caution-border: #e1ff5b60;
+    --admonition-caution-background: #e1ff5b30;
 
     --admonition-danger-border: #ff515160;
     --admonition-danger-background: #ff515130;
+    --admonition-error-border: #ff515160;
+    --admonition-error-background: #ff515130;
 
 
 }
