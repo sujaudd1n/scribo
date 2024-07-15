@@ -10,10 +10,21 @@ The following admonitions are supported:
 
 ## General Syntax
 
+### Admonition with a title
+
 ``` {.md linenums=false}
 !!! admonition-name "admonition title"
     Content indented with tab.
 ```
+
+### Admonition without a title
+
+``` {.md linenums=false}
+!!! admonition-name ""
+    Content indented with tab.
+```
+
+**NOTE**: The empty `""` is necessary.
 
 ## Note Admonition
 
