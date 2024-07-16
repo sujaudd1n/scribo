@@ -240,9 +240,17 @@ dd
     background: var(--admonition-danger-background);
     border-color: var(--admonition-danger-border);
 }
-
-
 /* ends admonition style*/
+
+/* image stle */
+
+img
+{
+    display: block;
+    max-width: 100%;
+}
+
+/* ends image style */
 
 .footer
 {
