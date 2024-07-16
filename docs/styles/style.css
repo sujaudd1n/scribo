@@ -242,7 +242,7 @@ dd
 }
 /* ends admonition style*/
 
-/* image stle */
+/* media element style */
 
 img
 {
@@ -250,7 +250,12 @@ img
     max-width: 100%;
 }
 
-/* ends image style */
+video
+{
+    margin: 10px 0;
+}
+
+/* ends media element style */
 
 .footer
 {

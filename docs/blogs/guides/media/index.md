@@ -1,4 +1,6 @@
-# Images
+# Media Elements
+
+## Image
 
 To render an image use standard markdown syntax.
 
@@ -7,6 +9,8 @@ To render an image use standard markdown syntax.
 ``` md
 ![image](/static/img.jpg)
 ```
+
+## Video
 
 To render video, use HTML tag.
 
@@ -19,3 +23,14 @@ To render video, use HTML tag.
     <source src="/static/vid.webm" type="video/webm">
 </video>
 ```
+
+## Audio
+
+To render audio, use HTML tag.
+
+<audio controls src="/static/audio.mp3"></audio>
+
+``` html
+<audio controls src="/static/audio.mp3"></audio>
+```
+
