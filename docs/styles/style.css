@@ -7,8 +7,7 @@
     box-sizing: border-box;
 }
 
-[data-theme="dark"]
-{
+[data-theme="dark"] {
     --primary: #000000;
     --primary-800: #161616;
     --primary-700: #232323;
@@ -51,12 +50,11 @@
     font-size: 16px;
 }
 
-body
-{
+body {
     font-family: 'main-text', sans-serif;
     background-color: var(--primary);
     color: var(--text);
-    max-width: 768px;
+    max-width: 968px;
     margin: 0 auto;
     padding: 0 10px;
     min-height: 100dvh;
@@ -64,8 +62,7 @@ body
     flex-flow: column;
 }
 
-p
-{
+p {
     line-height: 1.5;
 }
 
@@ -73,44 +70,42 @@ a {
     color: var(--link);
     text-decoration: none
 }
-a:hover
-{
+
+a:hover {
     color: var(--link-hover)
 }
 
-ul, ol
-{
+ul,
+ol {
     list-style-position: inside;
     padding-left: 5px;
     margin: 10px 0;
 }
 
-ul ul, ol ol
-{
+ul ul,
+ol ol {
     padding-left: 20px;
 }
 
-ul li
-{
+ul li {
     list-style: '-️';
 }
 
-ul ul li
-{
+ul ul li {
     list-style: '+';
 }
 
-li{
+li {
     padding-left: 8px;
     margin: 5px 0;
 }
 
-code:not(pre code)
-{
+code:not(pre code) {
     background-color: var(--code-highlight);
     border-radius: 2px;
     padding: 0 2px;
 }
+
 
 /* header */
 
@@ -124,42 +119,36 @@ code:not(pre code)
     border-bottom: 1px solid #eeeeee55;
 }
 
-.header__title
-{
+.header__title {
     margin: 0;
     font-size: 32px;
 }
 
-.header__title a
-{
+.header__title a {
     color: inherit;
 }
 
-.header__nav_toggle
-{
+.header__nav_toggle {
     appearance: none;
     height: fit-content;
     font-size: 32px;
-    background:none;
+    background: none;
     color: var(--text);
     border: none;
     border-radius: 2px;
     padding: 5px;
 }
 
-.header__nav_toggle:hover
-{
+.header__nav_toggle:hover {
     cursor: pointer;
 }
 
-.header__nav_toggle:active
-{
+.header__nav_toggle:active {
     background-color: var(--primary-700);
     -webkit-tap-highlight-color: transparent;
 }
 
-.header__nav
-{
+.header__nav {
     background-color: var(--primary-700-tp);
     backdrop-filter: blur(5px);
     height: calc(100dvh - 60px);
@@ -178,23 +167,61 @@ code:not(pre code)
     gap: 20px;
 }
 
-.show
-{
+.show {
     display: flex;
 }
 
+@media screen and (min-width: 768px) {
 
-.codehilite
-{
+    .header__nav_toggle {
+        appearance: none;
+        height: fit-content;
+        font-size: 32px;
+        background: none;
+        color: var(--text);
+        border: none;
+        border-radius: 2px;
+        padding: 5px;
+        display: none;
+    }
+
+    .header__nav_toggle:hover {
+        cursor: pointer;
+    }
+
+    .header__nav_toggle:active {
+        background-color: var(--primary-700);
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .header__nav {
+        background-color: unset;
+        backdrop-filter: none;
+        height:  unset;
+        width: unset;
+
+        position: static;
+
+        display: flex;
+        flex-flow: row wrap;
+        gap: 20px;
+    }
+}
+
+/* codehilite style */
+
+.codehilite {
     overflow: auto;
     border-radius: 2px;
 }
 
+/* ends codehilite style */
+
 /* list style definition */
-dd 
-{
+dd {
     margin-bottom: 10px;
 }
+
 /* ends list style definition */
 
 /* admonition style */
@@ -203,66 +230,58 @@ dd
     border-radius: 2px;
     padding: 10px;
 }
-.admonition-title
-{
+
+.admonition-title {
     margin: 0;
     padding-bottom: 10px;
     border-bottom: 1px solid;
     border-color: inherit;
 }
 
-.admonition.note
-{
+.admonition.note {
     background: var(--admonition-note-background);
     border-color: var(--admonition-note-border);
 }
 
-.admonition.tip
-{
+.admonition.tip {
     background: var(--admonition-tip-background);
     border-color: var(--admonition-tip-border);
 }
 
-.admonition.info
-{
+.admonition.info {
     background: var(--admonition-info-background);
     border-color: var(--admonition-info-border);
 }
 
-.admonition.warning
-{
+.admonition.warning {
     background: var(--admonition-warning-background);
     border-color: var(--admonition-warning-border);
 }
 
-.admonition.danger
-{
+.admonition.danger {
     background: var(--admonition-danger-background);
     border-color: var(--admonition-danger-border);
 }
+
 /* ends admonition style*/
 
 /* media element style */
 
-img
-{
+img {
     display: block;
     max-width: 100%;
 }
 
-video
-{
+video {
     margin: 10px 0;
 }
 
 /* ends media element style */
 
-.footer
-{
+.footer {
     margin-top: auto;
 }
 
-p.copyright
-{
+p.copyright {
     font-size: 0.8rem;
 }
