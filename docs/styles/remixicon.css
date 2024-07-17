@@ -731,6 +731,7 @@
 .ri-exchange-line:before { content: "\ecad"; }
 .ri-external-link-fill:before { content: "\ecae"; }
 .ri-external-link-line:before { content: "\ecaf"; }
+.ri-external-link-line-after:after { content: "\ecaf"; }
 .ri-eye-2-fill:before { content: "\ecb0"; }
 .ri-eye-2-line:before { content: "\ecb1"; }
 .ri-eye-close-fill:before { content: "\ecb2"; }

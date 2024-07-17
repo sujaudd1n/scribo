@@ -174,24 +174,7 @@ code:not(pre code) {
 @media screen and (min-width: 768px) {
 
     .header__nav_toggle {
-        appearance: none;
-        height: fit-content;
-        font-size: 32px;
-        background: none;
-        color: var(--text);
-        border: none;
-        border-radius: 2px;
-        padding: 5px;
         display: none;
-    }
-
-    .header__nav_toggle:hover {
-        cursor: pointer;
-    }
-
-    .header__nav_toggle:active {
-        background-color: var(--primary-700);
-        -webkit-tap-highlight-color: transparent;
     }
 
     .header__nav {
@@ -207,6 +190,13 @@ code:not(pre code) {
         gap: 20px;
     }
 }
+
+/* icon style definitino */
+.icon::after
+{
+    margin-left: 5px;
+}
+/* ends icon style definition */
 
 /* codehilite style */
 

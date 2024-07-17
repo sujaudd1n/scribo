@@ -23,7 +23,11 @@
         <button class='header__nav_toggle ri-menu-line hidden' aria-label="toggle nav"></button>
         <nav class="header__nav">
             {% for quick_link in quick_links %}
-                <a href="{{ quick_link.url }}">{{ quick_link.name }}</a>
+                {% if quick_link.url.startswith('http') %}
+                    <a href="{{ quick_link.url }}" class="icon ri-external-link-line-after">{{ quick_link.name }}</a>
+                {% else %}
+                    <a href="{{ quick_link.url }}">{{ quick_link.name }}</a>
+                {% endif %}
             {% endfor %}
         </nav>
     </header>
