@@ -1,6 +1,7 @@
 import shutil
 import os
 import json
+import re
 import markdown as md
 import minify_html as minify
 from jinja2 import Environment, select_autoescape, FileSystemLoader
@@ -103,7 +104,7 @@ def get_toc():
     BLOGS_DIR = "blogs"
     result = []
 
-    root = {"name": BLOGS_DIR, "path": BLOGS_DIR, "children": []}
+    root = {"name": BLOGS_DIR, "path": BLOGS_DIR, "order": -1,  "children": []}
     q = [root]
 
     while q:
@@ -116,13 +117,30 @@ def get_toc():
             child_node = {
                 "name": child,
                 "path": os.path.join(parent["path"], child),
+                "order": get_order(child_path),
                 "children": [],
             }
 
             parent["children"].append(child_node)
             q.append(child_node)
+    
+    # print(json.dumps(root, indent=4))
 
     return root
+
+
+def get_order(path):
+    """
+    Return order found in index.md
+    if not found return -1
+    """
+    with open(os.path.join(path, "index.md")) as markdown_file:
+        file_string = markdown_file.read()
+        matches = re.search(r"order:\s+(\d)\n", file_string, re.IGNORECASE)
+        if matches:
+            order = matches.groups()[0]
+            return order
+        return -1
 
 
 def render_blogs():
