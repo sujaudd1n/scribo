@@ -1,3 +1,6 @@
+---
+order: 1
+---
 # Getting Started
 
 ## Installation

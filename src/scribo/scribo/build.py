@@ -126,21 +126,30 @@ def get_toc():
     
     # print(json.dumps(root, indent=4))
 
+    # return root
+    sort_toc(root)
     return root
 
 
 def get_order(path):
     """
     Return order found in index.md
-    if not found return -1
+    if not found return 999
     """
     with open(os.path.join(path, "index.md")) as markdown_file:
         file_string = markdown_file.read()
         matches = re.search(r"order:\s+(\d)\n", file_string, re.IGNORECASE)
         if matches:
             order = matches.groups()[0]
-            return order
-        return -1
+            return int(order)
+        return 999
+
+def sort_toc(toc):
+    # print(json.dumps(toc, indent=4))
+    toc['children'].sort(key=lambda x: x['order'])
+    for child in toc['children']:
+        sort_toc(child)
+
 
 
 def render_blogs():
