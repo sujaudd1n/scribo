@@ -16,7 +16,8 @@ md_extensions = [
     CodeHiliteExtension(
         linenums=True,
     ),
-    "admonition"
+    "admonition",
+    "meta"
 ]
 
 DIST_DIR = "dist"
