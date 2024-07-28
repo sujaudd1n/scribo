@@ -5,6 +5,7 @@
 
 * {
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 [data-theme="dark"] {
@@ -180,7 +181,7 @@ code:not(pre code) {
     .header__nav {
         background-color: unset;
         backdrop-filter: none;
-        height:  unset;
+        height: unset;
         width: unset;
 
         position: static;
@@ -192,10 +193,10 @@ code:not(pre code) {
 }
 
 /* icon style definitino */
-.icon::after
-{
+.icon::after {
     margin-left: 5px;
 }
+
 /* ends icon style definition */
 
 /* codehilite style */
@@ -267,6 +268,33 @@ video {
 }
 
 /* ends media element style */
+
+/* toc style*/
+.blog_toc {
+    display: none;
+}
+
+@media screen and (min-width: 928px) {
+    .blog_item {
+        display: flex;
+        flex-flow: row wrap;
+    }
+
+    .blog_content {
+        flex-grow: 1;
+    }
+
+    .blog_toc {
+        display: block;
+        height: min-content;
+        padding: 0 20px;
+        position: sticky;
+        top: 10px;
+    }
+}
+
+/*ends toc style*/
+
 
 .footer {
     margin-top: auto;

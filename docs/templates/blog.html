@@ -1,5 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-    {{ toc | safe }}
-    {{ html | safe}}
+<div class="blog_item">
+    <div class="blog_content">
+        {{ html | safe}}
+    </div>
+    <div class="blog_toc">
+        <h2>Table of contents</h2>
+        {{ toc | safe }}
+    </div>
+</div>
 {% endblock %}
