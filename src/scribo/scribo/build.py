@@ -8,6 +8,7 @@ from jinja2 import Environment, select_autoescape, FileSystemLoader
 
 from markdown.extensions.fenced_code import FencedCodeExtension
 from markdown.extensions.codehilite import CodeHiliteExtension
+from markdown.extensions.toc import TocExtension
 from markdown.extensions.extra import ExtraExtension
 
 md_extensions = [
@@ -16,6 +17,7 @@ md_extensions = [
     CodeHiliteExtension(
         linenums=True,
     ),
+    TocExtension(),
     "admonition",
     "meta"
 ]
@@ -162,7 +164,8 @@ def render_blogs():
             if not filepath.endswith(".md"):
                 continue
             with open(filepath) as f:
-                markdown = md.markdown(f.read(), extensions=md_extensions)
+                mdc = md.Markdown(extensions=md_extensions)
+                html = mdc.convert(f.read())
 
             out_file_dir = os.path.join(
                 DIST_DIR, BLOGS_DIR, *filepath.split(os.sep)[1:-1]
@@ -170,7 +173,7 @@ def render_blogs():
             os.makedirs(out_file_dir, exist_ok=True)
 
             base_template = env.get_template("blog.html")
-            rendered_blog = base_template.render(**get_metadata(), markdown=markdown)
+            rendered_blog = base_template.render(**get_metadata(), html=html, toc=mdc.toc)
 
             output_filename = os.path.join(out_file_dir, file.split(".")[0] + ".html")
             with open(output_filename, "w") as f:

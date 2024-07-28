@@ -1,4 +1,5 @@
 {% extends "base.html" %}
 {% block content %}
-    {{ markdown | safe}}
+    {{ toc | safe }}
+    {{ html | safe}}
 {% endblock %}
