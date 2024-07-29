@@ -1,4 +1,5 @@
 {% extends "templates/base.html.jinja" %}
-{% block content %}
+{% block title%} {{title}} {% endblock%}
+{% block base_content %}
 {% include "templates/toc.html.jinja" %}
 {% endblock %}

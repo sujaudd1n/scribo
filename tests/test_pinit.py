@@ -28,7 +28,7 @@ def test_write_to_project_files():
             with open(source) as source:
                 return dest.read() == source.read()
 
-    assert compare_source_to_dest("templates/index.html", f"{project_name}/index.html")
+    assert compare_source_to_dest("templates/index.html.jinja", f"{project_name}/index.html.jinja")
     assert compare_source_to_dest(
         "templates/style.css", f"{project_name}/style/style.css"
     )

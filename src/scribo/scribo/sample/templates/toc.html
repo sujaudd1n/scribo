@@ -7,7 +7,7 @@
     </li>
     {% if content.children|length > 0 %}
         {% with contents=content %}
-            {% include "toc.html" %}
+            {% include "toc.html.jinja" %}
         {% endwith %}
     {% endif %}
 {% endfor %}

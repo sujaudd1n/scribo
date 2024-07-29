@@ -90,8 +90,10 @@ env = Environment(
 
 
 def render_index_html():
-    index_template = env.get_template("index.html")
-    rendered_index_template = index_template.render(**get_metadata(), contents=get_toc())
+    index_template = env.get_template("index.html.jinja")
+    rendered_index_template = index_template.render(
+        **get_metadata(),
+        contents=get_toc())
 
     OUTPUT_FILE = os.path.join(DIST_DIR, "index.html")
     with open(OUTPUT_FILE, "w") as out:
@@ -172,7 +174,7 @@ def render_blogs():
             )
             os.makedirs(out_file_dir, exist_ok=True)
 
-            base_template = env.get_template("blog.html")
+            base_template = env.get_template("article.html.jinja")
             rendered_blog = base_template.render(**get_metadata(), html=html, toc=mdc.toc)
 
             output_filename = os.path.join(out_file_dir, file.split(".")[0] + ".html")

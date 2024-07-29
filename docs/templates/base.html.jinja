@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% block head %}
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            <title>
+                {% block title %}{% endblock %}
+            </title>
+            <meta name="description" content="{% block description %}{% endblock %}">
+            <meta name="author" content="{% block author %}{% endblock %}">
+            <link rel="stylesheet" href="/styles/style.css">
+            <link rel="stylesheet" href="/styles/remixicon.css">
+            <link rel="stylesheet" href="/styles/theme.css">
+            <script src="/scripts/script.js" defer></script>
+        {% endblock %}
+    </head>
+    <body data-theme="dark">
+        <header class="header">
+            <p class="header__title">
+                <a href="/">{{ project_name }}</a>
+            </p>
+            <button class='header__nav_toggle ri-menu-line hidden'
+                    aria-label="toggle nav"></button>
+            <nav class="header__nav">
+                {% for quick_link in quick_links %}
+                    {% if quick_link.url.startswith('http') and quick_link.url not in urls %}
+                        <a href="{{ quick_link.url }}"
+                           target="_blank"
+                           class="icon ri-external-link-line-after">{{ quick_link.name
+                        }}</a>
+                    {% else %}
+                        <a href="{{ quick_link.url }}">{{ quick_link.name }}</a>
+                    {% endif %}
+                {% endfor %}
+            </nav>
+        </header>
+
+        {% block base_content %}{% endblock %}
+
+        <footer class="footer">
+            {% block footer %}
+                <p class="copyright">
+                    &copy; <span class="copyright__year">2024</span> {{ author }}
+                </p>
+            {% endblock %}
+        </footer>
+
+    </body>
+</html>

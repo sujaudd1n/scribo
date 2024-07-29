@@ -11,7 +11,7 @@ requires-python = ">=3.8"
 license = "MIT"
 keywords = ["markdown", "static-site-generator"]
 authors = [
-  { name = "Md Sujauddin Sekh", email = "ssujj@protonmail.com" },
+  { name = "Md Sujauddin Sekh"},
 ]
 classifiers = [
   "Development Status :: 4 - Beta",
@@ -93,3 +93,5 @@ exclude_lines = [
   "if __name__ == .__main__.:",
   "if TYPE_CHECKING:",
 ]
+[tool.djlint]
+preserve_blank_lines=true
