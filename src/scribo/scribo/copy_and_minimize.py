@@ -3,6 +3,7 @@ import shutil
 
 DIST_DIR = "dist"
 
+
 def copy_and_minimize_static_files():
     copy_static_dirs()
     # minimize_static_files()
@@ -31,5 +32,3 @@ def minimize_static_files():
                         remove_processing_instructions=True,
                     )
                 )
-
-

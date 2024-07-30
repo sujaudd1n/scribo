@@ -5,6 +5,7 @@ from .render import render
 
 DIST_DIR = "dist"
 
+
 def build_project(project_root):
     """
     project_root: Directory containing the project.

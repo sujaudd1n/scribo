@@ -3,7 +3,7 @@ import os
 import json
 import re
 
-from .helper import *
+from .helper import get_metadata
 
 import markdown as md
 import minify_html as minify
@@ -36,18 +36,30 @@ def render():
     render_index_page()
     render_pages()
 
+
 def render_index_page():
     index_template = jinja_environment.get_template("index.html.jinja")
-    index_markdown = "index.md"
-    with open(index_markdown) as f:
-        html = markdown_converter.convert(f.read())
-    rendered_index_template = index_template.render(**get_metadata(), html=html)
+    index_markdown_filename = "index.md"
+    with open(index_markdown_filename) as index_markdown_file:
+        index_html = markdown_converter.convert(index_markdown_file.read())
+    rendered_index_template = index_template.render(**get_metadata(), html=index_html)
 
-    OUTPUT_FILE = os.path.join(DIST_DIR, "index.html")
-    with open(OUTPUT_FILE, "w") as out:
-        out.write(rendered_index_template)
+    output_filename = os.path.join(DIST_DIR, "index.html")
+    with open(output_filename, "w") as output_file:
+        output_file.write(rendered_index_template)
 
-def render_blogs():
+
+def render_pages():
+    PAGES_DIR = "pages"
+    ALL_PAGES = [
+        page
+        for page in os.listdir(PAGES_DIR)
+        if os.path.isdir(os.path.join(PAGES_DIR, page))
+    ]
+    print(ALL_PAGES)
+
+
+def tmp():
     BLOGS_DIR = "blogs"
 
     for root, dirs, files in os.walk(BLOGS_DIR):

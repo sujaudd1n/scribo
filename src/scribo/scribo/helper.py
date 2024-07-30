@@ -1,5 +1,6 @@
 import json
 
+
 def get_metadata():
     with open("meta.json") as metafile:
         return json.load(metafile)
@@ -35,11 +36,13 @@ def get_toc():
     sort_toc(root)
     return root
 
+
 def sort_toc(toc):
     # print(json.dumps(toc, indent=4))
     toc["children"].sort(key=lambda x: x["order"])
     for child in toc["children"]:
         sort_toc(child)
+
 
 def get_order(path):
     """
@@ -53,5 +56,3 @@ def get_order(path):
             order = matches.groups()[0]
             return int(order)
         return 999
-
-
