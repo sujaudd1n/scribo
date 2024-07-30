@@ -36,6 +36,7 @@ def render():
     render_index_page()
     render_pages()
 
+
 def render_index_page():
     index_template = jinja_environment.get_template("index.html.jinja")
     index_markdown_filename = "index.md"
