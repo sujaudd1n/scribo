@@ -19,13 +19,22 @@ md_extensions = [
     ),
     TocExtension(),
     "admonition",
-    "meta"
+    "meta",
 ]
 
+
 DIST_DIR = "dist"
+TEMPLATES_DIR = "assets/templates"
+
+env = Environment(
+    loader=FileSystemLoader([".", TEMPLATES_DIR]), autoescape=select_autoescape
+)
 
 
 def build_project(project_root):
+    """
+    project_root: Directory containing the project.
+    """
     os.chdir(project_root)
     create_dist_dir(DIST_DIR)
     copy_and_minimize_static_files()
@@ -49,12 +58,7 @@ def copy_and_minimize_static_files():
 
 
 def copy_static_dirs():
-    STATIC_DIRS = [
-        "styles",
-        "scripts",
-        "fonts",
-        "static"
-    ]
+    STATIC_DIRS = ["assets"]
     for static_dir in STATIC_DIRS:
         shutil.copytree(static_dir, os.path.join(DIST_DIR, static_dir))
 
@@ -83,17 +87,9 @@ def render():
     render_blogs()
 
 
-TEMPLATES_DIR = "templates"
-env = Environment(
-    loader=FileSystemLoader([".", TEMPLATES_DIR]), autoescape=select_autoescape
-)
-
-
 def render_index_html():
     index_template = env.get_template("index.html.jinja")
-    rendered_index_template = index_template.render(
-        **get_metadata(),
-        contents=get_toc())
+    rendered_index_template = index_template.render(**get_metadata())
 
     OUTPUT_FILE = os.path.join(DIST_DIR, "index.html")
     with open(OUTPUT_FILE, "w") as out:
@@ -109,7 +105,7 @@ def get_toc():
     BLOGS_DIR = "blogs"
     result = []
 
-    root = {"name": BLOGS_DIR, "path": BLOGS_DIR, "order": -1,  "children": []}
+    root = {"name": BLOGS_DIR, "path": BLOGS_DIR, "order": -1, "children": []}
     q = [root]
 
     while q:
@@ -128,7 +124,7 @@ def get_toc():
 
             parent["children"].append(child_node)
             q.append(child_node)
-    
+
     # print(json.dumps(root, indent=4))
 
     # return root
@@ -149,12 +145,12 @@ def get_order(path):
             return int(order)
         return 999
 
+
 def sort_toc(toc):
     # print(json.dumps(toc, indent=4))
-    toc['children'].sort(key=lambda x: x['order'])
-    for child in toc['children']:
+    toc["children"].sort(key=lambda x: x["order"])
+    for child in toc["children"]:
         sort_toc(child)
-
 
 
 def render_blogs():
@@ -175,7 +171,9 @@ def render_blogs():
             os.makedirs(out_file_dir, exist_ok=True)
 
             base_template = env.get_template("article.html.jinja")
-            rendered_blog = base_template.render(**get_metadata(), html=html, toc=mdc.toc)
+            rendered_blog = base_template.render(
+                **get_metadata(), html=html, toc=mdc.toc
+            )
 
             output_filename = os.path.join(out_file_dir, file.split(".")[0] + ".html")
             with open(output_filename, "w") as f:
