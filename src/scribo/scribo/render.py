@@ -64,12 +64,12 @@ def render_pages():
             os.path.join(PAGES_DIR, page)
         )
     ]
-    print(ALL_PAGES)
+    for page in ALL_PAGES:
+        print(page)
+        render_page(os.path.join("pages", page))
 
-def tmp():
-    BLOGS_DIR = "blogs"
-
-    for root, dirs, files in os.walk(BLOGS_DIR):
+def render_page(directory):
+    for root, dirs, files in os.walk(directory):
         for file in files:
             filepath = os.path.join(root, file)
             if not filepath.endswith(".md"):
@@ -78,8 +78,9 @@ def tmp():
                 html = markdown_converter.convert(f.read())
 
             out_file_dir = os.path.join(
-                DIST_DIR, BLOGS_DIR, *filepath.split(os.sep)[1:-1]
+                DIST_DIR, directory, *filepath.split(os.sep)[2:-1]
             )
+            print(out_file_dir)
             os.makedirs(out_file_dir, exist_ok=True)
 
             base_template = jinja_environment.get_template("article.html.jinja")
