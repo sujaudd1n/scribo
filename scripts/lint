@@ -1,2 +1,2 @@
 #!/bin/bash
-djlint --reformat docs/templates/*html.jinja
+djlint --reformat docs/assets/templates/*html.jinja

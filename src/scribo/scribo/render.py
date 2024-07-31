@@ -3,11 +3,11 @@ import os
 import json
 import re
 
-from .helper import get_metadata
+from .helper import get_metadata, get_toc
 
 import markdown as md
 import minify_html as minify
-from jinja2 import Environment, select_autoescape, FileSystemLoader
+from jinja2 import Environment, select_autoescape, FileSystemLoader, BaseLoader
 from markdown.extensions.fenced_code import FencedCodeExtension
 from markdown.extensions.codehilite import CodeHiliteExtension
 from markdown.extensions.toc import TocExtension
@@ -28,7 +28,7 @@ markdown_extensions = [
 markdown_converter = md.Markdown(extensions=markdown_extensions)
 
 jinja_environment = Environment(
-    loader=FileSystemLoader([".", TEMPLATES_DIR]), autoescape=select_autoescape
+    loader=FileSystemLoader([".", TEMPLATES_DIR, "dist"]), autoescape=select_autoescape
 )
 
 
@@ -47,6 +47,14 @@ def render_index_page():
     output_filename = os.path.join(DIST_DIR, "index.html")
     with open(output_filename, "w") as output_file:
         output_file.write(rendered_index_template)
+
+    index_template = jinja_environment.get_template("index.html")
+    rendered_index_template = index_template.render(contents=get_toc('pages'))
+
+    output_filename = os.path.join(DIST_DIR, "index.html")
+    with open(output_filename, "w") as output_file:
+        output_file.write(rendered_index_template)
+
 
 def render_pages():
     PAGES_DIR = "pages"
