@@ -49,7 +49,7 @@ def render_index_page():
         output_file.write(rendered_index_template)
 
     index_template = jinja_environment.get_template("index.html")
-    rendered_index_template = index_template.render(contents=get_toc('pages'))
+    rendered_index_template = index_template.render(contents=get_toc('pages', 1))
 
     output_filename = os.path.join(DIST_DIR, "index.html")
     with open(output_filename, "w") as output_file:
