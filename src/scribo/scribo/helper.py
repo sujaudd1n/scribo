@@ -1,5 +1,6 @@
 import os
 import json
+import re
 
 
 def get_metadata():
@@ -43,6 +44,7 @@ def get_toc(directory, depth=999):
 
 def sort_toc(toc):
     # print(json.dumps(toc, indent=4))
+    print(toc)
     toc["children"].sort(key=lambda x: x["order"])
     for child in toc["children"]:
         sort_toc(child)
@@ -53,12 +55,11 @@ def get_order(path):
     Return order found in index.md
     if not found return 999
     """
-    try:
-        with open(os.path.join(path, "index.md")) as markdown_file:
-            file_string = markdown_file.read()
-            matches = re.search(r"order:\s+(\d)\n", file_string, re.IGNORECASE)
-            if matches:
-                order = matches.groups()[0]
-                return int(order)
-    except:
-        return 999
+    with open(os.path.join(path, "index.md")) as markdown_file:
+        file_string = markdown_file.read()
+        matches = re.search(r"order:\s+(\d)", file_string, re.IGNORECASE)
+        if matches:
+            order = matches.groups()[0]
+            return int(order)
+        else:
+            return 999

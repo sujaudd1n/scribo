@@ -23,15 +23,8 @@
             <button class='header__nav_toggle ri-menu-line hidden'
                     aria-label="toggle nav"></button>
             <nav class="header__nav">
-                {% for quick_link in quick_links %}
-                    {% if quick_link.url.startswith('http') and quick_link.url not in urls %}
-                        <a href="{{ quick_link.url }}"
-                           target="_blank"
-                           class="icon ri-external-link-line-after">{{ quick_link.name
-                        }}</a>
-                    {% else %}
-                        <a href="{{ quick_link.url }}">{{ quick_link.name }}</a>
-                    {% endif %}
+                {% for page in pages.children %}
+                    <a href="{{ page.path }}">{{ page.name.capitalize() }}</a>
                 {% endfor %}
             </nav>
         </header>

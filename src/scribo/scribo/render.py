@@ -42,7 +42,7 @@ def render_index_page():
     index_markdown_filename = "index.md"
     with open(index_markdown_filename) as index_markdown_file:
         index_html = markdown_converter.convert(index_markdown_file.read())
-    rendered_index_template = index_template.render(**get_metadata(), html=index_html)
+    rendered_index_template = index_template.render(pages=get_toc('pages', 1), **get_metadata(), html=index_html)
 
     output_filename = os.path.join(DIST_DIR, "index.html")
     with open(output_filename, "w") as output_file:
@@ -65,7 +65,6 @@ def render_pages():
         )
     ]
     for page in ALL_PAGES:
-        print(page)
         render_page(os.path.join("pages", page))
 
 def render_page(directory):
@@ -80,11 +79,11 @@ def render_page(directory):
             out_file_dir = os.path.join(
                 DIST_DIR, directory, *filepath.split(os.sep)[2:-1]
             )
-            print(out_file_dir)
             os.makedirs(out_file_dir, exist_ok=True)
 
             base_template = jinja_environment.get_template("article.html.jinja")
             rendered_blog = base_template.render(
+                pages=get_toc('pages', 1),
                 **get_metadata(), html=html, toc=markdown_converter.toc
             )
 
