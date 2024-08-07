@@ -8,7 +8,7 @@ def get_metadata():
         return json.load(metafile)
 
 
-def get_toc(directory, depth=999):
+def get_toc(directory, depth=None):
     result = []
 
     root = {"name": directory, "path": directory, "order": -1, "children": []}
@@ -32,7 +32,7 @@ def get_toc(directory, depth=999):
             parent["children"].append(child_node)
             q.append(child_node)
 
-        if current_depth == depth:
+        if depth and current_depth == depth:
             break
 
     # print(json.dumps(root, indent=4))

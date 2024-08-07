@@ -1,1 +1,3 @@
-# blogs
+# Blogs
+
+{% include 'toc.html.jinja' %}

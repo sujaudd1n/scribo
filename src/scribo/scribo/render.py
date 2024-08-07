@@ -33,27 +33,55 @@ jinja_environment = Environment(
 
 
 def render():
-    render_index_page()
+    render_markdown_to_html("index.md", "index.html")
     render_pages()
 
 
-def render_index_page():
-    index_template = jinja_environment.get_template("index.html.jinja")
-    index_markdown_filename = "index.md"
-    with open(index_markdown_filename) as index_markdown_file:
-        index_html = markdown_converter.convert(index_markdown_file.read())
-    rendered_index_template = index_template.render(pages=get_toc('pages', 1), **get_metadata(), html=index_html)
+def render_markdown_to_html(
+    input_path,
+    output_html_path,
+    template_name="index.html.jinja",
+    root_dir="pages",
+):
+    html = get_html_text(input_path)
+    rendered_template = get_rendered_template(template_name, {
+        "pages": get_toc(root_dir, 1),
+        "html": html,
+        **get_metadata(),
+        "contents": get_toc(root_dir, 1)
+    })
 
-    output_filename = os.path.join(DIST_DIR, "index.html")
-    with open(output_filename, "w") as output_file:
-        output_file.write(rendered_index_template)
+    tmp_html_path = "assets/templates/index.html.tmp"
+    save_html(tmp_html_path, rendered_template)
 
-    index_template = jinja_environment.get_template("index.html")
-    rendered_index_template = index_template.render(contents=get_toc('pages', 1))
+    print(rendered_template)
 
-    output_filename = os.path.join(DIST_DIR, "index.html")
-    with open(output_filename, "w") as output_file:
-        output_file.write(rendered_index_template)
+    second_rendered_template = get_rendered_template("index.html.tmp", {
+        "contents": get_toc(root_dir),
+        **get_metadata()
+    })
+
+    save_html(
+        os.path.join(DIST_DIR, "index.html"),
+        second_rendered_template
+    )
+
+    os.remove(tmp_html_path)
+
+
+
+def get_html_text(markdown_file_path):
+    with open(markdown_file_path) as markdown_file:
+        return markdown_converter.convert(markdown_file.read())
+
+def get_rendered_template(template_name, data):
+    template = jinja_environment.get_template(template_name)
+    return template.render(**data)
+
+def save_html(filepath, rendered_template):
+    with open(filepath, "w") as output_file:
+        output_file.write(rendered_template)
+
 
 
 def render_pages():

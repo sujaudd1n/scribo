@@ -24,7 +24,7 @@
                     aria-label="toggle nav"></button>
             <nav class="header__nav">
                 {% for page in pages.children %}
-                    <a href="{{ page.path }}">{{ page.name.capitalize() }}</a>
+                    <a href="/{{ page.path }}">{{ page.name.capitalize() }}</a>
                 {% endfor %}
             </nav>
         </header>

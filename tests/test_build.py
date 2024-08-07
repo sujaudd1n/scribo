@@ -2,10 +2,12 @@ import pytest
 import filecmp
 import os
 
-from build import create_dist_dir
-
 DIST_DIR = "dist"
-project_name = "myproject"
+project_name = "testproject"
+
+from scribo.scribo.render import render_markdown_to_html
+from scribo.scribo.build import create_dist_dir
+
 
 """
 def test_copy_raw_project_dir():
@@ -20,7 +22,9 @@ def test_copy_raw_project_dir():
     os.chdir('..')
 """
 
+def test_setup():
+    os.chdir(os.getcwd() + '/tests')
 
 def test_create_dist_dir():
-    create_dist_dir()
+    create_dist_dir(DIST_DIR)
     assert os.path.exists(DIST_DIR)
