@@ -43,7 +43,7 @@ def render_markdown_to_html(
     template_name="index.html.jinja",
     root_dir="pages",
 ):
-    html = get_html_text(input_path)
+    html, _ = get_html_text(input_path)
     rendered_template = get_rendered_template(template_name, {
         "pages": get_toc(root_dir, 1),
         "html": html,
@@ -53,8 +53,6 @@ def render_markdown_to_html(
 
     tmp_html_path = "assets/templates/index.html.tmp"
     save_html(tmp_html_path, rendered_template)
-
-    print(rendered_template)
 
     second_rendered_template = get_rendered_template("index.html.tmp", {
         "contents": get_toc(root_dir),
@@ -72,7 +70,9 @@ def render_markdown_to_html(
 
 def get_html_text(markdown_file_path):
     with open(markdown_file_path) as markdown_file:
-        return markdown_converter.convert(markdown_file.read())
+        html = markdown_converter.convert(markdown_file.read())
+        toc = markdown_converter.toc
+        return html, toc
 
 def get_rendered_template(template_name, data):
     template = jinja_environment.get_template(template_name)
@@ -99,22 +99,45 @@ def render_page(directory):
     for root, dirs, files in os.walk(directory):
         for file in files:
             filepath = os.path.join(root, file)
+
             if not filepath.endswith(".md"):
                 continue
-            with open(filepath) as f:
-                html = markdown_converter.convert(f.read())
+
+            html, toc = get_html_text(filepath)
 
             out_file_dir = os.path.join(
-                DIST_DIR, directory, *filepath.split(os.sep)[2:-1]
+                DIST_DIR,
+                *filepath.split(os.sep)[:-1]
             )
             os.makedirs(out_file_dir, exist_ok=True)
 
-            base_template = jinja_environment.get_template("article.html.jinja")
-            rendered_blog = base_template.render(
-                pages=get_toc('pages', 1),
-                **get_metadata(), html=html, toc=markdown_converter.toc
+            tmp_page = get_rendered_template("article.html.jinja", {
+                'pages':get_toc('pages', 1),
+                "html":html,
+                "toc":toc,
+                **get_metadata()
+            })
+            # print(tmp_page)
+
+            tmp_path = "assets/templates/article.html.tmp"
+
+            save_html(
+                tmp_path,
+                tmp_page
             )
 
+            rendered_page = get_rendered_template("article.html.tmp", {
+                'pages':get_toc('pages', 1),
+                "html":html,
+                "toc":toc,
+                **get_metadata()
+            })
+
             output_filename = os.path.join(out_file_dir, file.split(".")[0] + ".html")
-            with open(output_filename, "w") as f:
-                f.write(rendered_blog)
+
+            save_html(
+                output_filename,
+                rendered_page
+            )
+
+            os.remove(tmp_path)

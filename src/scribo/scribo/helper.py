@@ -44,7 +44,6 @@ def get_toc(directory, depth=None):
 
 def sort_toc(toc):
     # print(json.dumps(toc, indent=4))
-    print(toc)
     toc["children"].sort(key=lambda x: x["order"])
     for child in toc["children"]:
         sort_toc(child)

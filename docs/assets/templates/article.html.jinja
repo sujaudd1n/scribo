@@ -1,5 +1,6 @@
 {% extends "base.html.jinja" %}
 {% block title %}{{ title }}{% endblock %}
+{% block description %} {{description}} {%endblock%}
 {% block base_content %}
     <div class="blog_item">
         <div class="blog_content">{{ html | safe }}</div>

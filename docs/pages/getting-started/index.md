@@ -3,6 +3,8 @@ order: 1
 ---
 # Getting Started
 
+{{ description }}
+
 ## Installation
 
 ``` console
