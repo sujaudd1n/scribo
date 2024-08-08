@@ -31,13 +31,8 @@
 
         {% block base_content %}{% endblock %}
 
-        <footer class="footer">
-            {% block footer %}
-                <p class="copyright">
-                    &copy; <span class="copyright__year">2024</span> {{ author }}
-                </p>
-            {% endblock %}
-        </footer>
+       
+       {% include "footer.html.jinja" %}
 
     </body>
 </html>

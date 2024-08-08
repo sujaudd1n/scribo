@@ -3,7 +3,7 @@
     "project_name": "Scribo",
     "description": "An easy and efficient blogging system with markdown.",
     "author": "Scribo",
-    "urls": [
+    "production_urls": [
         "http://localhost:8000",
         "http://localhost:8001"
     ],

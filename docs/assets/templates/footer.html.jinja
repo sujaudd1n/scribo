@@ -1,0 +1,45 @@
+<footer class="footer">
+    {% block footer %}
+    <div class="footer_links">
+        <nav class="quick_links">
+            <h3>Quick Links</h3>
+            <div>
+                {% for link in quick_links %}
+                {% if link.url.startswith('http') and link.url not in production_urls %}
+                <a href="{{ link.url }}" class="external-icon ri-external-link-line-after">{{ link.name }}</a>
+                {% else %}
+                <a href="{{ link.url }}">{{ link.name }}</a>
+                {% endif %}
+                {% endfor %}
+
+            </div>
+        </nav>
+        <nav class="useful_links">
+        <h3>Useful Links</h3>
+        <div>
+            <a href="/sitemap">Sitemap</a>
+        </div>
+        </nav>
+    </div>
+    <p class="copyright">
+        &copy; <span class="copyright__year">2024</span> {{ author }}
+    </p>
+    {% endblock %}
+</footer>
+
+<style>
+    /* footer */
+    .footer {
+        margin-top: auto;
+    }
+    .quick_links div, .useful_links div {
+        display: flex;
+        flex-flow: column;
+        gap: 10px;
+    }
+
+
+    p.copyright {
+        font-size: 0.8rem;
+    }
+</style>

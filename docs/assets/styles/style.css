@@ -193,7 +193,7 @@ code:not(pre code) {
 }
 
 /* icon style definitino */
-.icon::after {
+.external-icon::after {
     margin-left: 5px;
 }
 
@@ -296,10 +296,3 @@ video {
 /*ends toc style*/
 
 
-.footer {
-    margin-top: auto;
-}
-
-p.copyright {
-    font-size: 0.8rem;
-}
