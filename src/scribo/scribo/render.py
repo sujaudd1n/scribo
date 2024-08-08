@@ -33,67 +33,75 @@ jinja_environment = Environment(
 
 
 def render():
-    render_markdown_to_html("index.md", "index.html")
+    complete_markdown_render("index.md", "index.html")
     render_pages()
+    render_useful_pages()
 
 
-def render_markdown_to_html(
-    input_path,
+def complete_markdown_render(
+    markdown_path,
     output_html_path,
     template_name="index.html.jinja",
     root_dir="pages",
 ):
-    html, _ = get_html_text(input_path)
-    rendered_template = get_rendered_template(template_name, {
-        "pages": get_toc(root_dir, 1),
-        "html": html,
+    html, _, _ = render_markdown(markdown_path)
+    data = {
         **get_metadata(),
-        "contents": get_toc(root_dir, 1)
-    })
+        "pages": get_toc(root_dir, 1),
+        "contents": get_toc(root_dir, 1),
+        "html": html,
+    }
+    render_template_and_save("index.html.jinja", data, DIST_DIR + "/index.html.tmp")
 
-    tmp_html_path = "assets/templates/index.html.tmp"
-    save_html(tmp_html_path, rendered_template)
+    data = {"contents": get_toc(root_dir)}
+    render_template_and_save("index.html.tmp", data, DIST_DIR + "/index.html")
 
-    second_rendered_template = get_rendered_template("index.html.tmp", {
-        "contents": get_toc(root_dir),
-        **get_metadata()
-    })
 
-    save_html(
-        os.path.join(DIST_DIR, "index.html"),
-        second_rendered_template
+def render_template_and_save(
+    template_name,
+    data,
+    output_path,
+):
+    rendered_template = get_rendered_template(template_name, data)
+    save_html(output_path, rendered_template)
+
+
+def second_html_render(template_name, root_dir):
+    second_rendered_template = get_rendered_template(
+        "index.html.tmp", {**get_metadata()}
     )
 
-    os.remove(tmp_html_path)
+    save_html(os.path.join(DIST_DIR, "index.html"), second_rendered_template)
 
 
-
-def get_html_text(markdown_file_path):
+def render_markdown(markdown_file_path):
     with open(markdown_file_path) as markdown_file:
         html = markdown_converter.convert(markdown_file.read())
         toc = markdown_converter.toc
-        return html, toc
+        meta = markdown_converter.Meta
+        return html, toc, meta
+
 
 def get_rendered_template(template_name, data):
     template = jinja_environment.get_template(template_name)
     return template.render(**data)
+
 
 def save_html(filepath, rendered_template):
     with open(filepath, "w") as output_file:
         output_file.write(rendered_template)
 
 
-
 def render_pages():
     PAGES_DIR = "pages"
     ALL_PAGES = [
-        page for page in os.listdir(PAGES_DIR)
-        if os.path.isdir(
-            os.path.join(PAGES_DIR, page)
-        )
+        page
+        for page in os.listdir(PAGES_DIR)
+        if os.path.isdir(os.path.join(PAGES_DIR, page))
     ]
     for page in ALL_PAGES:
         render_page(os.path.join("pages", page))
+
 
 def render_page(directory):
     for root, dirs, files in os.walk(directory):
@@ -103,41 +111,43 @@ def render_page(directory):
             if not filepath.endswith(".md"):
                 continue
 
-            html, toc = get_html_text(filepath)
+            html, toc, meta = render_markdown(filepath)
 
-            out_file_dir = os.path.join(
-                DIST_DIR,
-                *filepath.split(os.sep)[:-1]
-            )
+            out_file_dir = os.path.join(DIST_DIR, *filepath.split(os.sep)[:-1])
             os.makedirs(out_file_dir, exist_ok=True)
 
-            tmp_page = get_rendered_template("article.html.jinja", {
-                'pages':get_toc('pages', 1),
-                "html":html,
-                "toc":toc,
-                **get_metadata()
-            })
-            # print(tmp_page)
-
+            tmp_page = get_rendered_template(
+                "article.html.jinja",
+                {
+                    "pages": get_toc("pages", 1),
+                    "html": html,
+                    "toc": toc,
+                    **get_metadata(),
+                    **meta,
+                },
+            )
             tmp_path = "assets/templates/article.html.tmp"
 
-            save_html(
-                tmp_path,
-                tmp_page
-            )
+            save_html(tmp_path, tmp_page)
 
-            rendered_page = get_rendered_template("article.html.tmp", {
-                'pages':get_toc('pages', 1),
-                "html":html,
-                "toc":toc,
-                **get_metadata()
-            })
+            rendered_page = get_rendered_template(
+                "article.html.tmp",
+                {
+                    "pages": get_toc("pages", 1),
+                    "html": html,
+                    "toc": toc,
+                    **get_metadata(),
+                },
+            )
 
             output_filename = os.path.join(out_file_dir, file.split(".")[0] + ".html")
 
-            save_html(
-                output_filename,
-                rendered_page
-            )
+            save_html(output_filename, rendered_page)
 
             os.remove(tmp_path)
+
+
+def render_useful_pages():
+    return
+    os.makedirs("dist/pages/sitemap", exist_ok=True)
+    template = jinja_environment.get_template("index.html.jinja")

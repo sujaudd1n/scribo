@@ -1,9 +1,9 @@
 ---
+title: Getting Started
 order: 1
 ---
-# Getting Started
 
-{{ description }}
+# Getting Started
 
 ## Installation
 
