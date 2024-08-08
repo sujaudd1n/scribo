@@ -35,7 +35,7 @@ jinja_environment = Environment(
 def render():
     complete_markdown_render("index.md", "index.html")
     render_pages()
-    render_useful_pages()
+    render_sitemap()
 
 
 def complete_markdown_render(
@@ -147,7 +147,14 @@ def render_page(directory):
             os.remove(tmp_path)
 
 
-def render_useful_pages():
-    return
-    os.makedirs("dist/pages/sitemap", exist_ok=True)
-    template = jinja_environment.get_template("index.html.jinja")
+def render_sitemap():
+    path = "dist/sitemap"
+    os.makedirs(path, exist_ok=True)
+    render_template_and_save("sitemap.html.jinja", {
+        **get_metadata(),
+        "pages": get_toc("pages", 1),
+        "contents": get_toc("pages")
+    },
+    path + "/index.html"
+
+    )
