@@ -1,10 +1,12 @@
 {% extends "base.html.jinja" %}
 {% block title%} {{page_metadata.title[-1]}} - {{super()}}{% endblock%}
-{% block description %} {{page_metadata.description}} {%endblock%}
+{% block description %} {{page_metadata.description[-1]}} {%endblock%}
 {% block base_content %}
-{{ html | safe }}
-<div class="page_toc">
-    <h2>Table of contents</h2>
-    {{ toc | safe }}
+<div class="page_item">
+    <div class="page_content">{{ html | safe }}</div>
+    <div class="page_toc">
+        <h2>Table of contents</h2>
+        {{ page_toc | safe }}
+    </div>
 </div>
 {% endblock %}

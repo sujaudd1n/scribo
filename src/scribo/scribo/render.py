@@ -45,16 +45,16 @@ def complete_markdown_render(
     template_name="index.html.jinja",
     root_dir="pages",
 ):
-    html, toc, metadata = render_markdown(markdown_path)
+    html, page_toc, page_metadata = render_markdown(markdown_path)
 
     data = {
         **get_project_metadata(),
         "pages": get_toc(root_dir, 1),
         "contents": get_toc(root_dir, 1),
         "page_metadata": page_metadata,
+        "page_toc": page_toc,
         "html": html,
     }
-    print(data)
     render_template_and_save(
         "index.html.jinja",
         data,

@@ -270,21 +270,21 @@ video {
 /* ends media element style */
 
 /* toc style*/
-.blog_toc {
+.page_toc {
     display: none;
 }
 
 @media screen and (min-width: 928px) {
-    .blog_item {
+    .page_item {
         display: flex;
         flex-flow: row wrap;
     }
 
-    .blog_content {
+    .page_content {
         flex-grow: 1;
     }
 
-    .blog_toc {
+    .page_toc {
         display: block;
         height: min-content;
         padding: 0 20px;
