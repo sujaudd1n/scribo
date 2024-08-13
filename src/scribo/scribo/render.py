@@ -3,7 +3,7 @@ import os
 import json
 import re
 
-from .helper import get_metadata, get_toc
+from .helper import get_project_metadata, get_toc
 
 import markdown as md
 import minify_html as minify
@@ -34,6 +34,7 @@ jinja_environment = Environment(
 
 def render():
     complete_markdown_render("index.md", "index.html")
+    return
     render_pages()
     render_sitemap()
 
@@ -44,17 +45,28 @@ def complete_markdown_render(
     template_name="index.html.jinja",
     root_dir="pages",
 ):
-    html, _, _ = render_markdown(markdown_path)
+    html, toc, metadata = render_markdown(markdown_path)
+
     data = {
-        **get_metadata(),
+        **get_project_metadata(),
         "pages": get_toc(root_dir, 1),
         "contents": get_toc(root_dir, 1),
+        "page_metadata": page_metadata,
         "html": html,
     }
-    render_template_and_save("index.html.jinja", data, DIST_DIR + "/index.html.tmp")
+    print(data)
+    render_template_and_save(
+        "index.html.jinja",
+        data,
+        os.path.join(TEMPLATES_DIR, "index.html.tmp")
+    )
 
-    data = {"contents": get_toc(root_dir)}
+    data = {
+        "contents": get_toc(root_dir)
+        }
     render_template_and_save("index.html.tmp", data, DIST_DIR + "/index.html")
+
+    os.remove(os.path.join(TEMPLATES_DIR, "index.html.tmp"))
 
 
 def render_template_and_save(
@@ -66,9 +78,15 @@ def render_template_and_save(
     save_html(output_path, rendered_template)
 
 
+
+def save_html(filepath, rendered_template):
+    with open(filepath, "w") as output_file:
+        output_file.write(rendered_template)
+
+
 def second_html_render(template_name, root_dir):
     second_rendered_template = get_rendered_template(
-        "index.html.tmp", {**get_metadata()}
+        "index.html.tmp", {**get_project_metadata()}
     )
 
     save_html(os.path.join(DIST_DIR, "index.html"), second_rendered_template)
@@ -85,11 +103,6 @@ def render_markdown(markdown_file_path):
 def get_rendered_template(template_name, data):
     template = jinja_environment.get_template(template_name)
     return template.render(**data)
-
-
-def save_html(filepath, rendered_template):
-    with open(filepath, "w") as output_file:
-        output_file.write(rendered_template)
 
 
 def render_pages():
@@ -122,7 +135,7 @@ def render_page(directory):
                     "pages": get_toc("pages", 1),
                     "html": html,
                     "toc": toc,
-                    **get_metadata(),
+                    **get_project_metadata(),
                     **meta,
                 },
             )
@@ -136,7 +149,7 @@ def render_page(directory):
                     "pages": get_toc("pages", 1),
                     "html": html,
                     "toc": toc,
-                    **get_metadata(),
+                    **get_project_metadata(),
                 },
             )
 
@@ -151,7 +164,7 @@ def render_sitemap():
     path = "dist/sitemap"
     os.makedirs(path, exist_ok=True)
     render_template_and_save("sitemap.html.jinja", {
-        **get_metadata(),
+        **get_project_metadata(),
         "pages": get_toc("pages", 1),
         "contents": get_toc("pages")
     },

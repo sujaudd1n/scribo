@@ -2,7 +2,7 @@
     {% block footer %}
     <div class="footer_links">
         <nav class="quick_links">
-            <h3>Quick Links</h3>
+            <h3>🔗 Quick Links</h3>
             <div>
                 {% for link in quick_links %}
                 {% if link.url.startswith('http') and link.url not in production_urls %}
@@ -15,7 +15,7 @@
             </div>
         </nav>
         <nav class="useful_links">
-        <h3>Useful Links</h3>
+        <h3>✨ Useful Links</h3>
         <div>
             <a href="/sitemap">Sitemap</a>
         </div>
@@ -30,7 +30,9 @@
 <style>
     /* footer */
     .footer {
-        margin-top: auto;
+        background-color: var(--primary-800);
+        margin: 20px -10px 0 -10px;
+        padding: 0 10px;
     }
     .quick_links div, .useful_links div {
         display: flex;

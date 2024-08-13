@@ -3,7 +3,7 @@ import json
 import re
 
 
-def get_metadata():
+def get_project_metadata():
     with open("meta.json") as metafile:
         return json.load(metafile)
 
