@@ -3,11 +3,12 @@ import os
 import json
 import re
 
-from .helper import get_project_metadata, get_toc
+from .helper import *
 
-import markdown as md
 import minify_html as minify
 from jinja2 import Environment, select_autoescape, FileSystemLoader, BaseLoader
+
+import markdown as md
 from markdown.extensions.fenced_code import FencedCodeExtension
 from markdown.extensions.codehilite import CodeHiliteExtension
 from markdown.extensions.toc import TocExtension
@@ -50,7 +51,6 @@ def complete_markdown_render(
     data = {
         **get_project_metadata(),
         "pages": get_toc(root_dir, 1),
-        "contents": get_toc(root_dir, 1),
         "page_metadata": page_metadata,
         "page_toc": page_toc,
         "html": html,
@@ -62,7 +62,7 @@ def complete_markdown_render(
     )
 
     data = {
-        "contents": get_toc(root_dir)
+        "contents": get_toc(root_dir, 2)
         }
     render_template_and_save("index.html.tmp", data, DIST_DIR + "/index.html")
 

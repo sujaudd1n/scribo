@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         {% block head %}
             <meta charset="UTF-8">
@@ -15,24 +16,13 @@
             <script src="/assets/scripts/script.js" defer></script>
         {% endblock %}
     </head>
+
     <body data-theme="dark">
-        <header class="header">
-            <p class="header__title">
-                <a href="/">{{ project_name }}</a>
-            </p>
-            <button class='header__nav_toggle ri-menu-line hidden'
-                    aria-label="toggle nav"></button>
-            <nav class="header__nav">
-                {% for page in pages.children %}
-                    <a href="/{{ page.path }}">{{ page.name.capitalize() }}</a>
-                {% endfor %}
-            </nav>
-        </header>
+        {% include "header.html.jinja" %}
 
         {% block base_content %}{% endblock %}
 
-       
-       {% include "footer.html.jinja" %}
-
+        {% include "footer.html.jinja" %}
     </body>
+
 </html>

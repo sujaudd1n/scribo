@@ -275,7 +275,7 @@ video {
 }
 
 @media screen and (min-width: 928px) {
-    .page_item {
+    .page {
         display: flex;
         flex-flow: row wrap;
     }
