@@ -40,7 +40,6 @@ def get_toc(directory, depth=None):
 
         current_depth += 1
 
-
     # print(json.dumps(root, indent=4))
 
     # return root
