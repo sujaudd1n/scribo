@@ -66,7 +66,7 @@ def complete_markdown_render(
         "index.html.jinja", data, os.path.join(TEMPLATES_DIR, "index.html.tmp")
     )
 
-    data = {"contents": get_toc(root_dir, 2)}
+    data = {"contents": get_toc(root_dir, 1)}
     render_template_and_save("index.html.tmp", data, output_html_path)
 
     os.remove(os.path.join(TEMPLATES_DIR, "index.html.tmp"))
@@ -97,49 +97,13 @@ def render_page(directory):
     for root, dirs, files in os.walk(directory):
         for file in files:
             filepath = os.path.join(root, file)
-            outputpath = os.path.join(root, file.replace('md', 'html'))
+            os.makedirs(os.path.join(DIST_DIR, root), exist_ok=True)
+            outputpath = os.path.join(DIST_DIR, root, file.replace('md', 'html'))
             print(outputpath)
 
             if not filepath.endswith(".md"):
                 continue
             complete_markdown_render(filepath, outputpath)
-            continue
-
-            html, toc, meta = render_markdown(filepath)
-
-            out_file_dir = os.path.join(DIST_DIR, *filepath.split(os.sep)[:-1])
-            os.makedirs(out_file_dir, exist_ok=True)
-
-            tmp_page = get_rendered_template(
-                "article.html.jinja",
-                {
-                    "pages": get_toc("pages", 1),
-                    "html": html,
-                    "toc": toc,
-                    **get_project_metadata(),
-                    **meta,
-                },
-            )
-            tmp_path = "assets/templates/article.html.tmp"
-
-            save_html(tmp_path, tmp_page)
-
-            rendered_page = get_rendered_template(
-                "article.html.tmp",
-                {
-                    "pages": get_toc("pages", 1),
-                    "html": html,
-                    "toc": toc,
-                    **get_project_metadata(),
-                },
-            )
-
-            output_filename = os.path.join(out_file_dir, file.split(".")[0] + ".html")
-
-            save_html(output_filename, rendered_page)
-
-            os.remove(tmp_path)
-
 
 def render_sitemap():
     path = "dist/sitemap"
