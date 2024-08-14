@@ -14,26 +14,32 @@ def get_toc(directory, depth=None):
     root = {"name": directory, "path": directory, "order": -1, "children": []}
     q = [root]
 
-    current_depth = 1
+    current_depth = 0
+
     while q:
-        parent = q.pop(0)
-        for child in os.listdir(parent["path"]):
-            child_path = os.path.join(parent["path"], child)
-            if not os.path.isdir(child_path):
-                continue
-
-            child_node = {
-                "name": child,
-                "path": os.path.join(parent["path"], child),
-                "order": get_order(child_path),
-                "children": [],
-            }
-
-            parent["children"].append(child_node)
-            q.append(child_node)
-
-        if depth and current_depth == depth:
+        if depth != None and current_depth >= depth:
             break
+        print(depth, current_depth)
+
+        for _ in range(len(q)):
+            parent = q.pop(0)
+            for child in os.listdir(parent["path"]):
+                child_path = os.path.join(parent["path"], child)
+                if not os.path.isdir(child_path):
+                    continue
+
+                child_node = {
+                    "name": child,
+                    "path": os.path.join(parent["path"], child),
+                    "order": get_order(child_path),
+                    "children": [],
+                }
+
+                parent["children"].append(child_node)
+                q.append(child_node)
+
+        current_depth += 1
+
 
     # print(json.dumps(root, indent=4))
 
