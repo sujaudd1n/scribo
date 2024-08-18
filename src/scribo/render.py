@@ -1,19 +1,12 @@
-import shutil
 import os
-import json
-import re
-
-from .helper import *
-
-import minify_html as minify
-from jinja2 import Environment, select_autoescape, FileSystemLoader, BaseLoader
 
 import markdown as md
-from markdown.extensions.fenced_code import FencedCodeExtension
+from jinja2 import Environment, FileSystemLoader, select_autoescape
 from markdown.extensions.codehilite import CodeHiliteExtension
-from markdown.extensions.toc import TocExtension
 from markdown.extensions.extra import ExtraExtension
+from markdown.extensions.toc import TocExtension
 
+from .helper import *
 
 DIST_DIR = "dist"
 TEMPLATES_DIR = "assets/templates"

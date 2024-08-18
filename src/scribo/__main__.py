@@ -1,11 +1,9 @@
-import os
-import shutil
-import pathlib
-import sys
 import argparse
+import os
+import sys
 
-from .pinit import initialize
 from .build import build_project
+from .pinit import initialize
 
 
 def main():
@@ -24,8 +22,8 @@ def main():
 
 def parse_command_line_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-i", "--init", help="Initialize project structure")
-    parser.add_argument("-b", "--build", help="Build static site for production")
+    parser.add_argument("-i", "--init", help="Initialize project")
+    parser.add_argument("-b", "--build", help="Build site for production")
     return parser.parse_args()
 
 

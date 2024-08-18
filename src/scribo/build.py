@@ -1,5 +1,6 @@
-import shutil
 import os
+import shutil
+
 from .copy_and_minimize import copy_and_minimize_static_files
 from .render import render
 
@@ -7,9 +8,7 @@ DIST_DIR = "dist"
 
 
 def build_project(project_root):
-    """
-    project_root: Directory containing the project.
-    """
+    """Execute all the steps to build the project."""
     os.chdir(project_root)
     create_dist_dir(DIST_DIR)
     copy_and_minimize_static_files()
@@ -18,8 +17,8 @@ def build_project(project_root):
 
 def create_dist_dir(dir_name):
     """
-    Create dist dir.
-    If it exists, it gets deleted and a new dir is created.
+    Create dist directory named dir_name.
+    If it exists, it gets deleted and a new directory is created.
     """
     if os.path.exists(dir_name):
         shutil.rmtree(dir_name)

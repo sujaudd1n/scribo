@@ -1,9 +1,10 @@
-import os
 import json
+import os
 import re
 
 
 def get_project_metadata():
+
     with open("meta.json") as metafile:
         return json.load(metafile)
 
