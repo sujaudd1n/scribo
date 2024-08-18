@@ -51,13 +51,12 @@ def complete_markdown_render(
     root_dir = "/".join(markdown_path.split(os.sep)[:-1])
     if root_dir == ".":
         root_dir = "pages"
-    print(root_dir)
 
     page_metadata['title'] = page_metadata.get('title', '')
     page_metadata['description'] = page_metadata.get('description', '')
     data = {
         **get_project_metadata(),
-        "pages": get_toc(root_dir, 1),
+        "pages": get_toc("pages", 1),
         "page_metadata": page_metadata,
         "page_toc": page_toc,
         "html": html,
