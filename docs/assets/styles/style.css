@@ -49,13 +49,13 @@
 :root {
 
     font-size: 16px;
+    --max-page-width: 1500px;
 }
 
 body {
     font-family: 'main-text', sans-serif;
     background-color: var(--primary);
     color: var(--text);
-    max-width: 968px;
     margin: 0 auto;
     padding: 0 10px;
     min-height: 100dvh;
@@ -108,89 +108,6 @@ code:not(pre code) {
 }
 
 
-/* header */
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 60px;
-    margin: 0 -10px;
-    padding: 0 10px;
-    border-bottom: 1px solid #eeeeee55;
-}
-
-.header__title {
-    margin: 0;
-    font-size: 32px;
-}
-
-.header__title a {
-    color: inherit;
-}
-
-.header__nav_toggle {
-    appearance: none;
-    height: fit-content;
-    font-size: 32px;
-    background: none;
-    color: var(--text);
-    border: none;
-    border-radius: 2px;
-    padding: 5px;
-}
-
-.header__nav_toggle:hover {
-    cursor: pointer;
-}
-
-.header__nav_toggle:active {
-    background-color: var(--primary-700);
-    -webkit-tap-highlight-color: transparent;
-}
-
-.header__nav {
-    background-color: var(--primary-700-tp);
-    backdrop-filter: blur(5px);
-    height: calc(100dvh - 60px);
-    width: 70dvw;
-
-    position: absolute;
-    top: 60px;
-    bottom: 0;
-    right: 0;
-
-    padding: 10px;
-
-    display: none;
-    /* display: flex; */
-    flex-flow: column;
-    gap: 20px;
-}
-
-.show {
-    display: flex;
-}
-
-@media screen and (min-width: 768px) {
-
-    .header__nav_toggle {
-        display: none;
-    }
-
-    .header__nav {
-        background-color: unset;
-        backdrop-filter: none;
-        height: unset;
-        width: unset;
-
-        position: static;
-
-        display: flex;
-        flex-flow: row wrap;
-        gap: 20px;
-    }
-}
 
 /* icon style definitino */
 .external-icon::after {

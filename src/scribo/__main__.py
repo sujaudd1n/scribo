@@ -4,8 +4,8 @@ import pathlib
 import sys
 import argparse
 
-from .scribo.pinit import initialize
-from .scribo.build import build_project
+from .pinit import initialize
+from .build import build_project
 
 
 def main():
