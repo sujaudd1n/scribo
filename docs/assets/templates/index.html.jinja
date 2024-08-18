@@ -3,11 +3,51 @@
 {% block title %}{{ page_metadata.title[-1] }} - {{ super() }}{% endblock %}
 {% block description %}{{ page_metadata.description[-1] }}{% endblock %}
 {% block base_content %}
-    <div class="page">
+<div class="page">
+    <div class="page__div">
         <div class="page_content">{{ html | safe }}</div>
         <div class="page_toc">
             <h2>Table of contents</h2>
             {{ page_toc | safe }}
         </div>
     </div>
+</div>
+<style>
+    /* toc style*/
+    .page {
+        padding: 10px;
+    }
+    .page_toc {
+        display: none;
+    }
+
+    .page_toc h2 {
+        white-space: nowrap;
+    }
+
+    @media screen and (min-width: 928px) {
+        .page__div {
+            display: flex;
+            max-width: calc(var(--max-page-width) * 0.8);
+            margin: 0 auto;
+            gap: 30px;
+        }
+
+        .page_content {
+            width: 100%;
+            flex-grow: 1;
+        }
+
+        .page_toc {
+            display: block;
+            height: min-content;
+            padding: 0 20px;
+            position: sticky;
+            top: 10px;
+        }
+    }
+
+    /*ends toc style*/
+</style>
+
 {% endblock %}

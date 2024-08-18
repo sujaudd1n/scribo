@@ -187,30 +187,5 @@ video {
 
 /* ends media element style */
 
-/* toc style*/
-.page_toc {
-    display: none;
-}
-
-@media screen and (min-width: 928px) {
-    .page {
-        display: flex;
-        flex-flow: row wrap;
-    }
-
-    .page_content {
-        flex-grow: 1;
-    }
-
-    .page_toc {
-        display: block;
-        height: min-content;
-        padding: 0 20px;
-        position: sticky;
-        top: 10px;
-    }
-}
-
-/*ends toc style*/
 
 
