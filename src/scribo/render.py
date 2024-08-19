@@ -27,8 +27,8 @@ jinja_environment = Environment(
 
 
 def render():
-    complete_markdown_render(os.path.join(".", "index.md"),
-    os.path.join(DIST_DIR, "index.html")
+    complete_markdown_render(
+        os.path.join(".", "index.md"), os.path.join(DIST_DIR, "index.html")
     )
     render_pages()
     render_sitemap()
@@ -48,19 +48,18 @@ def complete_markdown_render(
 
     project_metadata = get_project_metadata()
 
-    p_title = page_metadata.get('title', '')
-    if p_title is not None and p_title != '':
-        p_title = p_title[-1] + ' - '
+    p_title = page_metadata.get("title", "")
+    if p_title is not None and p_title != "":
+        p_title = p_title[-1] + " - "
 
-    p_description = page_metadata.get('description')
-    if p_description is not None and p_description != '':
+    p_description = page_metadata.get("description")
+    if p_description is not None and p_description != "":
         p_description = p_description[-1]
     else:
-        p_description = project_metadata['description']
-    
+        p_description = project_metadata["description"]
 
-    page_metadata['title'] = p_title
-    page_metadata['description'] = p_description
+    page_metadata["title"] = p_title
+    page_metadata["description"] = p_description
 
     data = {
         **project_metadata,
@@ -88,7 +87,6 @@ def render_template_and_save(
     save_html(output_path, rendered_template)
 
 
-
 def render_pages():
     PAGES_DIR = "pages"
     ALL_PAGES = [
@@ -103,15 +101,16 @@ def render_pages():
 
 def render_page(directory):
     for root, dirs, files in os.walk(directory):
-        dist_root = '/'.join(root.split(os.sep)[1:])
+        dist_root = "/".join(root.split(os.sep)[1:])
         for file in files:
             filepath = os.path.join(root, file)
             os.makedirs(os.path.join(DIST_DIR, dist_root), exist_ok=True)
-            outputpath = os.path.join(DIST_DIR, dist_root, file.replace('md', 'html'))
+            outputpath = os.path.join(DIST_DIR, dist_root, file.replace("md", "html"))
 
             if not filepath.endswith(".md"):
                 continue
             complete_markdown_render(filepath, outputpath)
+
 
 def render_sitemap():
     path = "dist/sitemap"
@@ -152,4 +151,3 @@ def render_markdown(markdown_file_path):
 def get_rendered_template(template_name, data):
     template = jinja_environment.get_template(template_name)
     return template.render(**data)
-

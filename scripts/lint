@@ -1,3 +1,3 @@
 #!/bin/bash
 djlint --reformat docs/assets/templates/*html.jinja
-black src/scribo/scribo/*py
+black src/scribo/*py

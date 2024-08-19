@@ -3,6 +3,7 @@ import shutil
 
 PROJECT_TEMPLATE = os.path.join(os.path.dirname(__file__), "sample")
 
+
 def initialize(project_name):
     """Initialize the project."""
     create_project_dir(project_name)
