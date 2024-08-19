@@ -1,7 +1,7 @@
 {% extends "base.html.jinja" %}
 
-{% block title %}{{ page_metadata.title[-1] }} - {{ super() }}{% endblock %}
-{% block description %}{{ page_metadata.description[-1] }}{% endblock %}
+{% block title %}{{ page_metadata.title }} {{ super() }}{% endblock %}
+{% block description %}{{ page_metadata.description }}{% endblock %}
 {% block base_content %}
 <div class="page">
     <div class="page__div">

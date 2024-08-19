@@ -39,16 +39,34 @@ def complete_markdown_render(
     output_html_path,
     template_name="index.html.jinja",
 ):
+    print(42, markdown_path)
     html, page_toc, page_metadata = render_markdown(markdown_path)
 
     root_dir = "/".join(markdown_path.split(os.sep)[:-1])
     if root_dir == ".":
         root_dir = "pages"
 
-    page_metadata['title'] = page_metadata.get('title', '')
-    page_metadata['description'] = page_metadata.get('description', '')
+    project_metadata = get_project_metadata()
+
+    p_title = page_metadata.get('title', '')
+    if p_title is not None and p_title != '':
+        p_title = p_title[-1] + ' - '
+
+    p_description = page_metadata.get('description')
+    if p_description is not None and p_description != '':
+        p_description = p_description[-1]
+    else:
+        p_description = project_metadata['description']
+    
+    print(project_metadata)
+    print(page_metadata)
+
+
+    page_metadata['title'] = p_title
+    page_metadata['description'] = p_description
+
     data = {
-        **get_project_metadata(),
+        **project_metadata,
         "pages": get_toc("pages", 1),
         "page_metadata": page_metadata,
         "page_toc": page_toc,
@@ -129,6 +147,7 @@ def render_markdown(markdown_file_path):
         html = markdown_converter.convert(markdown_file.read())
         toc = markdown_converter.toc
         meta = markdown_converter.Meta
+        markdown_converter.Meta = {}
         return html, toc, meta
 
 
