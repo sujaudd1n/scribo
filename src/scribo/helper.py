@@ -44,8 +44,14 @@ def get_toc(directory, depth=None):
     # print(json.dumps(root, indent=4))
 
     # return root
+    remove_path(root)
     sort_toc(root)
     return root
+
+def remove_path(root):
+    root['path'] = '/'.join(root['path'].split(os.sep)[1:])
+    for child in root['children']:
+        remove_path(child)
 
 
 def sort_toc(toc):

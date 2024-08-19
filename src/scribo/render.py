@@ -58,9 +58,6 @@ def complete_markdown_render(
     else:
         p_description = project_metadata['description']
     
-    print(project_metadata)
-    print(page_metadata)
-
 
     page_metadata['title'] = p_title
     page_metadata['description'] = p_description
@@ -100,16 +97,17 @@ def render_pages():
         if os.path.isdir(os.path.join(PAGES_DIR, page))
     ]
     for page in ALL_PAGES:
+        print(page)
         render_page(os.path.join("pages", page))
 
 
 def render_page(directory):
     for root, dirs, files in os.walk(directory):
+        dist_root = '/'.join(root.split(os.sep)[1:])
         for file in files:
             filepath = os.path.join(root, file)
-            os.makedirs(os.path.join(DIST_DIR, root), exist_ok=True)
-            outputpath = os.path.join(DIST_DIR, root, file.replace('md', 'html'))
-            print(outputpath)
+            os.makedirs(os.path.join(DIST_DIR, dist_root), exist_ok=True)
+            outputpath = os.path.join(DIST_DIR, dist_root, file.replace('md', 'html'))
 
             if not filepath.endswith(".md"):
                 continue
