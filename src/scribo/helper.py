@@ -41,21 +41,21 @@ def get_toc(directory, depth=None):
                 q.append(child_node)
         current_depth += 1
 
-    remove_path(root) # remove prefix "pages"
-    sort_toc(root) # sort based on order
+    remove_path(root)  # remove prefix "pages"
+    sort_toc(root)  # sort based on order
 
     return root
 
 
 def remove_path(root):
-    """Remove "pages" from path of all nodes"""
+    """Remove "pages" from path of node and its children in place"""
     root["path"] = "/".join(root["path"].split(os.sep)[1:])
     for child in root["children"]:
         remove_path(child)
 
 
 def sort_toc(toc):
-    """sort node based on "order". """
+    """sort node based on "order"."""
     # print(json.dumps(toc, indent=4))
     toc["children"].sort(key=lambda x: x["order"])
     for child in toc["children"]:

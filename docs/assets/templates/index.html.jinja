@@ -5,7 +5,9 @@
 {% block base_content %}
     <div class="page">
         <div class="page__div">
-            <div class="page_content">{{ html | safe }}</div>
+            <div class="page_content">
+            {{ html | safe }}
+            </div>
             <div class="page_toc">
                 <h2>Table of contents</h2>
                 {{ page_toc | safe }}

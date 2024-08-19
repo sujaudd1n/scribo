@@ -11,10 +11,7 @@ def main():
 
     if args.init:
         project_name = args.init
-        if os.path.exists(project_name):
-            sys.exit(f"Project: {project_name} already exists!")
-        else:
-            initialize(project_name)
+        initialize(project_name)
     elif args.build:
         project_root = args.build
         build_project(project_root)

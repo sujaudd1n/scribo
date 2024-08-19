@@ -5,14 +5,15 @@ DIST_DIR = "dist"
 
 
 def copy_and_minimize_static_files():
-    copy_static_dirs()
+    static_dirs = ["assets"]
+    copy_static_dirs(static_dirs, DIST_DIR)
     # minimize_static_files()
 
 
-def copy_static_dirs():
-    STATIC_DIRS = ["assets"]
-    for static_dir in STATIC_DIRS:
-        shutil.copytree(static_dir, os.path.join(DIST_DIR, static_dir))
+def copy_static_dirs(static_dirs, dist_dir):
+    """Copies all dirs in STATIC_DIRS into dist dir"""
+    for static_dir in static_dirs:
+        shutil.copytree(static_dir, os.path.join(dist_dir, static_dir))
 
 
 def minimize_static_files():
