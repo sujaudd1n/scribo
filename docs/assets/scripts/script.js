@@ -17,3 +17,11 @@ function toggle_nav() {
     btn.classList.toggle("hidden")
     nav.classList.toggle("show")
 }
+
+function set_base_content_padding_bottom() {
+    const base_content_el = document.querySelector(".base_content");
+    const footer_el = document.querySelector(".footer");
+    console.log(footer_el.clientHeight);
+    base_content_el.style.paddingBottom = footer_el.offsetHeight + 50 + "px";
+}
+set_base_content_padding_bottom()
