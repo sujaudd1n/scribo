@@ -43,7 +43,7 @@ def get_toc(directory, depth=None):
         current_depth += 1
 
     root = remove_path(root)  # remove prefix "pages"
-    sort_toc(root)  # sort based on order
+    root = sort_toc(root)  # sort based on order
 
     return root
 
@@ -53,17 +53,20 @@ def remove_path(root):
     root = copy.deepcopy(root)
     root["path"] = "/".join(root["path"].split(os.sep)[1:])
     for idx in range(len(root["children"])):
-        child = root['children'][idx]
-        root['children'][idx] = remove_path(child)
+        child = root["children"][idx]
+        root["children"][idx] = remove_path(child)
     return root
 
 
-def sort_toc(toc):
+def sort_toc(root):
     """sort node based on "order"."""
-    # print(json.dumps(toc, indent=4))
-    toc["children"].sort(key=lambda x: x["order"])
-    for child in toc["children"]:
-        sort_toc(child)
+    root = copy.deepcopy(root)
+
+    root["children"].sort(key=lambda x: x["order"])
+    for idx in range(len(root["children"])):
+        child = root["children"][idx]
+        root["children"][idx] = sort_toc(child)
+    return root
 
 
 def get_order(filepath):

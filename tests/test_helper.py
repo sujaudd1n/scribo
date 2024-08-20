@@ -1,4 +1,4 @@
-from scribo.helper import remove_path, get_order
+from scribo.helper import remove_path, get_order, sort_toc
 
 node = {
     "path": "pages/",
@@ -20,6 +20,19 @@ def test_remove_path():
         ],
     }
     modified_node = remove_path(node)
+    assert modified_node == node_after
+
+
+def test_sort_toc():
+    node_after = {
+        "path": "pages/",
+        "order": -1,
+        "children": [
+            {"path": "pages/world", "order": 1, "children": []},
+            {"path": "pages/hello", "order": 2, "children": []},
+        ],
+    }
+    modified_node = sort_toc(node)
     assert modified_node == node_after
 
 
