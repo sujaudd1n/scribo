@@ -3,11 +3,10 @@
         <p class="header__title">
             <a href="/">{{ project_name }}</a>
         </p>
-        <button class='header__nav_toggle ri-menu-line hidden'
-                aria-label="toggle nav"></button>
+        <button class='header__nav_toggle ri-menu-line hidden' aria-label="toggle nav"></button>
         <nav class="header__nav">
             {% for page in pages.children %}
-                <a href="/{{ page.path }}">{{ page.name.capitalize().replace('-', ' ')
+            <a href="/{{ page.path }}">{{ page.name.capitalize().replace('-', ' ')
                 }}</a>
             {% endfor %}
         </nav>
@@ -20,7 +19,7 @@
     .header {
         margin: 0 -10px;
         padding: 0 20px;
-        border-bottom: 1px solid #eeeeee55;
+        border-bottom: 1px solid var(--primary-600);
         height: 60px;
     }
 
@@ -74,7 +73,6 @@
         top: 60px;
         bottom: 0;
         right: 0;
-
         padding: 10px;
 
         display: none;
@@ -83,10 +81,18 @@
         gap: 20px;
     }
 
+    .header__nav a {
+        color: var(--header-link);
+        font-size: 95%;
+    }
+
+    .header__nav a:hover {
+        color: var(--link-hover);
+    }
+
     .show {
         display: flex;
     }
-
 
 
     @media screen and (min-width: 768px) {

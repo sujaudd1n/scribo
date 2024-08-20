@@ -10,12 +10,17 @@
 
 [data-theme="dark"] {
     --primary: #000000;
-    --primary-800: #161616;
+    --primary-800: #0a0a0a;
     --primary-700: #232323;
     --primary-700-tp: #2323239c;
+    --primary-600: #363636;
+
     --text: #cdcdcd;
+
     --link: #55c6f3;
+    --header-link: #a0a0a0;
     --link-hover: #88ddff;
+
     --code-highlight: rgb(60, 104, 60);
 
     --admonition-attention-border: #b8b8b8;
