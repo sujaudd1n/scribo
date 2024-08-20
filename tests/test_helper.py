@@ -1,7 +1,7 @@
-from scribo.helper import remove_path, get_order, sort_toc, get_toc
+from scribo.helper import remove_path, get_order, sort_toc, get_toc, get_filtered_toc
 
 node = {
-    "path": "pages/",
+    "path": "pages",
     "order": -1,
     "children": [
         {"path": "pages/hello", "order": 2, "children": []},
@@ -12,8 +12,39 @@ node = {
 
 def test_get_toc():
     root = get_toc("markdown")
-    expected = {"name": "markdown", "path": "markdown", "order": -1, "children": []}
+    expected = {
+        "name": "markdown",
+        "path": "markdown",
+        "order": -1,
+        "children": [
+            {
+                "name": "child",
+                "path": "markdown/child",
+                "order": 2**32 - 1,
+                "children": [],
+            }
+        ],
+    }
     assert root == expected
+
+
+def test_get_filtered_toc():
+    expected = {
+        "name": "markdown",
+        "path": "",
+        "order": -1,
+        "children": [
+            {
+                "name": "child",
+                "path": "child",
+                "order": 2**32 - 1,
+                "children": [],
+            }
+        ],
+    }
+    filtered_toc = get_filtered_toc("markdown")
+    assert expected == filtered_toc
+
 
 def test_remove_path():
     node_after = {
@@ -30,7 +61,7 @@ def test_remove_path():
 
 def test_sort_toc():
     node_after = {
-        "path": "pages/",
+        "path": "pages",
         "order": -1,
         "children": [
             {"path": "pages/world", "order": 1, "children": []},
