@@ -1,6 +1,6 @@
 import os
 
-import markdown as md
+import markdown
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from markdown.extensions.codehilite import CodeHiliteExtension
 from markdown.extensions.extra import ExtraExtension
@@ -11,7 +11,6 @@ from .helper import *
 DIST_DIR = "dist"
 TEMPLATES_DIR = "assets/templates"
 
-
 markdown_extensions = [
     ExtraExtension(),
     CodeHiliteExtension(linenums=True),
@@ -19,7 +18,7 @@ markdown_extensions = [
     "admonition",
     "meta",
 ]
-markdown_converter = md.Markdown(extensions=markdown_extensions)
+markdown_converter = markdown.Markdown(extensions=markdown_extensions)
 
 jinja_environment = Environment(
     loader=FileSystemLoader([".", TEMPLATES_DIR, "dist"]), autoescape=select_autoescape
@@ -27,6 +26,7 @@ jinja_environment = Environment(
 
 
 def render():
+    """Run all steps for rendering html from markdown"""
     complete_markdown_render(
         os.path.join(".", "index.md"), os.path.join(DIST_DIR, "index.html")
     )
@@ -39,7 +39,6 @@ def complete_markdown_render(
     output_html_path,
     template_name="index.html.jinja",
 ):
-    print(42, markdown_path)
     html, page_toc, page_metadata = render_markdown(markdown_path)
 
     root_dir = "/".join(markdown_path.split(os.sep)[:-1])

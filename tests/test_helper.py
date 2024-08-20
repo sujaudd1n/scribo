@@ -1,4 +1,7 @@
-from scribo.helper import remove_path
+from scribo.helper import (
+    remove_path,
+    get_order
+)
 
 
 def test_remove_path():
@@ -12,3 +15,7 @@ def test_remove_path():
     }
     remove_path(node)
     assert node == after_node
+
+def test_get_order():
+    order = get_order("./index.md")
+    assert order == 10

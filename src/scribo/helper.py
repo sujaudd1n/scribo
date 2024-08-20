@@ -34,7 +34,7 @@ def get_toc(directory, depth=None):
                 child_node = {
                     "name": child,
                     "path": child_path,
-                    "order": get_order(child_path),
+                    "order": get_order(os.path.join(child_path, "index.md")),
                     "children": [],
                 }
                 parent["children"].append(child_node)
@@ -62,13 +62,13 @@ def sort_toc(toc):
         sort_toc(child)
 
 
-def get_order(path):
+def get_order(filepath):
     """
     Return order found in index.md. if not found return 999.
     """
-    with open(os.path.join(path, "index.md")) as markdown_file:
+    with open(filepath) as markdown_file:
         file_string = markdown_file.read()
-        matches = re.search(r"order:\s+(\d)", file_string, re.IGNORECASE)
+        matches = re.search(r"order:\s+(\d+)", file_string, re.IGNORECASE)
         if matches:
             order = matches.groups()[0]
             return int(order)
