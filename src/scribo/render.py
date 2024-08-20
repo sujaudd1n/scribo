@@ -62,17 +62,17 @@ def complete_markdown_render(
 
     data = {
         **project_metadata,
-        "pages": get_toc("pages", 1),
+        "pages": get_filtered_toc("pages", 1),
         "page_metadata": page_metadata,
         "page_toc": page_toc,
         "html": html,
-        "contents": get_toc(root_dir, 1),
+        "contents": get_filtered_toc(root_dir, 1),
     }
     render_template_and_save(
         "index.html.jinja", data, os.path.join(TEMPLATES_DIR, "index.html.tmp")
     )
 
-    data = {"contents": get_toc(root_dir, 1)}
+    data = {"contents": get_filtered_toc(root_dir, 1)}
     render_template_and_save("index.html.tmp", data, output_html_path)
 
     os.remove(os.path.join(TEMPLATES_DIR, "index.html.tmp"))
@@ -119,8 +119,8 @@ def render_sitemap():
         "sitemap.html.jinja",
         {
             **get_project_metadata(),
-            "pages": get_toc("pages", 1),
-            "contents": get_toc("pages"),
+            "pages": get_filtered_toc("pages", 1),
+            "contents": get_filtered_toc("pages"),
         },
         path + "/index.html",
     )

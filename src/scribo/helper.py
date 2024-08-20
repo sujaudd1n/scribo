@@ -42,11 +42,16 @@ def get_toc(directory, depth=None):
                 q.append(child_node)
         current_depth += 1
 
-    root = remove_path(root)  # remove prefix "pages"
-    root = sort_toc(root)  # sort based on order
+    # root = remove_path(root)  # remove prefix "pages"
+    # root = sort_toc(root)  # sort based on order
 
     return root
 
+def get_filtered_toc(root, depth=None):
+    toc = get_toc(root, depth)
+    path_removed_toc = remove_path(toc)
+    sorted_toc = sort_toc(path_removed_toc)
+    return sorted_toc
 
 def remove_path(root):
     """Remove "pages" from path of node and its children"""

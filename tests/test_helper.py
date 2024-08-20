@@ -1,4 +1,4 @@
-from scribo.helper import remove_path, get_order, sort_toc
+from scribo.helper import remove_path, get_order, sort_toc, get_toc
 
 node = {
     "path": "pages/",
@@ -9,6 +9,11 @@ node = {
     ],
 }
 
+
+def test_get_toc():
+    root = get_toc("markdown")
+    expected = {"name": "markdown", "path": "markdown", "order": -1, "children": []}
+    assert root == expected
 
 def test_remove_path():
     node_after = {
