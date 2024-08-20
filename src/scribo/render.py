@@ -66,7 +66,7 @@ def complete_markdown_render(
         "page_metadata": page_metadata,
         "page_toc": page_toc,
         "html": html,
-        "contents": get_toc(root_dir, 1)
+        "contents": get_toc(root_dir, 1),
     }
     render_template_and_save(
         "index.html.jinja", data, os.path.join(TEMPLATES_DIR, "index.html.tmp")

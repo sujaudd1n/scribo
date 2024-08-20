@@ -21,7 +21,7 @@ def minimize_static_files(static_dirs):
     """
     Minimized all files that starts with css or js in
     all static_dirs
-    """ 
+    """
     for diren in static_dirs:
         for file in os.listdir(diren):
             if not file.endswith(".css") or not file.endswith(".js"):

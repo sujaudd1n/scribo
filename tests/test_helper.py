@@ -1,21 +1,30 @@
-from scribo.helper import (
-    remove_path,
-    get_order
-)
+from scribo.helper import remove_path, get_order
+
+node = {
+    "path": "pages/",
+    "order": -1,
+    "children": [
+        {"path": "pages/hello", "order": 2, "children": []},
+        {"path": "pages/world", "order": 1, "children": []},
+    ],
+}
 
 
 def test_remove_path():
-    node = {
-        "path": "pages/hello/world",
-        "children": [{"path": "pages/world/hello", "children": []}],
+    node_after = {
+        "path": "",
+        "order": -1,
+        "children": [
+            {"path": "hello", "order": 2, "children": []},
+            {"path": "world", "order": 1, "children": []},
+        ],
     }
-    after_node = {
-        "path": "hello/world",
-        "children": [{"path": "world/hello", "children": []}],
-    }
-    remove_path(node)
-    assert node == after_node
+    modified_node = remove_path(node)
+    assert modified_node == node_after
+
 
 def test_get_order():
-    order = get_order("./index.md")
-    assert order == 10
+    order = get_order("./markdown/order.md")
+    assert order == 33
+    order = get_order("./markdown/no-order.md")
+    assert order == 2**32 - 1

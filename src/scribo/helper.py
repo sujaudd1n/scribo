@@ -1,6 +1,7 @@
 import json
 import os
 import re
+import copy
 from collections import deque
 
 
@@ -41,17 +42,20 @@ def get_toc(directory, depth=None):
                 q.append(child_node)
         current_depth += 1
 
-    remove_path(root)  # remove prefix "pages"
+    root = remove_path(root)  # remove prefix "pages"
     sort_toc(root)  # sort based on order
 
     return root
 
 
 def remove_path(root):
-    """Remove "pages" from path of node and its children in place"""
+    """Remove "pages" from path of node and its children"""
+    root = copy.deepcopy(root)
     root["path"] = "/".join(root["path"].split(os.sep)[1:])
-    for child in root["children"]:
-        remove_path(child)
+    for idx in range(len(root["children"])):
+        child = root['children'][idx]
+        root['children'][idx] = remove_path(child)
+    return root
 
 
 def sort_toc(toc):
@@ -68,9 +72,9 @@ def get_order(filepath):
     """
     with open(filepath) as markdown_file:
         file_string = markdown_file.read()
-        matches = re.search(r"order:\s+(\d+)", file_string, re.IGNORECASE)
+        matches = re.findall(r"order:\s+(\d+)", file_string, re.IGNORECASE)
         if matches:
-            order = matches.groups()[0]
+            order = matches[-1]
             return int(order)
         else:
-            return 999
+            return 2**32 - 1
