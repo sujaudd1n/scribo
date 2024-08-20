@@ -120,7 +120,6 @@ def save_html(output_path, rendered_template):
         output_file.write(rendered_template)
 
 
-
 def render_markdown(markdown_file_path):
     """Render markdown and returns html, toc, and meta"""
     with open(markdown_file_path) as markdown_file:

@@ -2,7 +2,6 @@ import os
 import shutil
 
 from .copy_and_minimize import copy_and_minimize_static_files
-from .render import render
 
 DIST_DIR = "dist"
 
@@ -10,8 +9,10 @@ DIST_DIR = "dist"
 def build_project(project_root):
     """Execute all the steps to build the project."""
     os.chdir(project_root)
+    from .render import render
     create_dist_dir(DIST_DIR)
     copy_and_minimize_static_files()
+    print("line 15", os.getcwd())
     render()
 
 

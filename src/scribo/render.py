@@ -5,6 +5,8 @@ from .helper import *
 DIST_DIR = "dist"
 TEMPLATES_DIR = "assets/templates"
 
+project_metadata = get_project_metadata()
+
 
 def render():
     """Run all steps for rendering html from markdown"""
@@ -26,8 +28,6 @@ def complete_markdown_render(
     root_dir = "/".join(markdown_path.split(os.sep)[:-1])
     if root_dir == ".":
         root_dir = "pages"
-
-    project_metadata = get_project_metadata()
 
     p_title = page_metadata.get("title", "")
     if p_title is not None and p_title != "":
@@ -103,10 +103,9 @@ def render_sitemap():
     render_template_and_save(
         "sitemap.html.jinja",
         {
-            **get_project_metadata(),
+            **project_metadata,
             "pages": get_filtered_toc("pages", 1),
             "contents": get_filtered_toc("pages"),
         },
         path + "/index.html",
     )
-
