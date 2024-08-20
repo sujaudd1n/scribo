@@ -39,6 +39,7 @@ def complete_markdown_render(
     output_html_path,
     template_name="index.html.jinja",
 ):
+    """Render markdown to html in proper directory in DIST_DIR"""
     html, page_toc, page_metadata = render_markdown(markdown_path)
 
     root_dir = "/".join(markdown_path.split(os.sep)[:-1])
@@ -83,11 +84,13 @@ def render_template_and_save(
     data,
     output_path,
 ):
+    """Render template_name with data and save html in output_path"""
     rendered_template = get_rendered_template(template_name, data)
     save_html(output_path, rendered_template)
 
 
 def render_pages():
+    """Render all markdown in pages dir"""
     PAGES_DIR = "pages"
     ALL_PAGES = [
         page
@@ -100,6 +103,7 @@ def render_pages():
 
 
 def render_page(directory):
+    """Helper function of render_pages"""
     for root, dirs, files in os.walk(directory):
         dist_root = "/".join(root.split(os.sep)[1:])
         for file in files:
@@ -126,20 +130,14 @@ def render_sitemap():
     )
 
 
-def save_html(filepath, rendered_template):
-    with open(filepath, "w") as output_file:
+def save_html(output_path, rendered_template):
+    """Save rendered_template in output_path"""
+    with open(output_path, "w") as output_file:
         output_file.write(rendered_template)
 
 
-def second_html_render(template_name, root_dir):
-    second_rendered_template = get_rendered_template(
-        "index.html.tmp", {**get_project_metadata()}
-    )
-
-    save_html(os.path.join(DIST_DIR, "index.html"), second_rendered_template)
-
-
 def render_markdown(markdown_file_path):
+    """Render markdown and returns html, toc, and meta"""
     with open(markdown_file_path) as markdown_file:
         html = markdown_converter.convert(markdown_file.read())
         toc = markdown_converter.toc
@@ -149,5 +147,6 @@ def render_markdown(markdown_file_path):
 
 
 def get_rendered_template(template_name, data):
+    """Render template_name with data and returns it"""
     template = jinja_environment.get_template(template_name)
     return template.render(**data)
