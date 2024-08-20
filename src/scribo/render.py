@@ -1,28 +1,9 @@
 import os
 
-import markdown
-from jinja2 import Environment, FileSystemLoader, select_autoescape
-from markdown.extensions.codehilite import CodeHiliteExtension
-from markdown.extensions.extra import ExtraExtension
-from markdown.extensions.toc import TocExtension
-
 from .helper import *
 
 DIST_DIR = "dist"
 TEMPLATES_DIR = "assets/templates"
-
-markdown_extensions = [
-    ExtraExtension(),
-    CodeHiliteExtension(linenums=True),
-    TocExtension(),
-    "admonition",
-    "meta",
-]
-markdown_converter = markdown.Markdown(extensions=markdown_extensions)
-
-jinja_environment = Environment(
-    loader=FileSystemLoader([".", TEMPLATES_DIR, "dist"]), autoescape=select_autoescape
-)
 
 
 def render():
@@ -129,24 +110,3 @@ def render_sitemap():
         path + "/index.html",
     )
 
-
-def save_html(output_path, rendered_template):
-    """Save rendered_template in output_path"""
-    with open(output_path, "w") as output_file:
-        output_file.write(rendered_template)
-
-
-def render_markdown(markdown_file_path):
-    """Render markdown and returns html, toc, and meta"""
-    with open(markdown_file_path) as markdown_file:
-        html = markdown_converter.convert(markdown_file.read())
-        toc = markdown_converter.toc
-        meta = markdown_converter.Meta
-        markdown_converter.Meta = {}
-        return html, toc, meta
-
-
-def get_rendered_template(template_name, data):
-    """Render template_name with data and returns it"""
-    template = jinja_environment.get_template(template_name)
-    return template.render(**data)
