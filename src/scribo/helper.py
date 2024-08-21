@@ -64,9 +64,6 @@ def get_toc(directory, depth=None):
                 q.append(child_node)
         current_depth += 1
 
-    # root = remove_path(root)  # remove prefix "pages"
-    # root = sort_toc(root)  # sort based on order
-
     return root
 
 
@@ -74,7 +71,8 @@ def get_filtered_toc(root, depth=None):
     toc = get_toc(root, depth)
     path_removed_toc = remove_path(toc)
     sorted_toc = sort_toc(path_removed_toc)
-    return sorted_toc
+    capitalized_toc = capitalize_toc(sorted_toc)
+    return capitalized_toc
 
 
 def remove_path(root):
@@ -95,6 +93,14 @@ def sort_toc(root):
     for idx in range(len(root["children"])):
         child = root["children"][idx]
         root["children"][idx] = sort_toc(child)
+    return root
+
+def capitalize_toc(root):
+    root = copy.deepcopy(root)
+    root["name"] = root["name"].capitalize()
+    for idx in range(len(root["children"])):
+        child = root["children"][idx]
+        root["children"][idx] = capitalize_toc(child)
     return root
 
 
