@@ -54,10 +54,7 @@ def complete_markdown_render(
         "index.html.jinja", data, os.path.join(TEMPLATES_DIR, "index.html.tmp")
     )
 
-    data = {
-        **project_metadata,
-        "contents": get_filtered_toc(root_dir, 1)
-        }
+    data = {**project_metadata, "contents": get_filtered_toc(root_dir, 1)}
     render_template_and_save("index.html.tmp", data, output_html_path)
 
     os.remove(os.path.join(TEMPLATES_DIR, "index.html.tmp"))

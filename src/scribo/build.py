@@ -10,6 +10,7 @@ def build_project(project_root):
     """Execute all the steps to build the project."""
     os.chdir(project_root)
     from .render import render
+
     create_dist_dir(DIST_DIR)
     copy_and_minimize_static_files()
     render()

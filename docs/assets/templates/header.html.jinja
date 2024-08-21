@@ -3,10 +3,11 @@
         <p class="header__title">
             <a href="/">{{ project_name }}</a>
         </p>
-        <button class='header__nav_toggle ri-menu-line hidden' aria-label="toggle nav"></button>
+        <button class='header__nav_toggle ri-menu-line hidden'
+                aria-label="toggle nav"></button>
         <nav class="header__nav">
             {% for page in pages.children %}
-            <a href="/{{ page.path }}">{{ page.name.capitalize().replace('-', ' ')
+                <a href="/{{ page.path }}">{{ page.name.capitalize().replace('-', ' ')
                 }}</a>
             {% endfor %}
         </nav>
@@ -79,6 +80,7 @@
         /* display: flex; */
         flex-flow: column;
         gap: 20px;
+        z-index: 1;
     }
 
     .header__nav a {

@@ -17,7 +17,6 @@ def main():
         print("THIS IS SCRIBO.")
 
 
-
 def parse_command_line_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("-i", "--init", help="Initialize project")
