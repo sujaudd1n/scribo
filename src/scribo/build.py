@@ -12,7 +12,6 @@ def build_project(project_root):
     from .render import render
     create_dist_dir(DIST_DIR)
     copy_and_minimize_static_files()
-    print("line 15", os.getcwd())
     render()
 
 

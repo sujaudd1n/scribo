@@ -1,4 +1,4 @@
-from scribo.helper import remove_path, get_order, sort_toc, get_toc, get_filtered_toc
+from scribo.helper import get_filtered_toc, get_order, get_toc, remove_path, sort_toc
 
 node = {
     "path": "pages",

@@ -1,16 +1,14 @@
+import copy
 import json
 import os
 import re
-import copy
 from collections import deque
 
 import markdown
+from jinja2 import Environment, FileSystemLoader, select_autoescape
 from markdown.extensions.codehilite import CodeHiliteExtension
 from markdown.extensions.extra import ExtraExtension
 from markdown.extensions.toc import TocExtension
-
-from jinja2 import Environment, FileSystemLoader, select_autoescape
-
 
 DIST_DIR = "dist"
 TEMPLATES_DIR = "assets/templates"

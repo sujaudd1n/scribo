@@ -7,5 +7,6 @@ description: This is Scribo homepage.
 
 ## Toc
 
-{% include 'toc.html.jinja' %}
+{{ title }}
+
 {{ description }}

@@ -1,6 +1,4 @@
 import argparse
-import os
-import sys
 
 from .build import build_project
 from .pinit import initialize
@@ -15,6 +13,9 @@ def main():
     elif args.build:
         project_root = args.build
         build_project(project_root)
+    else:
+        print("THIS IS SCRIBO.")
+
 
 
 def parse_command_line_args():

@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "scribo"
 dynamic = ["version"]
-description = 'An easy and efficient *static site generator* with *markdown* powered by Python and Jinja.'
+description = "Static Site Generator"
 readme = "README.md"
 requires-python = ">=3.8"
 license = "MIT"
@@ -52,9 +52,8 @@ dependencies = [
   "coverage[toml]>=6.5",
   "pytest",
 ]
+
 [tool.hatch.envs.default.scripts]
-build = "python -m scribo --build docs"
-inits = "python -m scribo --init p"
 test = "pytest {args:tests}"
 test-cov = "coverage run -m pytest {args:tests}"
 cov-report = [
@@ -66,6 +65,17 @@ cov = [
   "cov-report",
 ]
 
+[tool.hatch.build.targets.sdist]
+exclude = [
+  "/info.md",
+  "/docs",
+  "/scripts",
+  "/tests",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/scribo"]
+
 [[tool.hatch.envs.all.matrix]]
 python = ["3.8", "3.9", "3.10", "3.11", "3.12"]
 
@@ -75,6 +85,7 @@ dependencies = [
 ]
 [tool.hatch.envs.types.scripts]
 check = "mypy --install-types --non-interactive {args:src/scribo tests}"
+
 
 [tool.coverage.run]
 source_pkgs = ["scribo", "tests"]
