@@ -3,24 +3,48 @@
 {% block title %}{{ page_metadata.title }} {{ super() }}{% endblock %}
 {% block description %}{{ page_metadata.description }}{% endblock %}
 {% block base_content %}
-    <div class="page">
-        <div class="page__div">
-            <div class="page_content">
-                {% include "toc.html.jinja" %}
-                {{ html | safe }}
-            </div>
-            <div class="page_toc">
-                <h2>In this page</h2>
+<div class="page">
+    <div class="page__div">
+        <div class="page_toc">
+            <details>
+                <summary>
+                    On this page
+                </summary>
+                {{ page_toc | safe }}
+            </details>
+            <div class="fulls">
+                <h2>On this page</h2>
                 {{ page_toc | safe }}
             </div>
         </div>
+        <div class="page_content">
+            {{ html | safe }}
+        </div>
+        <div class="page_routes">
+            <details>
+                <summary>Routes</summary>
+                {% include "toc.html.jinja" %}
+            </details>
+            <div class="fulls">
+                <h2>Routes</h2>
+                {% include "toc.html.jinja" %}
+            </div>
+        </div>
     </div>
-    <style>
+</div>
+<style>
     /* toc style*/
     .page {
         padding: 10px;
     }
-    .page_toc {
+
+    .page_toc {}
+
+    details summary {
+        cursor: pointer;
+    }
+
+    .fulls {
         display: none;
     }
 
@@ -33,12 +57,21 @@
             display: flex;
             max-width: calc(var(--max-page-width) * 0.8);
             margin: 0 auto;
-            gap: 30px;
+            gap: 100px;
+        }
+
+        .fulls {
+            display: block;
+        }
+
+        details {
+            display: none;
         }
 
         .page_content {
             width: 100%;
             flex-grow: 1;
+            order: 2;
         }
 
         .page_toc {
@@ -47,10 +80,14 @@
             padding: 0 20px;
             position: sticky;
             top: 10px;
+            order: 3;
+        }
+        .page_routes {
+            order: 1;
         }
     }
 
     /*ends toc style*/
-    </style>
+</style>
 
 {% endblock %}
