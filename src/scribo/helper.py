@@ -97,6 +97,7 @@ def sort_toc(root):
 
 
 def capitalize_toc(root):
+    """Capitalize the name field"""
     root = copy.deepcopy(root)
     root["name"] = root["name"].capitalize()
     for idx in range(len(root["children"])):

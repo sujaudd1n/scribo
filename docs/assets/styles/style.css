@@ -10,9 +10,9 @@
 
 [data-theme="dark"] {
     --primary: #001111;
-    --primary-800: #0a0a0a;
-    --primary-700: #232323;
-    --primary-700-tp: #2323239c;
+    --primary-800: #0a1a1a;
+    --primary-700: #0a1a1a;
+    --primary-700-tp: #0a1a1aaa;
     --primary-600: #363636;
 
     --text: #cdcdcd;

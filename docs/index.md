@@ -3,10 +3,8 @@ title: Home
 description: This is Scribo homepage.
 ---
 
-# Greetings from scribo
+# Scribo
 
-## Toc
+A simple, efficient and content-first static site generator (SSG). 
 
-{{ title }}
-
-{{ description }}
+[Get Started](getting-started)
