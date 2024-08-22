@@ -16,18 +16,18 @@
                 </div>
             </div>
             <div class="page_content">{{ html | safe }}</div>
+                {% if contents.children %}
             <div class="page_routes">
                 <details>
                     <summary>Routes</summary>
                     {% include "toc.html.jinja" %}
                 </details>
-                {% if contents.children %}
                     <div class="fulls">
                         <h2>Routes</h2>
                         {% include "toc.html.jinja" %}
                     </div>
-                {% endif %}
             </div>
+                {% endif %}
         </div>
     </div>
     <style>
@@ -62,7 +62,7 @@
             display: flex;
             max-width: calc(var(--max-page-width) * 0.8);
             margin: 0 auto;
-            gap: 100px;
+            gap: 70px;
         }
 
         .fulls {
@@ -86,6 +86,9 @@
             position: sticky;
             top: 10px;
             order: 3;
+            flex-basis: 200px;
+            flex-grow: 1;
+            max-width: 300px;
         }
         .page_routes {
             order: 1;

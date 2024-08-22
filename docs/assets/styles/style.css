@@ -9,7 +9,7 @@
 }
 
 [data-theme="dark"] {
-    --primary: #000000;
+    --primary: #001111;
     --primary-800: #0a0a0a;
     --primary-700: #232323;
     --primary-700-tp: #2323239c;
@@ -18,35 +18,40 @@
     --text: #cdcdcd;
 
     --link: #55c6f3;
-    --header-link: #a0a0a0;
     --link-hover: #88ddff;
+
+    --link: #7C93C3;
+    --link-hover: #acbee4;
+
+    --header-link: #a0a0a0;
+    --header-link-hover: #ffffff;
 
     --code-highlight: rgb(60, 104, 60);
 
-    --admonition-attention-border: #b8b8b8;
-    --admonition-attention-background: #eeeeee62;
-    --admonition-note-border: #b8b8b8;
-    --admonition-note-background: #eeeeee62;
+    --admonition-attention-border: #8a8a8a;
+    --admonition-attention-background: #5f5f5f;
+    --admonition-note-border: var(--admonition-attention-border);
+    --admonition-note-background: var(--admonition-attention-background);
 
-    --admonition-tip-border: #3cffb460;
-    --admonition-tip-background: #3cffb430;
-    --admonition-hint-border: #3cffb460;
-    --admonition-hint-background: #3cffb430;
+    --admonition-tip-border: #2d6a4f;
+    --admonition-tip-background: #1b4332;
+    --admonition-hint-border: var(--admonition-tip-border);
+    --admonition-hint-background: var(--admonition-tip-background);
 
-    --admonition-info-border: #74b0ff60;
-    --admonition-info-background: #74b0ff30;
-    --admonition-important-border: #74b0ff60;
-    --admonition-important-background: #74b0ff30;
+    --admonition-info-border: #1a759f;
+    --admonition-info-background: #184e77;
+    --admonition-important-border: var(--admonition-info-border);
+    --admonition-important-background: var(--admonition-info-background);
 
-    --admonition-warning-border: #e1ff5b60;
-    --admonition-warning-background: #e1ff5b30;
-    --admonition-caution-border: #e1ff5b60;
-    --admonition-caution-background: #e1ff5b30;
+    --admonition-warning-border: #926c15;
+    --admonition-warning-background: #76520e;
+    --admonition-caution-border: var(--admonition-warning-border);
+    --admonition-caution-background: var(--admonition-warning-background);
 
-    --admonition-danger-border: #ff515160;
-    --admonition-danger-background: #ff515130;
-    --admonition-error-border: #ff515160;
-    --admonition-error-background: #ff515130;
+    --admonition-danger-border: #85182a;
+    --admonition-danger-background: #641220;
+    --admonition-error-border: var(--admonition-danger-border);
+    --admonition-error-background: var(--admonition-danger-background);
 
 
 }
@@ -142,13 +147,14 @@ dd {
 /* admonition style */
 .admonition {
     border: 1px solid;
-    border-radius: 2px;
+    border-radius: 10px;
     padding: 10px;
 }
 
 .admonition-title {
-    margin: 0;
+    margin: 0 -10px;
     padding-bottom: 10px;
+    padding-left: 10px;
     border-bottom: 1px solid;
     border-color: inherit;
 }
