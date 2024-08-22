@@ -1,4 +1,11 @@
-from scribo.helper import get_filtered_toc, get_order, get_toc, remove_path, sort_toc, capitalize_toc
+from scribo.helper import (
+    get_filtered_toc,
+    get_order,
+    get_toc,
+    remove_path,
+    sort_toc,
+    capitalize_toc,
+)
 
 node = {
     "path": "pages",
@@ -28,7 +35,6 @@ def test_get_toc():
     assert root == expected
 
 
-
 def test_remove_path():
     node_after = {
         "path": "",
@@ -54,6 +60,7 @@ def test_sort_toc():
     modified_node = sort_toc(node)
     assert modified_node == node_after
 
+
 def test_get_filtered_toc():
     expected = {
         "name": "Markdown",
@@ -70,6 +77,7 @@ def test_get_filtered_toc():
     }
     filtered_toc = get_filtered_toc("markdown")
     assert expected == filtered_toc
+
 
 def test_capitalize_toc():
     expected = {
