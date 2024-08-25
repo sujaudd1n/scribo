@@ -7,4 +7,4 @@ description: This is Scribo homepage.
 
 A simple, efficient and content-first static site generator (SSG). 
 
-[Get Started](getting-started)
+[Get Started](getting started)

@@ -36,9 +36,9 @@ def test_get_toc():
 
 
 def test_modify_path():
-    path = "pages/hello/world"
+    path = "pages/hello/world/foo bar"
     modified_node = modify_path(path)
-    assert modified_node == "hello/world"
+    assert modified_node == "hello/world/foo%20bar"
 
 
 def test_sort_toc():

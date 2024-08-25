@@ -2,6 +2,7 @@ import copy
 import json
 import os
 import re
+import urllib.parse
 from collections import deque
 
 import markdown
@@ -91,7 +92,9 @@ def apply_filter(root):
 
 def modify_path(path):
     """Remove "pages" from path of node and its children"""
-    return "/".join(path.split(os.sep)[1:])
+    page_removed_path = "/".join(path.split(os.sep)[1:])
+    encoded_url = urllib.parse.quote(page_removed_path)
+    return encoded_url
     
 def sort_toc(children):
     """sort node based on "order"."""
