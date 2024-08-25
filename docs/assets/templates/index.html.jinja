@@ -6,6 +6,7 @@
 <div class="page">
     <div class="page__div">
         <div class="page_content-container">
+            {% if page_toc %}
             <div class="page_toc">
                 <details>
                     <summary>On this page</summary>
@@ -16,6 +17,8 @@
                     {{ page_toc | safe }}
                 </div>
             </div>
+            {% endif %}
+
             <div class="page_content">{{ html | safe }}</div>
         </div>
         {% if contents.children %}

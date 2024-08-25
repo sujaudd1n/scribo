@@ -11,7 +11,7 @@
     "quick_links": [
         {
             "name": "Home",
-            "url": "http://localhost:8001"
+            "url": "/"
         },
         {
             "name": "Github",
@@ -19,7 +19,7 @@
         },
         {
             "name": "Contribute",
-            "url": "/contribute/"
+            "url": "/contributing"
         }
     ],
     "_comment": "Docs for this meta file: <>"
