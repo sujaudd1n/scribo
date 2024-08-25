@@ -69,41 +69,38 @@ def get_toc(directory, depth=None):
 
 def get_filtered_toc(root, depth=None):
     toc = get_toc(root, depth)
-    path_removed_toc = remove_path(toc)
-    sorted_toc = sort_toc(path_removed_toc)
-    capitalized_toc = capitalize_toc(sorted_toc)
-    return capitalized_toc
+    # path_removed_toc = remove_path(toc)
+    # sorted_toc = sort_toc(path_removed_toc)
+    # capitalized_toc = capitalize_toc(sorted_toc)
+    filtered_toc = apply_filter(toc)
+    return filtered_toc
 
 
-def remove_path(root):
+def apply_filter(root):
+    root = copy.deepcopy(root)
+
+    root["path"] = modify_path(root["path"])
+    root["children"] = sort_toc(root["children"])
+    root["name"] = capitalize_name(root["name"])
+
+    for idx in range(len(root["children"])):
+        child = root["children"][idx]
+        root["children"][idx] = apply_filter(child)
+    return root
+
+
+def modify_path(path):
     """Remove "pages" from path of node and its children"""
-    root = copy.deepcopy(root)
-    root["path"] = "/".join(root["path"].split(os.sep)[1:])
-    for idx in range(len(root["children"])):
-        child = root["children"][idx]
-        root["children"][idx] = remove_path(child)
-    return root
-
-
-def sort_toc(root):
+    return "/".join(path.split(os.sep)[1:])
+    
+def sort_toc(children):
     """sort node based on "order"."""
-    root = copy.deepcopy(root)
-
-    root["children"].sort(key=lambda x: x["order"])
-    for idx in range(len(root["children"])):
-        child = root["children"][idx]
-        root["children"][idx] = sort_toc(child)
-    return root
+    return sorted(children, key=lambda x: x["order"])
 
 
-def capitalize_toc(root):
-    """Capitalize the name field"""
-    root = copy.deepcopy(root)
-    root["name"] = root["name"].capitalize()
-    for idx in range(len(root["children"])):
-        child = root["children"][idx]
-        root["children"][idx] = capitalize_toc(child)
-    return root
+def capitalize_name(name):
+    """Capitalize each word in name"""
+    return ' '.join(map(str.capitalize, name.split()))
 
 
 def get_order(filepath):
