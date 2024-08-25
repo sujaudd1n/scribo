@@ -2,9 +2,9 @@ from scribo.helper import (
     get_filtered_toc,
     get_order,
     get_toc,
-    remove_path,
+    modify_path,
     sort_toc,
-    capitalize_toc,
+    capitalize_name,
 )
 
 node = {
@@ -35,30 +35,24 @@ def test_get_toc():
     assert root == expected
 
 
-def test_remove_path():
-    node_after = {
-        "path": "",
-        "order": -1,
-        "children": [
-            {"path": "hello", "order": 2, "children": []},
-            {"path": "world", "order": 1, "children": []},
-        ],
-    }
-    modified_node = remove_path(node)
-    assert modified_node == node_after
+def test_modify_path():
+    path = "pages/hello/world"
+    modified_node = modify_path(path)
+    assert modified_node == "hello/world"
 
 
 def test_sort_toc():
-    node_after = {
-        "path": "pages",
-        "order": -1,
-        "children": [
+    children =  [
+            {"path": "pages/hello", "order": 2, "children": []},
+            {"path": "pages/world", "order": 1, "children": []},
+        ]
+    m_children =  [
             {"path": "pages/world", "order": 1, "children": []},
             {"path": "pages/hello", "order": 2, "children": []},
-        ],
-    }
-    modified_node = sort_toc(node)
-    assert modified_node == node_after
+        ]
+    
+    modified_node = sort_toc(children)
+    assert modified_node == m_children
 
 
 def test_get_filtered_toc():
@@ -79,22 +73,10 @@ def test_get_filtered_toc():
     assert expected == filtered_toc
 
 
-def test_capitalize_toc():
-    expected = {
-        "name": "Markdown",
-        "path": "",
-        "order": -1,
-        "children": [
-            {
-                "name": "Child",
-                "path": "child",
-                "order": 2**32 - 1,
-                "children": [],
-            }
-        ],
-    }
-    filtered_toc = get_filtered_toc("markdown")
-    assert expected == filtered_toc
+def test_capitalize_name():
+    name = "Getting started With scribo"
+    capitalized_name = capitalize_name(name)
+    assert capitalized_name == "Getting Started With Scribo"
 
 
 def test_get_order():
