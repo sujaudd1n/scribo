@@ -110,6 +110,7 @@ ul ul li {
 li {
     padding-left: 8px;
     margin: 5px 0;
+    line-height: 1.5;
 }
 
 code:not(pre code) {
