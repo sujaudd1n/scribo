@@ -11,7 +11,7 @@ production ready site.
 
 ## Installation
 
-Install with `pip`
+Install with `pip`.
 
 ``` console
 pip install scribo
@@ -19,39 +19,101 @@ pip install scribo
 
 ## Quickstart
 
-In this quickstart, we'll build a small site of food recipe.
+In this quickstart, we'll build a small site for a **Python** course
+which will have pages like *assignments*, *resources* and
+more.
 
 ### Initialize
 
-Initialize the project
+Assume, the code of the course is **py101**. Now, let's initialize the
+project.
 
 ```console
-scribo --init recipe
+scribo --init py101
 ```
 
-A new directory with the project name will be created.  
+A directory structure of the following will be created.
 
-Inside it, in the **blogs** directory, you will be writing your
-blogs/articles.
+```console
+py101/
+├── assets
+├── index.md
+├── meta.json
+└── pages
+```
 
-Create a directory inside **blogs** and in it add a file named
-**index.md**. The name of the directory inside blogs will be used
-to access that blog.
+- **assets** dir is for static files such as styles, scripts, templates
+etc.
+- **index.md** is the root for the project.
+- **meta.json** is for config and metadate information.
+- **pages** directory is for file-system based routing. 
 
-For example:
-If the directory structure looks like this `/blogs/a-guide-to-x/index.md`  
-It will be accessed `you-site-name/blogs/a-guide-to-x/`
+## Configure
+
+Let's change the meta.json file. After the change file file looks like
+this.
+
+```json
+{
+    "title": "PY101",
+    "project_name": "Python Course 101",
+    "description": "Learn Python",
+    "author": "Teacher",
+    "production_urls": [
+        "http://localhost:8000",
+        "http://localhost:8001"
+    ],
+    "base_url": "/",
+    "quick_links": [
+        {
+            "name": "Home",
+            "url": "/"
+        },
+        {
+            "name": "Assignment",
+            "url": "/assignment"
+        },
+        {
+            "name": "Resources",
+            "url": "/resources"
+        }
+    ],
+    "_comment": "Docs for this meta file: <>"
+}
+```
+
+## Write
+
+Now, let's write content for site.
+
+First, the index page. Edit the **index.md** at the root of the project,
+with the following LLM generated content [index.md](#).
+
+Now, let's write the assignment, resources page.
+
+Inside `pages/` create two directory with index.md files.
+index.md file is necessary. You may delete the other directories
+if you don't need them.
+
+- pages/assignment/index.md
+- pages/resources/index.md
+
+Now, same as before write content to the files using
+
+- [assignment/index.md]()
+- [resources/index.md]()
+
 
 ### Build
 
-When you want to deploy the project simply execute the following 
-command.
+It's time to build the project.
 
 ```console
-scribo --build <project_name>
+scribo --build py101 # if outside of project dir
+scribo --build . # if inside for prject dir
 ```
 
-A new directory inside *project_name* will be created named **dist**.
+A new directory will be created named **dist**.
 
 You can deploy this to any static site hosting provider, you wish.
 
