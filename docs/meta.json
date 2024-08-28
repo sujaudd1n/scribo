@@ -1,7 +1,7 @@
 {
     "title": "Scribo",
     "project_name": "Scribo",
-    "description": "Static Site generator",
+    "description": "A simple, efficient and content-first static site generator (SSG).",
     "author": "Scribo",
     "production_urls": [
         "http://localhost:8000",

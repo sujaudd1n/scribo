@@ -1,7 +1,9 @@
 ---
+title: About
+description: {{description}}
 order: 4
 ---
 
-# about
+# About
 
 {{ description }}
