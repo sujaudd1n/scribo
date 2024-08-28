@@ -7,7 +7,7 @@
     <div class="page__div">
         <div class="page_content-container">
             {% if page_toc %}
-            <div class="page_toc">
+            <div class="page_toc sideinfo">
                 <details>
                     <summary>On this page</summary>
                     {{ page_toc | safe }}
@@ -22,7 +22,7 @@
             <div class="page_content">{{ html | safe }}</div>
         </div>
         {% if contents.children %}
-        <div class="page_routes">
+        <div class="page_routes sideinfo">
             <details>
                 <summary>Routes</summary>
                 {% include "toc.html.jinja" %}
@@ -41,11 +41,11 @@
         padding: 10px;
     }
 
-    .page__div li::marker {
+    .sideinfo li::marker {
         content: '';
     }
 
-    .page__div li {
+    .sideinfo li {
         padding-left: unset;
 
     }

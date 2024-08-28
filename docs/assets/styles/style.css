@@ -53,6 +53,8 @@
     --admonition-error-border: var(--admonition-danger-border);
     --admonition-error-background: var(--admonition-danger-background);
 
+    --border-radius: 10px;
+
 }
 
 :root {
@@ -132,7 +134,8 @@ code:not(pre code) {
 
 .codehilite {
     overflow: auto;
-    border-radius: 2px;
+    border-radius: var(--border-radius);
+    background-color: var(--primary-700);
 }
 
 /* ends codehilite style */
