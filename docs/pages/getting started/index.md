@@ -6,18 +6,27 @@ order: 1
 
 # Getting Started
 
+In this guide, you will learn how to install Scribo and build a
+production ready site.
+
 ## Installation
 
+Install with `pip`
+
 ``` console
-pip install <>
+pip install scribo
 ```
 
 ## Quickstart
 
+In this quickstart, we'll build a small site of food recipe.
+
 ### Initialize
 
+Initialize the project
+
 ```console
-scribo --init <project_name>
+scribo --init recipe
 ```
 
 A new directory with the project name will be created.  
@@ -45,3 +54,7 @@ scribo --build <project_name>
 A new directory inside *project_name* will be created named **dist**.
 
 You can deploy this to any static site hosting provider, you wish.
+
+## Next
+
+Now that you know the basics, read the [docs](/docs) to learn more.

@@ -13,7 +13,7 @@
     --primary-800: #0a1a1a;
     --primary-700: #0a1a1a;
     --primary-700-tp: #0a1a1aaa;
-    --primary-600: #363636;
+    --primary-600: #1a2a2a;
 
     --text: #cdcdcd;
 
@@ -26,7 +26,7 @@
     --header-link: #a0a0a0;
     --header-link-hover: #ffffff;
 
-    --code-highlight: rgb(60, 104, 60);
+    --code-highlight: var(--primary-600);
 
     --admonition-attention-border: #8a8a8a;
     --admonition-attention-background: #5f5f5f;
@@ -135,7 +135,6 @@ code:not(pre code) {
 .codehilite {
     overflow: auto;
     border-radius: var(--border-radius);
-    background-color: var(--primary-700);
 }
 
 /* ends codehilite style */

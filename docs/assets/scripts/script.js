@@ -25,3 +25,9 @@ function set_base_content_padding_bottom() {
     base_content_el.style.paddingBottom = footer_el.offsetHeight + 50 + "px";
 }
 set_base_content_padding_bottom()
+
+document.addEventListener("DOMContentLoaded", () => {
+    const routes_container = document.querySelector(".page_routes summary");
+    if (routes_container)
+        routes_container.click()
+})
