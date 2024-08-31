@@ -109,7 +109,7 @@ def capitalize_name(name):
 
 def get_order(filepath):
     """
-    Return order found in index.md. if not found return 999.
+    Return order found in index.md. if not found return 2**32 - 1.
     """
     with open(filepath) as markdown_file:
         file_string = markdown_file.read()

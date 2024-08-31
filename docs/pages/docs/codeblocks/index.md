@@ -3,29 +3,35 @@
 Code highlighting in enabled by default.
 
 ``` { .python }
-def get_toc():
-    BLOGS_DIR = "blogs"
-    result = []
-
-    root = {"name": BLOGS_DIR, "path": BLOGS_DIR, "children": []}
-    q = [root]
-    while q:
-        parent = q.pop()
-        for child in [
-            subdir
-            for subdir in os.listdir(parent["path"])
-            if os.path.isdir(os.path.join(parent["path"], subdir))
-        ]:
-            child_node = {
-                "name": child,
-                "path": os.path.join(parent["path"], child),
-                "children": [],
-            }
-            parent["children"].append(child_node)
-            q.append(child_node)
-
-    print(json.dumps(root, indent=4))
-
-    return root
-
+def get_order(filepath):
+    """
+    Return order found in index.md. if not found return 2**32 - 1.
+    """
+    with open(filepath) as markdown_file:
+        file_string = markdown_file.read()
+        matches = re.findall(r"order:\s+(\d+)", file_string, re.IGNORECASE)
+        if matches:
+            order = matches[-1]
+            return int(order)
+        else:
+            return 2**32 - 1 
 ```
+
+Syntax:
+
+&#96;&#96;&#96;python
+<pre>
+def get_order(filepath):
+    """
+    Return order found in index.md. if not found return 2**32 - 1.
+    """
+    with open(filepath) as markdown_file:
+        file_string = markdown_file.read()
+        matches = re.findall(r"order:\s+(\d+)", file_string, re.IGNORECASE)
+        if matches:
+            order = matches[-1]
+            return int(order)
+        else:
+            return 2**32 - 1
+</pre>
+&#96;&#96;&#96;
