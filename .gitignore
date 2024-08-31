@@ -5,7 +5,4 @@ __pycache__
 myproject
 *.sh
 next
-*jpg
-*webm
-static
 tmp
