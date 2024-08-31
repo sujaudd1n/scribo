@@ -117,6 +117,8 @@ A new directory will be created named **dist**.
 
 You can deploy this to any static site hosting provider, you wish.
 
+See live view of [py101](#).
+
 ## Next
 
 Now that you know the basics, read the [docs](/docs) to learn more.
