@@ -197,6 +197,14 @@ img {
 
 video {
     margin: 10px 0;
+    max-width: 100%;
+    display: block;
+}
+
+audio {
+    width: 100%;
+    max-width: 100%;
+    display: block;
 }
 
 /* ends media element style */

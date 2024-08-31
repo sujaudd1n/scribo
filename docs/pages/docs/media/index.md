@@ -4,10 +4,10 @@
 
 To render an image use standard markdown syntax.
 
-![image](/static/img.jpg)
+![image](/assets/static/img.jpg)
 
 ``` md
-![image](/static/img.jpg)
+![image](/assets/static/img.jpg)
 ```
 
 ## Video
@@ -15,12 +15,14 @@ To render an image use standard markdown syntax.
 To render video, use HTML tag.
 
 <video controls>
-    <source src="/static/vid.webm" type="video/webm">
+    <source src="/assets/static/cat.mp4" type="video/mp4">
 </video>
+
+[Video by Pixabay](https://www.pexels.com/video/video-of-a-tabby-cat-854982/)
 
 ``` html
 <video controls>
-    <source src="/static/vid.webm" type="video/webm">
+    <source src="/assets/static/cat.mp4" type="video/mp4">
 </video>
 ```
 
@@ -28,9 +30,9 @@ To render video, use HTML tag.
 
 To render audio, use HTML tag.
 
-<audio controls src="/static/audio.mp3"></audio>
+<audio controls src="/assets/static/audio.mp3"></audio>
 
 ``` html
-<audio controls src="/static/audio.mp3"></audio>
+<audio controls src="/assets/static/audio.mp3"></audio>
 ```
 
