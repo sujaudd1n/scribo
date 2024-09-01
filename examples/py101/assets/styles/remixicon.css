@@ -47,3 +47,6 @@
 .ri-external-link-fill:before { content: "\ecae"; }
 .ri-external-link-line:before { content: "\ecaf"; }
 .ri-external-link-line-after:after { content: "\ecaf"; }
+.ri-menu-line:before { content: "\ef3e"; }
+.ri-close-line:before { content: "\eb99"; }
+
