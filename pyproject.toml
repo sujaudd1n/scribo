@@ -5,11 +5,11 @@ build-backend = "hatchling.build"
 [project]
 name = "scribo"
 dynamic = ["version"]
-description = "Static Site Generator"
+description = "A simple, efficient and content-first static site generator (SSG)."
 readme = "README.md"
 requires-python = ">=3.8"
 license = "MIT"
-keywords = ["markdown", "static-site-generator"]
+keywords = ["markdown", "static-site-generator", "scribo", "jinja", "documentation"]
 authors = [
   { name = "Md Sujauddin Sekh"},
 ]
@@ -37,9 +37,9 @@ dependencies = [
 ]
 
 [project.urls]
-Documentation = "https://github.com/unknown/scribo#readme"
-Issues = "https://github.com/unknown/scribo/issues"
-Source = "https://github.com/unknown/scribo"
+Documentation = "https://github.com/sujaudd1n/scribo#readme"
+Issues = "https://github.com/sujaudd1n/scribo/issues"
+Source = "https://github.com/sujaudd1n/scribo"
 
 [project.scripts]
 scribo = "scribo.__main__:main"
