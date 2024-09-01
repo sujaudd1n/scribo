@@ -87,7 +87,7 @@ this.
 Now, let's write content for site.
 
 First, the index page. Edit the **index.md** at the root of the project,
-with the following LLM generated content [index.md](#).
+with the following LLM generated content [index.md](https://github.com/sujaudd1n/scribo/blob/main/examples/py101/index.md?plain=1).
 
 Now, let's write the assignment, resources page.
 
@@ -98,10 +98,20 @@ if you don't need them.
 - pages/assignment/index.md
 - pages/resources/index.md
 
+```bash
+examples/py101/pages/
+├── about
+│   └── index.md
+├── assignment
+│   └── index.md
+└── resources
+    └── index.md
+```
+
 Now, same as before write content to the files using
 
-- [assignment/index.md]()
-- [resources/index.md]()
+- [assignment/index.md](https://github.com/sujaudd1n/scribo/blob/main/examples/py101/pages/assignment/index.md?plain=1)
+- [resources/index.md](https://github.com/sujaudd1n/scribo/blob/main/examples/py101/pages/resources/index.md?plain=1)
 
 
 ### Build
@@ -117,7 +127,7 @@ A new directory will be created named **dist**.
 
 You can deploy this to any static site hosting provider, you wish.
 
-See live view of [py101](#).
+See live view of [py101](https://scribo-py101.netlify.app/).
 
 ## Next
 
