@@ -1,5 +1,5 @@
 <div align="center">
-    <a href="#"><img width="400" src="./docs/assets/static/scribo.png" alt="Scribo logo"></a>
+    <a href="#"><img width="400" src="./doctwfs/assets/static/scribo.png" alt="Scribo logo"></a>
 </div>
 
 <p align="center">
