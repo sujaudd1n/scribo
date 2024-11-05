@@ -29,6 +29,25 @@ A simple, efficient and content-first static site generator (SSG).
 pip install scribo
 ```
 
+## Quick Start
+
+### Initialize
+
+```bash
+scribo --init sitename
+```
+
+Edit `index.md`.
+
+### Build
+
+```console
+scribo --build sitename
+```
+
+`dist` dir contains the build of the project.
+
+
 ## Contributing
 
 Please read [CONTRIBUTING.md](./CONTRIBUTING.md).
