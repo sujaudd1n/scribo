@@ -1,3 +1,6 @@
+r"""
+Functions to run from CLI and for argument parsing.
+"""
 import argparse
 
 from .build import build_project
@@ -14,7 +17,7 @@ def main():
         project_root = args.build
         build_project(project_root)
     else:
-        print("THIS IS SCRIBO.")
+        print("This is Scribo beta")
 
 
 def parse_command_line_args():

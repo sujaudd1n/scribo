@@ -1,3 +1,6 @@
+"""
+Module for building site.
+"""
 import os
 import shutil
 

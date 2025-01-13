@@ -1,3 +1,6 @@
+"""
+Module to initialize project.
+"""
 import os
 import shutil
 import sys

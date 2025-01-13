@@ -1,3 +1,6 @@
+"""
+Module to convert markdown into HTML
+"""
 import os
 
 from .helper import *

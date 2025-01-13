@@ -1,8 +1,11 @@
-dist
-venv
-__pycache__
 *swp
-myproject
-*.sh
 next
+info.md
+
+# Directories
+__pycache__
+dist
+.venv
 tmp
+
+myproject

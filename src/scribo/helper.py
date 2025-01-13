@@ -1,3 +1,6 @@
+"""
+Various helper functions.
+"""
 import copy
 import json
 import os

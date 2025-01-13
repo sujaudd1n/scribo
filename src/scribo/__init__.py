@@ -1,5 +1,6 @@
 """
 Scribo
+------
 
 A simple, efficient and content-first static site generator (SSG).
 
@@ -14,5 +15,9 @@ Features
     Automatic table of contents generation
     Syntax highlighting of codeblocks
     Metadata
-
 """
+
+from .__about__ import (
+    __version__,
+    __author__
+)
