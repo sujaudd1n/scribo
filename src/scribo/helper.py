@@ -144,3 +144,23 @@ def get_rendered_template(template_name, data):
     """Render template_name with data and returns it"""
     template = jinja_environment.get_template(template_name)
     return template.render(**data)
+
+
+def print_with_color(text, color):
+    """Print text with a color.
+
+    Valid colors are:
+        * Red
+        * Green
+    """
+    color = color.lower()
+
+    match color:
+        case 'red':
+            text = f"\x1b[31m{text}\x1b[0m"
+        case 'green':
+            text = f"\x1b[32m{text}\x1b[0m"
+
+    print(text)
+    return text
+

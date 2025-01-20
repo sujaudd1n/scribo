@@ -21,9 +21,19 @@ def main():
 
 
 def parse_command_line_args():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-i", "--init", help="Initialize project")
-    parser.add_argument("-b", "--build", help="Build site for production")
+    parser = argparse.ArgumentParser(
+        prog="scribo",
+        description="Scribo is a static site generator.",
+        epilog="Thank you for using scribo.\n"
+        "To contribute please visit https://github.com/sujaudd1n/scribo.",
+        formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+    subcommand_help_text = "Enter subcommand\nhi"\
+    "Valid subcommands are:\n"\
+    "* init - Initialize a project"
+    parser.add_argument("subcommand", choices=["init", "build"], help=subcommand_help_text)
+    # parser.add_argument("-i", "--init", help="Initialize project")
+    # parser.add_argument("-b", "--build", help="Build site for production")
     return parser.parse_args()
 
 
