@@ -1,14 +1,17 @@
-r"""
-Functions to run from CLI and for argument parsing.
-"""
+"""Functions to run from CLI and for argument parsing."""
 import argparse
 
 from .build import build_project
 from .pinit import initialize
+from .__about__ import __version__
+from .__init__ import __doc__
 
+epilog_text = "Thank you for using scribo.\n"\
+              "To contribute please visit https://github.com/sujaudd1n/scribo."
 
 def main():
-    args = parse_command_line_args()
+    parser = get_parser()
+    args = parser.parse_args()
 
     if args.init:
         project_name = args.init
@@ -17,24 +20,21 @@ def main():
         project_root = args.build
         build_project(project_root)
     else:
-        print("This is Scribo beta")
+        parser.print_usage()
+        print("\n" + epilog_text)
 
 
-def parse_command_line_args():
+def get_parser():
     parser = argparse.ArgumentParser(
         prog="scribo",
         description="Scribo is a static site generator.",
-        epilog="Thank you for using scribo.\n"
-        "To contribute please visit https://github.com/sujaudd1n/scribo.",
+        epilog=epilog_text,
         formatter_class=argparse.RawDescriptionHelpFormatter
     )
-    subcommand_help_text = "Enter subcommand\nhi"\
-    "Valid subcommands are:\n"\
-    "* init - Initialize a project"
-    parser.add_argument("subcommand", choices=["init", "build"], help=subcommand_help_text)
-    # parser.add_argument("-i", "--init", help="Initialize project")
-    # parser.add_argument("-b", "--build", help="Build site for production")
-    return parser.parse_args()
+    parser.add_argument("-i", "--init", metavar="project-name", help="Initialize project")
+    parser.add_argument("-b", "--build", metavar="project-name", help="Build site for production")
+    parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
+    return parser
 
 
 if __name__ == "__main__":
