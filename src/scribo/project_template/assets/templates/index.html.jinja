@@ -3,39 +3,39 @@
 {% block title %}{{ page_metadata.title }} {{ super() }}{% endblock %}
 {% block description %}{{ page_metadata.description }}{% endblock %}
 {% block base_content %}
-<div class="page">
-    <div class="page__div">
-        <div class="page_content-container">
-            {% if page_toc %}
-            <div class="page_toc sideinfo">
-                <details>
-                    <summary>On this page</summary>
-                    {{ page_toc | safe }}
-                </details>
-                <div class="fulls">
-                    <h2>On this page</h2>
-                    {{ page_toc | safe }}
-                </div>
-            </div>
-            {% endif %}
+    <div class="page">
+        <div class="page__div">
+            <div class="page_content-container">
+                {% if page_toc %}
+                    <div class="page_toc sideinfo">
+                        <details>
+                            <summary>On this page</summary>
+                            {{ page_toc | safe }}
+                        </details>
+                        <div class="fulls">
+                            <h2>On this page</h2>
+                            {{ page_toc | safe }}
+                        </div>
+                    </div>
+                {% endif %}
 
-            <div class="page_content">{{ html | safe }}</div>
-        </div>
-        {% if contents.children %}
-        <div class="page_routes sideinfo">
-            <details>
-                <summary>Routes</summary>
-                {% include "toc.html.jinja" %}
-            </details>
-            <div class="fulls">
-                <h2>Routes</h2>
-                {% include "toc.html.jinja" %}
+                <div class="page_content">{{ html | safe }}</div>
             </div>
+            {% if contents.children %}
+                <div class="page_routes sideinfo">
+                    <details>
+                        <summary>Routes</summary>
+                        {% include "toc.html.jinja" %}
+                    </details>
+                    <div class="fulls">
+                        <h2>Routes</h2>
+                        {% include "toc.html.jinja" %}
+                    </div>
+                </div>
+            {% endif %}
         </div>
-        {% endif %}
     </div>
-</div>
-<style>
+    <style>
     /* toc style*/
     .page {
         padding: 10px;
@@ -152,6 +152,6 @@
 
 
     /*ends toc style*/
-</style>
+    </style>
 
 {% endblock %}

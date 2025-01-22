@@ -1,6 +1,7 @@
 """
 Module to initialize project.
 """
+
 import os
 import shutil
 import sys
@@ -14,7 +15,6 @@ def initialize(project_name):
     initialize_project_dir(project_name)
     print_with_color(f"Project {project_name} has been initialized.\n", "green")
     print(f"Run\n$ cd {project_name}\nAnd start editing files.")
-
 
 
 def initialize_project_dir(project_name):

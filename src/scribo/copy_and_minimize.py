@@ -1,6 +1,7 @@
 """
 Module to minify code.
 """
+
 import os
 import shutil
 

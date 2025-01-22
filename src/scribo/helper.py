@@ -1,6 +1,7 @@
 """
 Various helper functions.
 """
+
 import copy
 import json
 import os
@@ -23,7 +24,7 @@ markdown_extensions = [
     TocExtension(),
     "admonition",
     "meta",
-    "nl2br"
+    "nl2br",
 ]
 markdown_converter = markdown.Markdown(extensions=markdown_extensions)
 
@@ -99,7 +100,8 @@ def modify_path(path):
     page_removed_path = "/".join(path.split(os.sep)[1:])
     encoded_url = urllib.parse.quote(page_removed_path)
     return encoded_url
-    
+
+
 def sort_toc(children):
     """sort node based on "order"."""
     return sorted(children, key=lambda x: x["order"])
@@ -107,7 +109,7 @@ def sort_toc(children):
 
 def capitalize_name(name):
     """Capitalize each word in name"""
-    return ' '.join(map(str.capitalize, name.split()))
+    return " ".join(map(str.capitalize, name.split()))
 
 
 def get_order(filepath):
@@ -156,11 +158,10 @@ def print_with_color(text, color):
     color = color.lower()
 
     match color:
-        case 'red':
+        case "red":
             text = f"\x1b[31m{text}\x1b[0m"
-        case 'green':
+        case "green":
             text = f"\x1b[32m{text}\x1b[0m"
 
     print(text)
     return text
-

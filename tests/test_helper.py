@@ -5,7 +5,7 @@ from scribo.helper import (
     modify_path,
     sort_toc,
     capitalize_name,
-    print_with_color
+    print_with_color,
 )
 
 node = {
@@ -43,15 +43,15 @@ def test_modify_path():
 
 
 def test_sort_toc():
-    children =  [
-            {"path": "pages/hello", "order": 2, "children": []},
-            {"path": "pages/world", "order": 1, "children": []},
-        ]
-    m_children =  [
-            {"path": "pages/world", "order": 1, "children": []},
-            {"path": "pages/hello", "order": 2, "children": []},
-        ]
-    
+    children = [
+        {"path": "pages/hello", "order": 2, "children": []},
+        {"path": "pages/world", "order": 1, "children": []},
+    ]
+    m_children = [
+        {"path": "pages/world", "order": 1, "children": []},
+        {"path": "pages/hello", "order": 2, "children": []},
+    ]
+
     modified_node = sort_toc(children)
     assert modified_node == m_children
 
@@ -87,15 +87,14 @@ def test_get_order():
     assert order == 2**32 - 1
 
 
-
 def test_print_with_color():
     text = "example text"
 
-    red_text = print_with_color(text, 'Red')
+    red_text = print_with_color(text, "Red")
     assert red_text == f"\x1b[31m{text}\x1b[0m"
 
-    red_text = print_with_color(text, 'red')
+    red_text = print_with_color(text, "red")
     assert red_text == f"\x1b[31m{text}\x1b[0m"
 
-    green_text = print_with_color(text, 'green')
+    green_text = print_with_color(text, "green")
     assert green_text == f"\x1b[32m{text}\x1b[0m"
