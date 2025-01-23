@@ -9,3 +9,5 @@ format:
 	djlint --reformat src/scribo/project_template/assets/templates/*html.jinja
 	black src/scribo/
 	black tests/
+lint:
+	flake8 src/scribo
