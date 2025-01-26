@@ -5,7 +5,6 @@ import argparse
 from .build import build_project
 from .pinit import initialize
 from .__about__ import __version__
-from .__init__ import __doc__
 
 epilog_text = (
     "Thank you for using scribo.\n"
@@ -24,8 +23,7 @@ def main():
         project_root = args.build
         build_project(project_root)
     else:
-        parser.print_usage()
-        print("\n" + epilog_text)
+        parser.print_help()
 
 
 def get_parser():
@@ -39,7 +37,10 @@ def get_parser():
         "-i", "--init", metavar="project-name", help="Initialize project"
     )
     parser.add_argument(
-        "-b", "--build", metavar="project-name", help="Build site for production"
+        "-b",
+        "--build",
+        metavar="project-name",
+        help="Build site for production",
     )
     parser.add_argument(
         "--version", action="version", version=f"%(prog)s {__version__}"
