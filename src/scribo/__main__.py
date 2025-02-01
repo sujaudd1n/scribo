@@ -34,12 +34,12 @@ def get_parser():
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument(
-        "-i", "--init", metavar="project-name", help="Initialize project"
+        "-i", "--init", metavar="project", help="Initialize project"
     )
     parser.add_argument(
         "-b",
         "--build",
-        metavar="project-name",
+        metavar="project",
         help="Build site for production",
     )
     parser.add_argument(

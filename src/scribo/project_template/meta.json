@@ -22,5 +22,11 @@
             "url": "/contributing"
         }
     ],
+    "nav_links": [
+        {
+            "name": "Github",
+            "url": "https://github.com/sujaudd1n/"
+        }
+    ],
     "_comment": "Docs for this meta file: <>"
 }

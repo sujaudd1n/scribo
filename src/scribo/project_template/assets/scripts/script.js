@@ -31,3 +31,5 @@ document.addEventListener("DOMContentLoaded", () => {
     if (routes_container)
         routes_container.click()
 })
+
+document.querySelector(".copyright__year").textContent = new Date().getFullYear();

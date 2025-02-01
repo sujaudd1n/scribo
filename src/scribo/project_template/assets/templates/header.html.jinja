@@ -6,7 +6,7 @@
         <button class='header__nav_toggle ri-menu-line hidden'
                 aria-label="toggle nav"></button>
         <nav class="header__nav">
-            {% for page in pages.children %}<a href="/{{ page.path }}">{{ page.name }}</a>{% endfor %}
+            {% for link in nav_links %}<a href="{{ link.url }}">{{ link.name }}</a>{% endfor %}
         </nav>
     </div>
 </header>

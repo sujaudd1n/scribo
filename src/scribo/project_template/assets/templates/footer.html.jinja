@@ -7,6 +7,7 @@
                     {% for link in quick_links %}
                         {% if link.url.startswith('http') and link.url not in production_urls %}
                             <a href="{{ link.url }}"
+                               target="_blank"
                                class="external-icon ri-external-link-line-after">{{ link.name }}</a>
                         {% else %}
                             <a href="{{ link.url }}">{{ link.name }}</a>
