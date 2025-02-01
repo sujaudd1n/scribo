@@ -24,7 +24,6 @@ markdown_extensions = [
     TocExtension(),
     "admonition",
     "meta",
-    "nl2br",
 ]
 markdown_converter = markdown.Markdown(extensions=markdown_extensions)
 

@@ -9,19 +9,22 @@ A simple, efficient and content-first static site generator (SSG).
 
 <div align="center">
 
-[![Install](https://img.shields.io/badge/Install-blue)](https://github.com/sujaudd1n/scribo/tree/main?tab=readme-ov-file#installation)
-[![Docs](https://img.shields.io/badge/Docs-blue)](https://scribo-docs.netlify.app)
-
-</div>
-
-
-<div align="center">
-
 ![License](https://img.shields.io/badge/License-MIT-green)
 [![PyPI - Version](https://img.shields.io/pypi/v/scribo.svg)](https://pypi.org/project/scribo)
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/scribo.svg)](https://pypi.org/project/scribo)
     
 </div>
+
+Write docs, blogs or anything you like. Read the [docs](https://scribo-docs.netlify.app).
+
+## Features
+
+- Extended markdown syntax support
+- File-system based routing
+- Customization
+- Automatic table of contents generation
+- Syntax highlighting of codeblocks
+- Metadata
+
 
 ## Installation
 
@@ -54,4 +57,4 @@ Please read [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ## License
 
-`Scribo` is distributed under the terms of the [MIT](./LICENSE) license.
+`scribo` is distributed under the terms of the [MIT](./LICENSE) license.
