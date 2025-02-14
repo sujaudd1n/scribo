@@ -1,6 +1,7 @@
 *swp
 next
 info.md
+.pypirc
 
 # Directories
 __pycache__
