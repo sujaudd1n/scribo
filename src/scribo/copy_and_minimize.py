@@ -6,20 +6,32 @@ import os
 import shutil
 
 DIST_DIR = "dist"
-
+STATIC_DIR = "assets"
 
 def copy_and_minimize_static_files():
-    static_parent = ["assets"]
-    static_dirs = ["dist/assets/styles", "dist/assets/scripts"]
-    copy_static_dirs(static_parent, DIST_DIR)
-    # minimize_static_files(static_dirs)
-
+    """
+    Copies static files from the source directory to the distribution directory.
+    Optionally, static files can be minimized (commented out for now).
+    """
+    static_dirs = [STATIC_DIR]
+    copy_static_dirs(static_dirs, DIST_DIR)
+    # minimize_static_files(static_dirs)  # Uncomment to enable minimization
 
 def copy_static_dirs(static_dirs, dist_dir):
-    """Copies all dirs in STATIC_DIRS into dist dir"""
-    for static_dir in static_dirs:
-        shutil.copytree(static_dir, os.path.join(dist_dir, static_dir))
+    """
+    Copies all directories in `static_dirs` into the `dist_dir`.
 
+    Args:
+        static_dirs (list): List of directories to copy.
+        dist_dir (str): Destination directory where files will be copied.
+    """
+    for static_dir in static_dirs:
+        source = os.path.join(os.path.dirname(__file__), static_dir)
+        destination = os.path.join(dist_dir, static_dir)
+
+        if os.path.exists(destination):
+            shutil.rmtree(destination) 
+        shutil.copytree(source, destination)
 
 def minimize_static_files(static_dirs):
     """

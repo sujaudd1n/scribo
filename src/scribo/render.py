@@ -7,7 +7,7 @@ import os
 from .helper import *
 
 DIST_DIR = "dist"
-TEMPLATES_DIR = "assets/templates"
+TEMPLATES_DIR = os.path.join(os.path.dirname(__file__), "html_templates")
 
 project_metadata = get_project_metadata()
 

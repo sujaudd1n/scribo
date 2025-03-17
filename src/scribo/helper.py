@@ -16,7 +16,7 @@ from markdown.extensions.extra import ExtraExtension
 from markdown.extensions.toc import TocExtension
 
 DIST_DIR = "dist"
-TEMPLATES_DIR = "assets/templates"
+TEMPLATES_DIR = os.path.join(os.path.dirname(__file__), "html_templates")
 
 markdown_extensions = [
     ExtraExtension(),

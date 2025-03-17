@@ -7,7 +7,7 @@ import shutil
 import sys
 from scribo.helper import print_with_color
 
-PROJECT_TEMPLATE = os.path.join(os.path.dirname(__file__), "project_template")
+PROJECT_TEMPLATE = os.path.join(os.path.dirname(__file__), "skeleton")
 
 
 def initialize(project_name):

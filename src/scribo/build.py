@@ -27,4 +27,4 @@ def create_dist_dir(dir_name):
     """
     if os.path.exists(dir_name):
         shutil.rmtree(dir_name)
-    os.mkdir(dir_name)
+    os.makedirs(dir_name)
