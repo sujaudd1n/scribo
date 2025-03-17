@@ -1,30 +1,46 @@
 """
-Module for building site.
+Module for building a static site.
 """
 
 import os
 import shutil
+from typing import Optional
 
 from .copy_and_minimize import copy_and_minimize_static_files
 
 DIST_DIR = "dist"
 
 
-def build_project(project_root):
-    """Execute all the steps to build the project."""
-    os.chdir(project_root)
-    from .render import render
-
-    create_dist_dir(DIST_DIR)
-    copy_and_minimize_static_files()
-    render()
-
-
-def create_dist_dir(dir_name):
+def build_project(project_root: str) -> None:
     """
-    Create dist directory named dir_name.
+    Execute all the steps to build the project.
+
+    Args:
+        project_root (str): The root directory of the project.
+    """
+    try:
+        os.chdir(project_root)
+        from .render import render
+        create_dist_dir(DIST_DIR)
+        copy_and_minimize_static_files()
+        render()
+    except Exception as e:
+        print(f"Error during build process: {e}")
+        raise
+
+
+def create_dist_dir(dir_name: str) -> None:
+    """
+    Create a distribution directory named `dir_name`.
     If it exists, it gets deleted and a new directory is created.
+
+    Args:
+        dir_name (str): The name of the directory to create.
     """
-    if os.path.exists(dir_name):
-        shutil.rmtree(dir_name)
-    os.makedirs(dir_name)
+    try:
+        if os.path.exists(dir_name):
+            shutil.rmtree(dir_name)
+        os.makedirs(dir_name)
+    except OSError as e:
+        print(f"Error creating directory {dir_name}: {e}")
+        raise

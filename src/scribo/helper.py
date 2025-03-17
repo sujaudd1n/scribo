@@ -94,12 +94,28 @@ def apply_filter(root):
     return root
 
 
-def modify_path(path):
-    """Remove "pages" from path of node and its children"""
-    page_removed_path = "/".join(path.split(os.sep)[1:])
-    encoded_url = urllib.parse.quote(page_removed_path)
-    return encoded_url
+from pathlib import Path
 
+def modify_path(path: str) -> str:
+    """
+    Remove "pages" from the path of a node and its children.
+
+    Args:
+        path (str): The input path as a string.
+
+    Returns:
+        str: The modified path with "pages" removed and URL-encoded.
+    """
+    # Convert the input path to a Path object
+    path_obj = Path(path)
+    
+    # Remove the first part of the path (e.g., "pages")
+    page_removed_path = path_obj.relative_to("pages")
+    
+    # Convert the Path object back to a string and URL-encode it
+    encoded_url = urllib.parse.quote(str(page_removed_path))
+    
+    return encoded_url
 
 def sort_toc(children):
     """sort node based on "order"."""
@@ -107,6 +123,9 @@ def sort_toc(children):
 
 
 def capitalize_name(name):
+    print(name, type(name))
+    name = str(name)
+    print(name, type(name))
     """Capitalize each word in name"""
     return " ".join(map(str.capitalize, name.split()))
 
@@ -147,20 +166,28 @@ def get_rendered_template(template_name, data):
     return template.render(**data)
 
 
-def print_with_color(text, color):
-    """Print text with a color.
+def colorize(text, color):
+    """
+    Print text with a specified color.
 
-    Valid colors are:
-        * Red
-        * Green
+    Args:
+        text (str): The text to be printed.
+        color (str): The color to apply to the text. Valid options are "red" and "green".
+
+    Returns:
+        str: The text wrapped in the appropriate ANSI color codes.
+
+    Raises:
+        ValueError: If an invalid color is provided.
     """
     color = color.lower()
 
-    match color:
-        case "red":
-            text = f"\x1b[31m{text}\x1b[0m"
-        case "green":
-            text = f"\x1b[32m{text}\x1b[0m"
+    color_codes = {
+        "red": "\x1b[31m",
+        "green": "\x1b[32m",
+    }
 
-    print(text)
-    return text
+    if color not in color_codes:
+        raise ValueError(f"Invalid color '{color}'. Valid options are: {', '.join(color_codes.keys())}")
+
+    return f"{color_codes[color]}{text}\x1b[0m"
