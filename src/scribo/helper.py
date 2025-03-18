@@ -66,7 +66,6 @@ def get_filtered_toc(root, depth=None):
 
 
 def apply_filter(root):
-    print(root)
     root = copy.deepcopy(root)
 
     root["path"] = modify_path(root["path"])
@@ -110,9 +109,7 @@ def sort_toc(children):
 
 
 def capitalize_name(name):
-    print(name, type(name))
     name = str(name)
-    print(name, type(name))
     """Capitalize each word in name"""
     return " ".join(map(str.capitalize, name.split()))
 
