@@ -9,23 +9,10 @@ import re
 import urllib.parse
 from collections import deque
 
-import markdown
 from jinja2 import Environment, FileSystemLoader, select_autoescape
-from markdown.extensions.codehilite import CodeHiliteExtension
-from markdown.extensions.extra import ExtraExtension
-from markdown.extensions.toc import TocExtension
 
 DIST_DIR = "dist"
 TEMPLATES_DIR = os.path.join(os.path.dirname(__file__), "html_templates")
-
-markdown_extensions = [
-    ExtraExtension(),
-    CodeHiliteExtension(linenums=True),
-    TocExtension(),
-    "admonition",
-    "meta",
-]
-markdown_converter = markdown.Markdown(extensions=markdown_extensions)
 
 jinja_environment = Environment(
     loader=FileSystemLoader([".", TEMPLATES_DIR, "dist"]), autoescape=select_autoescape
@@ -74,14 +61,12 @@ def get_toc(directory, depth=None):
 
 def get_filtered_toc(root, depth=None):
     toc = get_toc(root, depth)
-    # path_removed_toc = remove_path(toc)
-    # sorted_toc = sort_toc(path_removed_toc)
-    # capitalized_toc = capitalize_toc(sorted_toc)
     filtered_toc = apply_filter(toc)
     return filtered_toc
 
 
 def apply_filter(root):
+    print(root)
     root = copy.deepcopy(root)
 
     root["path"] = modify_path(root["path"])
@@ -111,7 +96,7 @@ def modify_path(path: str) -> str:
     path_obj = Path(path)
 
     # Remove the first part of the path (e.g., "pages")
-    page_removed_path = path_obj.relative_to("pages")
+    page_removed_path = path_obj.relative_to("pages") if "pages" in path_obj.parts else path_obj
 
     # Convert the Path object back to a string and URL-encode it
     encoded_url = urllib.parse.quote(str(page_removed_path))
@@ -146,20 +131,11 @@ def get_order(filepath):
             return 2**32 - 1
 
 
-def save_html(output_path, rendered_template):
+def save(filepath, text):
     """Save rendered_template in output_path"""
-    with open(output_path, "w") as output_file:
-        output_file.write(rendered_template)
+    with open(filepath, "w") as output:
+        output.write(text)
 
-
-def render_markdown(markdown_file_path):
-    """Render markdown and returns html, toc, and meta"""
-    with open(markdown_file_path) as markdown_file:
-        html = markdown_converter.convert(markdown_file.read())
-        toc = markdown_converter.toc
-        meta = markdown_converter.Meta
-        markdown_converter.Meta = {}
-        return html, toc, meta
 
 
 def get_rendered_template(template_name, data):

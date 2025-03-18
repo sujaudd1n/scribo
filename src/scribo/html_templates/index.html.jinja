@@ -21,7 +21,7 @@
 
                 <div class="page_content">{{ html | safe }}</div>
             </div>
-            {% if contents.children %}
+            {% if contents and contents.children %}
                 <div class="page_routes sideinfo">
                     <details>
                         <summary>Routes</summary>
