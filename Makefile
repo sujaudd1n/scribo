@@ -6,9 +6,9 @@ build-install:
 	make build
 	make install
 fmt:
-	djlint --reformat src/scribo/project_template/assets/templates/*html.jinja
 	black src/scribo/
 	black tests/
+	djlint --reformat src/scribo/**/*html.jinja
 lint:
 	python -m flake8 src/scribo
 test:

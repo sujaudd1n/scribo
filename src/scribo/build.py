@@ -21,6 +21,7 @@ def build_project(project_root: str) -> None:
     try:
         os.chdir(project_root)
         from .render import render
+
         create_dist_dir(DIST_DIR)
         copy_and_minimize_static_files()
         render()

@@ -96,6 +96,7 @@ def apply_filter(root):
 
 from pathlib import Path
 
+
 def modify_path(path: str) -> str:
     """
     Remove "pages" from the path of a node and its children.
@@ -108,14 +109,15 @@ def modify_path(path: str) -> str:
     """
     # Convert the input path to a Path object
     path_obj = Path(path)
-    
+
     # Remove the first part of the path (e.g., "pages")
     page_removed_path = path_obj.relative_to("pages")
-    
+
     # Convert the Path object back to a string and URL-encode it
     encoded_url = urllib.parse.quote(str(page_removed_path))
-    
+
     return encoded_url
+
 
 def sort_toc(children):
     """sort node based on "order"."""
@@ -188,6 +190,8 @@ def colorize(text, color):
     }
 
     if color not in color_codes:
-        raise ValueError(f"Invalid color '{color}'. Valid options are: {', '.join(color_codes.keys())}")
+        raise ValueError(
+            f"Invalid color '{color}'. Valid options are: {', '.join(color_codes.keys())}"
+        )
 
     return f"{color_codes[color]}{text}\x1b[0m"

@@ -8,6 +8,7 @@ import shutil
 DIST_DIR = "dist"
 STATIC_DIR = "assets"
 
+
 def copy_and_minimize_static_files():
     """
     Copies static files from the source directory to the distribution directory.
@@ -16,6 +17,7 @@ def copy_and_minimize_static_files():
     static_dirs = [STATIC_DIR]
     copy_static_dirs(static_dirs, DIST_DIR)
     # minimize_static_files(static_dirs)  # Uncomment to enable minimization
+
 
 def copy_static_dirs(static_dirs, dist_dir):
     """
@@ -30,8 +32,9 @@ def copy_static_dirs(static_dirs, dist_dir):
         destination = os.path.join(dist_dir, static_dir)
 
         if os.path.exists(destination):
-            shutil.rmtree(destination) 
+            shutil.rmtree(destination)
         shutil.copytree(source, destination)
+
 
 def minimize_static_files(static_dirs):
     """
