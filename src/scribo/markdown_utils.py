@@ -12,6 +12,7 @@ markdown_extensions = [
 ]
 markdown_converter = markdown.Markdown(extensions=markdown_extensions)
 
+
 def markdown_to_html_with_metadata(markdown_file_path):
     """Render markdown and returns html, toc, and meta"""
     with open(markdown_file_path) as markdown_file:
@@ -20,4 +21,3 @@ def markdown_to_html_with_metadata(markdown_file_path):
         meta = markdown_converter.Meta
         markdown_converter.Meta = {}
         return html, toc, meta
-

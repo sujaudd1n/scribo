@@ -95,7 +95,9 @@ def modify_path(path: str) -> str:
     path_obj = Path(path)
 
     # Remove the first part of the path (e.g., "pages")
-    page_removed_path = path_obj.relative_to("pages") if "pages" in path_obj.parts else path_obj
+    page_removed_path = (
+        path_obj.relative_to("pages") if "pages" in path_obj.parts else path_obj
+    )
 
     # Convert the Path object back to a string and URL-encode it
     encoded_url = urllib.parse.quote(str(page_removed_path))
@@ -132,7 +134,6 @@ def save(filepath, text):
     """Save rendered_template in output_path"""
     with open(filepath, "w") as output:
         output.write(text)
-
 
 
 def get_rendered_template(template_name, data):

@@ -38,7 +38,9 @@ def get_parser():
         epilog=epilog_text,
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
-    parser.add_argument("-i", "--init", metavar="project_name", help="Initialize project")
+    parser.add_argument(
+        "-i", "--init", metavar="project_name", help="Initialize project"
+    )
     parser.add_argument(
         "-b",
         "--build",

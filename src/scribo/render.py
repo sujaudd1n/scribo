@@ -21,6 +21,7 @@ def render() -> None:
     render_pages(Path(CONTENT_DIR))
     render_sitemap()
 
+
 def render_pages(PAGES_DIR) -> None:
     """Render all markdown files in the CONTENT_DIR directory."""
     for page in PAGES_DIR.iterdir():
@@ -36,6 +37,7 @@ def render_page(filepath: Path) -> None:
     dist_path.parent.mkdir(parents=True, exist_ok=True)
     complete_markdown_render(filepath, dist_path)
 
+
 def complete_markdown_render(
     markdown_path: Path,
     output_html_path: Path,
@@ -44,9 +46,10 @@ def complete_markdown_render(
     """Render markdown to HTML and save it in the proper directory in DIST_DIR."""
     html, page_toc, page_metadata = markdown_to_html_with_metadata(markdown_path)
 
-
     page_metadata = update_page_metadata(page_metadata)
-    root_dir = markdown_path.parent if markdown_path.parent != '.' else Path(CONTENT_DIR)
+    root_dir = (
+        markdown_path.parent if markdown_path.parent != "." else Path(CONTENT_DIR)
+    )
 
     data = {
         **project_metadata,
