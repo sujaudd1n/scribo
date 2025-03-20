@@ -50,14 +50,13 @@ def complete_markdown_render(
     root_dir = (
         markdown_path.parent if markdown_path.parent != "." else Path(CONTENT_DIR)
     )
-
     data = {
         **project_metadata,
         "page_metadata": page_metadata,
         "page_toc": page_toc,
         "html": html,
         "contents": get_filtered_toc(root_dir, depth=2),
-        # "pages": get_filtered_toc("pages", depth=1),
+        "pages": get_filtered_toc("pages", depth=1),
     }
     render_template_and_save(template_name, data, TEMPLATES_DIR / "index.html.tmp")
     data = {**project_metadata, "contents": get_filtered_toc(root_dir, depth=1)}

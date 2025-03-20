@@ -1,2 +1,3 @@
 LINKS_DIR_NAME = "linkify"
+LINKS_OUTPUT_DIR_NAME = "links"
 CONTENTS_DIR_NAME = "pages"
