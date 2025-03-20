@@ -5,7 +5,7 @@ import argparse
 from .build import build_project
 from .pinit import initialize
 from .__about__ import __version__
-from scribo.links_ext import create_links_dir
+from scribo.extensions.linkify.links_ext import create_links_dir
 
 epilog_text = (
     "Thank you for using scribo.\n"
