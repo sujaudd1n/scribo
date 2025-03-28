@@ -1,6 +1,7 @@
 """Functions to run from CLI and for argument parsing."""
 
 import argparse
+import os
 
 from .build import build_project
 from .pinit import initialize
@@ -22,10 +23,14 @@ def main():
         initialize(project_name)
     elif args.build:
         project_root = args.build
+        os.chdir(project_root)
         build_project(project_root)
     elif args.linkify:
         project_root = args.linkify
+        cwd = os.getcwd()
+        os.chdir(project_root)
         create_links_dir(project_root)
+        # os.chdir(cwd)
         build_project(project_root)
     else:
         parser.print_help()

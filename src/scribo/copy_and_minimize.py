@@ -44,7 +44,11 @@ def minimize(root):
     return
     for dirpath, dirnames, filenames in os.walk(root):
         for filename in filenames:
-            if not filename.endswith(".css") and not filename.endswith(".js") and not filename.endswith(".html"):
+            if (
+                not filename.endswith(".css")
+                and not filename.endswith(".js")
+                and not filename.endswith(".html")
+            ):
                 continue
             with open(os.path.join(dirpath, filename), "r+") as source:
                 source_text = source.read()

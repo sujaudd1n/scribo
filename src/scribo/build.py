@@ -19,7 +19,6 @@ def build_project(project_root: str) -> None:
         project_root (str): The root directory of the project.
     """
     try:
-        os.chdir(project_root)
         from .render import render
 
         create_dist_dir(DIST_DIR)

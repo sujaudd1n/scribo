@@ -10,8 +10,8 @@ from scribo.config import LINKS_DIR_NAME, CONTENTS_DIR_NAME, LINKS_OUTPUT_DIR_NA
 
 
 def create_links_dir(root):
-    links_dir = Path(f"{root}/{LINKS_DIR_NAME}")
-    linkify_output_dir = Path(f"{root}/{CONTENTS_DIR_NAME}/{LINKS_OUTPUT_DIR_NAME}")
+    links_dir = Path(f"{LINKS_DIR_NAME}")
+    linkify_output_dir = Path(f"{CONTENTS_DIR_NAME}/{LINKS_OUTPUT_DIR_NAME}")
 
     for filepath in links_dir.iterdir():
         if filepath.is_file() and filepath.name.split(".")[-1].lower() in (
@@ -20,9 +20,18 @@ def create_links_dir(root):
         ):
             with open(filepath) as file:
                 content = yaml.safe_load(file)
-
             filename = filepath.name
             target_dirname = filename.split(".")[0]
+
+            if target_dirname == "meta":
+                print(json.dumps(content))
+                with open(Path(CONTENTS_DIR_NAME) / "index.md", "w") as f:
+                    s = []
+                    for key, val in content.items():
+                        s.append(f"{key}: {val}")
+                    f.write('  \n'.join(s))
+                continue
+
             target_dir = linkify_output_dir / target_dirname
             if target_dir.exists():
                 shutil.rmtree(target_dir)
@@ -34,8 +43,8 @@ def create_links_dir(root):
                 # f.write(dom_tree.innerHTML)
                 f.write(build_markdown(content, 2))
             print(f"Links page for {filename} created.")
-    (linkify_output_dir / "index.md").touch()
-
+    with open(linkify_output_dir / "index.md", "w") as f:
+        f.write("Links")
 
 
 def build_markdown(json, tagno):
@@ -50,15 +59,13 @@ def build_markdown(json, tagno):
         if type(value) not in [str, int]:
             title = f"{'#' * tagno} {key}"
             link_container.append(title)
-            link_container.append(
-                build_markdown(value, min(tagno+1, 6))
-            )
+            link_container.append(build_markdown(value, min(tagno + 1, 6)))
         elif type(value) == str:
             a = f"[{key}]({value})  "
             a = f'<a href="{value}" target="_blank">{key}</a>  '
             link_container.append(a)
-        container.append('\n\n'.join(link_container))
-    return '\n'.join(container)
+        container.append("\n\n".join(link_container))
+    return "\n".join(container)
 
 
 def build_dom(json, tag_number, depth, idnt):
@@ -86,7 +93,9 @@ def build_dom(json, tag_number, depth, idnt):
                 build_dom(value, tag_number + 1, depth + 1, idnt + 15)
             )
         elif type(value) == str:
-            a = HTMLAnchorElement(href=value, target="_blank", children=[HTMLTextElement(str(key))])
+            a = HTMLAnchorElement(
+                href=value, target="_blank", children=[HTMLTextElement(str(key))]
+            )
             p = HTMLParagraphElement(
                 children=[a],
                 style={

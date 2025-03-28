@@ -15,18 +15,18 @@ class HTMLElement:
     @property
     def innerHTML(self):
         # childrensInnerHTML = [
-            # child.innerHTML for child in self.children
+        # child.innerHTML for child in self.children
         # ]
 
         childrensInnerHTML = []
         for child in self.children:
             childrensInnerHTML.append(child.innerHTML)
-        
-        styles=[]
+
+        styles = []
         for prop, value in self.style.items():
             styles.append(f"{prop}: {value}")
 
-        styles = ';'.join(styles)
+        styles = ";".join(styles)
 
         mydom = f"""\
 <{self.nodeName} style="{styles}">
@@ -39,17 +39,19 @@ class HTMLElement:
 class HTMLTextElement(HTMLElement):
     def __init__(self, textContent):
         self.textContent = textContent
-    
+
     def __str__(self):
         return f"#text {self.textContent}"
-    
+
     @property
     def innerHTML(self):
         return self.textContent
 
 
 class HTMLAnchorElement(HTMLElement):
-    def __init__(self, href="#", target="_blank", title=None, children=None, style=None):
+    def __init__(
+        self, href="#", target="_blank", title=None, children=None, style=None
+    ):
         self.nodeName = "a"
         self.href = href
         self.target = target
@@ -67,9 +69,6 @@ class HTMLAnchorElement(HTMLElement):
 </{self.nodeName}>
         """
         return mydom
-
-
-    
 
 
 class HTMLParagraphElement(HTMLElement):
