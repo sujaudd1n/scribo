@@ -6,7 +6,7 @@ import os
 import shutil
 from typing import Optional
 
-from .copy_and_minimize import copy_and_minimize_static_files
+from .copy_and_minimize import copy_static, minimize
 
 DIST_DIR = "dist"
 
@@ -23,8 +23,9 @@ def build_project(project_root: str) -> None:
         from .render import render
 
         create_dist_dir(DIST_DIR)
-        copy_and_minimize_static_files()
+        copy_static()
         render()
+        # minimize(DIST_DIR)
     except Exception as e:
         print(f"Error during build process: {e}")
         raise

@@ -4,19 +4,19 @@ Module to minify code.
 
 import os
 import shutil
+import minify_html as minify
 
 DIST_DIR = "dist"
 STATIC_DIR = "assets"
 
 
-def copy_and_minimize_static_files():
+def copy_static():
     """
     Copies static files from the source directory to the distribution directory.
     Optionally, static files can be minimized (commented out for now).
     """
     static_dirs = [STATIC_DIR]
     copy_static_dirs(static_dirs, DIST_DIR)
-    # minimize_static_files(static_dirs)  # Uncomment to enable minimization
 
 
 def copy_static_dirs(static_dirs, dist_dir):
@@ -36,23 +36,24 @@ def copy_static_dirs(static_dirs, dist_dir):
         shutil.copytree(source, destination)
 
 
-def minimize_static_files(static_dirs):
+def minimize(root):
     """
     Minimized all files that starts with css or js in
     all static_dirs
     """
-    for diren in static_dirs:
-        for file in os.listdir(diren):
-            if not file.endswith(".css") or not file.endswith(".js"):
+    return
+    for dirpath, dirnames, filenames in os.walk(root):
+        for filename in filenames:
+            if not filename.endswith(".css") and not filename.endswith(".js") and not filename.endswith(".html"):
                 continue
-            with open(os.path.join(diren, file), "r+") as source:
+            with open(os.path.join(dirpath, filename), "r+") as source:
                 source_text = source.read()
                 source.seek(0)
                 source.write(
                     minify.minify(
                         source_text,
-                        minify_js=True,
-                        minify_css=True,
-                        remove_processing_instructions=True,
+                        # minify_js=True,
+                        # minify_css=True,
+                        # remove_processing_instructions=True,
                     )
                 )
