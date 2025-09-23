@@ -1,0 +1,32 @@
+{
+    "title": "Scribo",
+    "project_name": "Scribo",
+    "description": "A simple, efficient and content-first static site generator (SSG).",
+    "author": "Scribo",
+    "production_urls": [
+        "http://localhost:8000",
+        "http://localhost:8001"
+    ],
+    "base_url": "/",
+    "quick_links": [
+        {
+            "name": "Home",
+            "url": "/"
+        },
+        {
+            "name": "Github",
+            "url": "https://github.com/sujaudd1n/scribo"
+        },
+        {
+            "name": "Contribute",
+            "url": "/contributing"
+        }
+    ],
+    "nav_links": [
+        {
+            "name": "Github",
+            "url": "https://github.com/sujaudd1n/"
+        }
+    ],
+    "_comment": "Docs for this meta file: <>"
+}

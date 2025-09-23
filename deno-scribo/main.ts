@@ -1,16 +1,27 @@
-import { version } from "./meta.ts";
+import * as path from "@std/path";
+import { copy, exists } from "@std/fs";
 import { parseArgs } from "@std/cli";
+import { version } from "./meta.ts";
 
 function getFlags() {
   const flags = parseArgs(Deno.args, {
     string: ["init", "build", "help"],
-    boolean: ["version", "v"],
+    boolean: ["version"],
   });
   return flags;
 }
 
-function initializeScriboProject(name: string) {
+async function initializeScriboProject(projectName: string) {
+  const projectRoot: string = path.join(import.meta.dirname, projectName);
+  if (await exists(projectRoot, { isDirectory: true })) {
+    console.log(
+      `Project ${projectName} already exists in the current working directory. Exiting...`,
+    );
+    Deno.exit(1);
+  }
   console.log(`Initializing ${name}...`);
+  await copy("skeleton", projectRoot);
+  console.log(`Project ${projectName} has been initialized.`);
 }
 function buildScriboProject(name: string) {
   console.log(`Building ${name}...`);
@@ -42,10 +53,14 @@ if (import.meta.main) {
       Deno.exit(1);
     }
     initializeScriboProject(projectName);
-  } else if (flags.build) {
+  } else if (Object.prototype.hasOwnProperty.call(flags, "build")) {
     const projectName: string = flags.build;
+    if (projectName === "") {
+      console.log("Please use valid project name.");
+      Deno.exit(1);
+    }
     buildScriboProject(projectName);
-  } else if (flags.version || flags.v) {
+  } else if (flags.version) {
     console.log(version);
   } else {
     printHelp();
