@@ -1,9 +1,10 @@
 import { version } from "./meta.ts";
-import { parseArgs } from "jsr:@std/cli/parse-args";
+import { parseArgs } from "@std/cli";
 
 function getFlags() {
   const flags = parseArgs(Deno.args, {
-    string: ["help"],
+    string: ["init", "build", "help"],
+    boolean: ["version", "v"],
   });
   return flags;
 }
@@ -34,13 +35,17 @@ To contribute please visit https://github.com/sujaudd1n/scribo.
 
 if (import.meta.main) {
   const flags = getFlags();
-  if (flags.init) {
+  if (Object.prototype.hasOwnProperty.call(flags, "init")) {
     const projectName: string = flags.init;
+    if (projectName === "") {
+      console.log("Please use valid project name.");
+      Deno.exit(1);
+    }
     initializeScriboProject(projectName);
   } else if (flags.build) {
     const projectName: string = flags.build;
     buildScriboProject(projectName);
-  } else if (flags.version) {
+  } else if (flags.version || flags.v) {
     console.log(version);
   } else {
     printHelp();
