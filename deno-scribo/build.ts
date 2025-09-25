@@ -43,5 +43,7 @@ export async function buildScriboProject(projectPath: string) {
       await Deno.remove(wo.path);
     }
   }
+
+  await copy(`${import.meta.dirname}/assets`, path.join(dist_dir, "assets"));
   console.log("Build successful.");
 }

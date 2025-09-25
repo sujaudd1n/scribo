@@ -10,4 +10,5 @@ dist
 tmp
 myproject
 .deno-migration
+.zed
 
