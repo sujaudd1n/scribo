@@ -8,7 +8,8 @@
     "jsr:@std/internal@^1.0.4": "1.0.4",
     "jsr:@std/internal@^1.0.9": "1.0.10",
     "jsr:@std/path@^1.1.1": "1.1.2",
-    "jsr:@std/path@^1.1.2": "1.1.2"
+    "jsr:@std/path@^1.1.2": "1.1.2",
+    "npm:nunjucks@^3.2.4": "3.2.4"
   },
   "jsr": {
     "@std/assert@1.0.6": {
@@ -46,12 +47,33 @@
       ]
     }
   },
+  "npm": {
+    "a-sync-waterfall@1.0.1": {
+      "integrity": "sha512-RYTOHHdWipFUliRFMCS4X2Yn2X8M87V/OpSqWzKKOGhzqyUxzyVmhHDH9sAvG+ZuQf/TAOFsLCpMw09I1ufUnA=="
+    },
+    "asap@2.0.6": {
+      "integrity": "sha512-BSHWgDSAiKs50o2Re8ppvp3seVHXSRM44cdSsT9FfNEUUZLOGWVCsiWaRPWM1Znn+mqZ1OfVZ3z3DWEzSp7hRA=="
+    },
+    "commander@5.1.0": {
+      "integrity": "sha512-P0CysNDQ7rtVw4QIQtm+MRxV66vKFSvlsQvGYXZWR3qFU0jlMKHZZZgw8e+8DSah4UDKMqnknRDQz+xuQXQ/Zg=="
+    },
+    "nunjucks@3.2.4": {
+      "integrity": "sha512-26XRV6BhkgK0VOxfbU5cQI+ICFUtMLixv1noZn1tGU38kQH5A5nmmbk/O45xdyBhD1esk47nKrY0mvQpZIhRjQ==",
+      "dependencies": [
+        "a-sync-waterfall",
+        "asap",
+        "commander"
+      ],
+      "bin": true
+    }
+  },
   "workspace": {
     "dependencies": [
       "jsr:@std/assert@1",
       "jsr:@std/cli@^1.0.22",
       "jsr:@std/fs@^1.0.19",
-      "jsr:@std/path@^1.1.2"
+      "jsr:@std/path@^1.1.2",
+      "npm:nunjucks@^3.2.4"
     ]
   }
 }

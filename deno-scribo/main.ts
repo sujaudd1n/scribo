@@ -1,7 +1,8 @@
 import * as path from "@std/path";
-import { copy, exists, walk } from "@std/fs";
+import { copy, exists } from "@std/fs";
 import { parseArgs } from "@std/cli";
 import { version } from "./meta.ts";
+import { buildScriboProject } from "./build.ts";
 
 function getFlags() {
   const flags = parseArgs(Deno.args, {
@@ -22,48 +23,6 @@ async function initializeScriboProject(projectName: string) {
   console.log(`Initializing ${name}...`);
   await copy("skeleton", projectRoot);
   console.log(`Project ${projectName} has been initialized.`);
-}
-
-async function buildScriboProject(projectName: string) {
-  const projectRoot: string = path.relative(Deno.cwd(), projectName);
-  if (!await exists(projectRoot, { isDirectory: true })) {
-    console.log(
-      `Project ${projectName} not found. Please enter valid project path. Exiting...`,
-    );
-    Deno.exit(1);
-  }
-  console.log(projectRoot);
-  Deno.chdir(projectRoot);
-
-  console.log(`Building ${projectName}...`);
-  const walkObj = await Array.fromAsync(walk("."));
-  if (await exists("dist")) {
-    await Deno.remove("dist", { recursive: true });
-  }
-  for (let wo of walkObj) {
-    if (!wo.path.startsWith("pages")) {
-      continue;
-    }
-    if (wo.isDirectory) {
-      const inputDirName: string = wo.path;
-      const distDir: string = path.join(
-        "dist",
-        ...inputDirName.split("/").slice(1),
-      );
-      Deno.mkdir(distDir);
-    } else if (wo.isFile) {
-      console.log(wo)
-      let parsedFile = path.parse(wo.path);
-      console.log(parsedFile.dir.split(path.SEPARATOR).slice(1));
-      const outputFile = path.join(
-        "dist",
-        ...parsedFile.dir.split(path.SEPARATOR).slice(1),
-        parsedFile.name + ".html",
-      );
-      console.log(outputFile);
-      await copy(wo.path, outputFile)
-    }
-  }
 }
 
 function printHelp() {
@@ -93,12 +52,12 @@ if (import.meta.main) {
     }
     initializeScriboProject(projectName);
   } else if (Object.prototype.hasOwnProperty.call(flags, "build")) {
-    const projectName: string = flags.build;
-    if (projectName === "") {
+    const projectPath: string = flags.build;
+    if (projectPath === "") {
       console.log("Please use valid project name.");
       Deno.exit(1);
     }
-    buildScriboProject(projectName);
+    buildScriboProject(projectPath);
   } else if (flags.version) {
     console.log(version);
   } else {
