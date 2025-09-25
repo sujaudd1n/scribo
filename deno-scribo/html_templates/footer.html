@@ -1,0 +1,80 @@
+<footer class="footer">
+    <div class="footer__div">
+        <div class="footer_links">
+            <nav class="quick_links">
+                <h3>Quick Links</h3>
+                <div>
+                    {% for link in quick_links %}
+                        {% if link.url.startswith('http') and link.url not in production_urls %}
+                            <a href="{{ link.url }}"
+                               target="_blank"
+                               class="external-icon ri-external-link-line-after">{{ link.name }}</a>
+                        {% else %}
+                            <a href="{{ link.url }}">{{ link.name }}</a>
+                        {% endif %}
+                    {% endfor %}
+
+                </div>
+            </nav>
+            <nav class="useful_links">
+                <h3>Useful Links</h3>
+                <div>
+                    <a href="/sitemap">Sitemap</a>
+                </div>
+            </nav>
+        </div>
+        <p class="copyright">
+            &copy; <span class="copyright__year">2024</span> {{ author }}
+        </p>
+    </div>
+</footer>
+
+<style>
+    /* footer */
+    .footer {
+        border-top: 1px solid var(--primary-600);
+        padding: 0 10px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    .footer_links a {
+        color: var(--header-link);
+        font-size: 95%;
+    }
+
+    .footer_links a:hover {
+        color: var(--header-link-hover);
+    }
+
+    .footer_links h3 {
+        color: white;
+        font-size: 95%;
+        font-weight: bold;
+    }
+
+    .footer_links {
+        display: flex;
+        flex-flow: row wrap;
+        gap: 50px;
+    }
+
+    .footer__div {
+        max-width: var(--max-page-width);
+        margin: 0 auto;
+    }
+
+    .quick_links div,
+    .useful_links div {
+        display: flex;
+        flex-flow: column;
+        gap: 8px;
+    }
+
+    p.copyright {
+        margin-top: 30px;
+        font-size: 0.8rem;
+    }
+</style>

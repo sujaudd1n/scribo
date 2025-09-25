@@ -1,0 +1,128 @@
+<header class="header">
+    <div class="header__div">
+        <p class="header__title">
+            <a href="/">{{ project_name }}</a>
+        </p>
+        <button class='header__nav_toggle ri-menu-line hidden'
+                aria-label="toggle nav"></button>
+        <nav class="header__nav">
+            {% for link in nav_links %}<a href="{{ link.url }}">{{ link.name }}</a>{% endfor %}
+        </nav>
+    </div>
+</header>
+
+<style>
+    /* header */
+
+    .header {
+        margin: 0 -10px;
+        padding: 0 20px;
+        border-bottom: 1px solid var(--primary-600);
+        height: 60px;
+    }
+
+    .header__div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: var(--max-page-width);
+        margin: 0 auto;
+        height: inherit;
+    }
+
+    .header__title {
+        margin: 0;
+        font-size: 32px;
+    }
+
+    .header__title a {
+        color: inherit;
+    }
+
+    .header__nav_toggle {
+        appearance: none;
+        height: fit-content;
+        font-size: 32px;
+        background: none;
+        color: var(--text);
+        border: none;
+        border-radius: 2px;
+        padding: 5px;
+    }
+
+    .header__nav_toggle:hover {
+        cursor: pointer;
+    }
+
+    .header__nav_toggle:active {
+        background-color: var(--primary-700);
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .header__nav {
+        background-color: var(--primary-700-tp);
+        backdrop-filter: blur(5px);
+        height: calc(100dvh - 60px);
+        overflow: auto;
+
+        width: 70dvw;
+
+        position: absolute;
+        top: 60px;
+        bottom: 0;
+        right: 0;
+        padding: 10px;
+
+        display: none;
+        /* display: flex; */
+        flex-flow: column;
+        gap: 20px;
+        z-index: 1;
+    }
+
+    .header__nav a {
+        color: var(--header-link);
+        font-size: 95%;
+    }
+
+    .header__nav a:hover {
+        color: var(--header-link-hover);
+    }
+
+    .show {
+        display: flex;
+    }
+
+
+    @media screen and (min-width: 768px) {
+
+        .header__nav_toggle {
+            display: none;
+        }
+
+        .header__nav {
+            background-color: unset;
+            backdrop-filter: none;
+            height: unset;
+            width: 50dvw;
+            max-width: 700px;
+
+            position: static;
+
+            display: flex;
+            justify-content: flex-start;
+            flex-flow: row;
+            gap: 20px;
+
+            overflow: auto;
+        }
+
+        .header__nav a {
+            white-space: nowrap;
+        }
+
+        .header__nav a:first-child {
+            margin-left: auto;
+        }
+    }
+</style>

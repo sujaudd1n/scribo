@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_metadata.title }} {{ super() }}{% endblock %}
+{% block description %}{{ page_metadata.description }}{% endblock %}
+{% block base_content %}
+    <div class="page">
+        <div class="page__div">
+            <div class="page_content-container">
+                {% if page_toc %}
+                    <div class="page_toc sideinfo">
+                        <details>
+                            <summary>On this page</summary>
+                            {{ page_toc | safe }}
+                        </details>
+                        <div class="fulls">
+                            <h2>On this page</h2>
+                            {{ page_toc | safe }}
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="page_content">{{ html | safe }}</div>
+            </div>
+            {% if contents and contents.children %}
+                <div class="page_routes sideinfo">
+                    <details>
+                        <summary>Routes</summary>
+                        {% include "toc.html.jinja" %}
+                    </details>
+                    <div class="fulls">
+                        <h2>Routes</h2>
+                        {% include "toc.html.jinja" %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <style>
+    /* toc style*/
+    .page {
+        padding: 10px;
+    }
+
+    .sideinfo li::marker {
+        content: '';
+    }
+
+    .sideinfo li {
+        padding-left: unset;
+
+    }
+
+    .fulls>ul,
+    .toc>ul {
+        padding-left: 0;
+    }
+
+    details summary {
+        cursor: pointer;
+        overflow: auto;
+    }
+
+    summary {
+        background-color: var(--primary-800);
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    summary+* {
+        padding: 0 20px;
+    }
+
+    .fulls {
+        display: none;
+    }
+
+    .page_toc {
+        max-height: 80dvh;
+        overflow: auto;
+        min-width: fit-content;
+    }
+
+    .page_toc h2 {
+        white-space: nowrap;
+    }
+
+    .page_content h1 {
+        margin-bottom: 50px;
+    }
+
+    .page_content h2 {
+        margin-top: 60px;
+    }
+
+    .page_content h3 {
+        margin-top: 40px;
+    }
+
+    .page_content-container {
+        margin-bottom: 30px;
+    }
+
+    @media screen and (min-width: 928px) {
+        .page__div {
+            display: flex;
+            max-width: calc(var(--max-page-width) * 0.9);
+            margin: 0 auto;
+            gap: 50px;
+        }
+
+        .page_routes .fulls {
+            display: block;
+        }
+
+        .page_routes details {
+            display: none;
+        }
+
+        .page_content-container {
+            flex-grow: 1;
+            order: 2;
+        }
+
+        .page_routes {
+            width: 200px;
+            order: 1;
+        }
+    }
+
+    @media screen and (min-width: 1256px) {
+        .page_toc .fulls {
+            display: block;
+        }
+
+        .page_toc details {
+            display: none;
+        }
+
+        .page_content-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .page_content {
+            flex-grow: 1;
+        }
+
+        .page_toc {
+            display: block;
+            height: min-content;
+            position: sticky;
+            top: 10px;
+            order: 3;
+            width: 200px;
+        }
+    }
+
+
+    /*ends toc style*/
+    </style>
+
+{% endblock %}
