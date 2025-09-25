@@ -9,3 +9,5 @@ dist
 .venv
 tmp
 myproject
+deno*
+.deno*
