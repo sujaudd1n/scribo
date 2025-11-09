@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_metadata.title }} {{ super() }}{% endblock %}
+{% block description %}{{ page_metadata.description }}{% endblock %}
+
+{% block body_content %}
+    {{html}}
+{% endblock %}

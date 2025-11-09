@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         {% block head %}
             <meta charset="UTF-8">
@@ -10,21 +9,12 @@
             </title>
             <meta name="description" content="{% block description %}{% endblock %}">
             <meta name="author" content="{{ author }}">
-            <link rel="stylesheet" href="/assets/styles/style.css">
-            <link rel="stylesheet" href="/assets/styles/remixicon.css">
-            <link rel="stylesheet" href="/assets/styles/theme.css">
-            <script src="/assets/scripts/script.js" defer></script>
+            <link rel="stylesheet" href="style.css">
+            <script src="script.js" defer></script>
         {% endblock %}
     </head>
-
     <body data-theme="dark">
-        {% include "header.html" %}
-        <div class="base_content">
-            {% block base_content %}{% endblock %}
-        </div>
-
-
-        {% include "footer.html" %}
+        {% include "toc.html" %}
+        {% block body_content %}{% endblock %}
     </body>
-
 </html>

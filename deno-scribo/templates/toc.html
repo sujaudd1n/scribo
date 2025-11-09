@@ -1,0 +1,9 @@
+{% if contents %}
+    <ul>
+        {% for content in contents %}
+            <li>
+                <a href="/{{ content.path }}">{{ content.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}

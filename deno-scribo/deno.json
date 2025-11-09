@@ -9,6 +9,7 @@
     "@std/cli": "jsr:@std/cli@^1.0.22",
     "@std/fs": "jsr:@std/fs@^1.0.19",
     "@std/path": "jsr:@std/path@^1.1.2",
+    "marked": "npm:marked@^17.0.0",
     "nunjucks": "npm:nunjucks@^3.2.4"
   }
 }

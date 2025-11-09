@@ -9,6 +9,8 @@
     "jsr:@std/internal@^1.0.9": "1.0.10",
     "jsr:@std/path@^1.1.1": "1.1.2",
     "jsr:@std/path@^1.1.2": "1.1.2",
+    "npm:marked@*": "17.0.0",
+    "npm:marked@17": "17.0.0",
     "npm:nunjucks@^3.2.4": "3.2.4"
   },
   "jsr": {
@@ -57,6 +59,10 @@
     "commander@5.1.0": {
       "integrity": "sha512-P0CysNDQ7rtVw4QIQtm+MRxV66vKFSvlsQvGYXZWR3qFU0jlMKHZZZgw8e+8DSah4UDKMqnknRDQz+xuQXQ/Zg=="
     },
+    "marked@17.0.0": {
+      "integrity": "sha512-KkDYEWEEiYJw/KC+DVm1zzlpMQSMIu6YRltkcCvwheCp8HWPXCk9JwOmHJKBlGfzcpzcIt6x3sMnTsRm/51oDg==",
+      "bin": true
+    },
     "nunjucks@3.2.4": {
       "integrity": "sha512-26XRV6BhkgK0VOxfbU5cQI+ICFUtMLixv1noZn1tGU38kQH5A5nmmbk/O45xdyBhD1esk47nKrY0mvQpZIhRjQ==",
       "dependencies": [
@@ -73,6 +79,7 @@
       "jsr:@std/cli@^1.0.22",
       "jsr:@std/fs@^1.0.19",
       "jsr:@std/path@^1.1.2",
+      "npm:marked@17",
       "npm:nunjucks@^3.2.4"
     ]
   }
