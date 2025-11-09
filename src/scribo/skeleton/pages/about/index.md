@@ -1,7 +1,0 @@
----
-title: About
----
-
-## About
-
-{{ description }}

@@ -1,0 +1,15 @@
+{% if contents %}
+    <nav class="nav32">
+        {% for content in contents %}
+                <a href="/{{ content.path }}">{{ content.name }}</a>
+        {% endfor %}
+    </nav>
+{% endif %}
+
+<style>
+    .nav32 {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+</style>

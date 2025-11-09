@@ -11,3 +11,6 @@ tmp
 myproject
 deno*
 .deno*
+.deno-migration
+.zed
+test

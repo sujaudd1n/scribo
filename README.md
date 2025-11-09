@@ -3,7 +3,7 @@
 </div>
 
 <p align="center">
-A simple, efficient and content-first static site generator (SSG). 
+A simple, minimal, efficient and content-first static site generator (SSG). 
 </p>
 
 
@@ -16,40 +16,7 @@ A simple, efficient and content-first static site generator (SSG).
 
 Write docs, blogs or anything you like. Read the [docs](https://scribo-docs.netlify.app).
 
-## Features
-
-- Extended markdown syntax support
-- File-system based routing
-- Customization
-- Automatic table of contents generation
-- Syntax highlighting of codeblocks
-- Metadata
-
-
-## Installation
-
-```console
-pip install scribo
-```
-
-## Quick Start
-
-### Initialize
-
-```bash
-scribo --init sitename
-```
-
-Edit `index.md`.
-
-### Build
-
-```console
-scribo --build sitename
-```
-
-`dist` dir contains the build of the project.
-
+It was previously written in Python, now it's being rewritten with Deno.
 
 ## Contributing
 
