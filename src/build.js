@@ -54,6 +54,8 @@ export async function buildScriboProject(projectPath) {
         html: marked.parse(markdownText)
       })
 
+      await Deno.remove(wo.path);
+
     }
   }
 
@@ -63,7 +65,6 @@ export async function buildScriboProject(projectPath) {
       html: data.html,
       contents: links
     }));
-    // await Deno.remove(wo.path);
   }
 
   await copy(`${import.meta.dirname}/templates/script.js`, path.join(dist_dir, "script.js"));

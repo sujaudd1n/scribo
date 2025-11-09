@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}Scribo{% endblock %}
+    </title>
+    <meta name="description" content="{% block description %}{% endblock %}">
+    <meta name="author" content="{{ author }}">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    {% endblock %}
+</head>
+
+<body data-theme="dark">
+    <div>
+        <div class="body_content">
+            {% include "toc.html" %}
+            {% block body_content %}{% endblock %}
+        <div>
+    </div>
+</body>
+
+</html>
+
+<style>
+    .body_content {
+        max-width: 928px;
+        margin: 0 auto;
+    }
+</style>
