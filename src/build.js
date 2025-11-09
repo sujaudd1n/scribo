@@ -2,8 +2,11 @@ import * as path from "@std/path";
 import { copy, exists, walk } from "@std/fs";
 import nunjucks from "nunjucks";
 import { marked } from "npm:marked"
+import os from "node:os"
 
-nunjucks.configure("templates", { autoescape: false });
+const homedir = os.homedir()
+const templates_dir = `${homedir}/.local/share/scribo/templates`
+nunjucks.configure(templates_dir, { autoescape: false });
 nunjucks.render("index.html", { html: "hello" });
 
 const DIST_DIR_NAME = "dist";
@@ -67,8 +70,8 @@ export async function buildScriboProject(projectPath) {
     }));
   }
 
-  await copy(`${import.meta.dirname}/templates/script.js`, path.join(dist_dir, "script.js"));
-  await copy(`${import.meta.dirname}/templates/style.css`, path.join(dist_dir, "style.css"));
+  await copy(`${templates_dir}/script.js`, path.join(dist_dir, "script.js"));
+  await copy(`${templates_dir}/style.css`, path.join(dist_dir, "style.css"));
 
   // await copy(`${import.meta.dirname}/templates/script.js`, path.join(dist_dir, ""));
   console.log("Build successful.");

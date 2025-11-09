@@ -3,7 +3,11 @@ import { copy, exists } from "@std/fs";
 import { parseArgs } from "@std/cli";
 import { version } from "./meta.js";
 import { buildScriboProject } from "./build.js";
+import os from "node:os"
 
+const homedir = os.homedir()
+const templates_dir = `${homedir}/.local/share/scribo/templates`
+const skeleton_dir = `${homedir}/.local/share/scribo`
 
 if (import.meta.main) {
   const flags = getFlags();
@@ -37,7 +41,7 @@ function getFlags() {
 }
 
 async function initializeScriboProject(projectName) {
-  const projectRoot = path.join(import.meta.dirname, projectName);
+  const projectRoot = path.join(Deno.cwd(), projectName);
   if (await exists(projectRoot, { isDirectory: true })) {
     console.log(
       `Project ${projectName} already exists in the current working directory. Exiting...`,
@@ -45,7 +49,7 @@ async function initializeScriboProject(projectName) {
     Deno.exit(1);
   }
   console.log(`Initializing ${name}...`);
-  await copy("skeleton", projectRoot);
+  await copy(skeleton_dir + "/skeleton", projectRoot);
   console.log(`Project ${projectName} has been initialized.`);
 }
 
